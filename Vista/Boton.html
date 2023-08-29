@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solicitar ayuda</title>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: black;
+  }
+
+  .boton-rojo {
+    background-color: red;
+    color: white;
+    padding: 30px 50px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+  }
+
+  .boton-rojo:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .boton-rojo:active {
+    transform: translateY(2px);
+    box-shadow: none;
+    background-color: darkred; /* Cambiar el color de fondo cuando se presiona */
+  }
+</style>
+</head>
+<body>
+  <button class="boton-rojo">Ayuda</button>
+</body>
+</html>
