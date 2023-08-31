@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <style>
+        body {
+            background-color: rgb(139, 115, 255);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            background-color: rgb(140, 82, 255);
+            padding: 20px;
+            border-radius: 10px;
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 80%;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 40px;
+            border: 1px solid #4B0082; 
+        }
+
+        h1 {
+            color: white;
+            font-weight: bold;
+            font-family: Arial Black, sans-serif;
+            text-align: left;
+            margin-left: 20px;
+        }
+        
+        p {
+            color: white;
+        }
+
+        button {
+            background-color: rgb(232,106,167);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            width: 80%;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .terms-checkbox {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+        }
+
+        .terms-checkbox input[type="checkbox"] {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to LadyLock</h1>
+        <div>
+            <input type="text" placeholder="Nombre">
+            <input type="text" placeholder="Email">
+            <input type="password" placeholder="Contraseña">
+            <input type="password" placeholder="Confirmar Contraseña">
+            <div class="terms-checkbox">
+                <input type="checkbox">
+                <p>Acepto los términos y condiciones</p>
+            </div>
+            <button type="button">Registrarse</button>
+        </div>
+        <p>¿Ya tienes cuenta? <a href="#">Inicia sesión</a></p>
+    </div>
+</body>
+</html>
