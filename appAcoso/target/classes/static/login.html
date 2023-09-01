@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        body {
+            background-color: rgb(139, 115, 255);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            background-color: rgb(140, 82, 255);
+            padding: 20px;
+            border-radius: 10px;
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 80%;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 40px;
+            border: 1px solid #4B0082; 
+        }
+
+        h1 {
+            color: white;
+            font-weight: bold;
+            font-family: Arial Black, sans-serif;
+        }
+        
+        p {
+            color: white;
+        }
+
+
+        button {
+            background-color: rgb(232,106,167);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            width: 80%;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to bSafe</h1>
+        <input type="text" id="txtEmail" placeholder="Email">
+        <input type="password" id="txtContraseña" placeholder="Contraseña">
+        <button type="button" onclick="iniciarSesion()">Ingresar</button>
+        <p>No tienes cuenta, <a href="registro.html">regístrate</a></p>
+    </div>
+
+    <script src="js/login.js"></script>
+
+</body>
+</html>
