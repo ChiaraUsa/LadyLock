@@ -2,16 +2,19 @@
 var mostrarMapaButton = document.getElementById('mostrarMapa');
 var mapContainer = document.getElementById('map-container');
 var helpContainer = document.getElementById("help-container");
+var helpContainer2 = document.getElementById("help-container2");
 
 // Función para mostrar el mapa
 function mostrarMapa() {
-  if (mapContainer.style.display === "none") {
+  if (mapContainer.style.display === "none" || mapContainer.style.display === "") {
       // Mostrar mapa y ocultar contenedor de ayuda
       mapContainer.style.display = "block";
       helpContainer.style.display = "none";
+      helpContainer2.style.display = "none";
   } else {
       // Ocultar ambos contenedores
       helpContainer.style.display = "none";
+      helpContainer2.style.display = "none";
   }
 
   // Crea un mapa en el div con id "map"
@@ -51,5 +54,5 @@ function mostrarMapa() {
 }
 }
 
-// Escucha el clic del botón para mostrar el mapa
+  // Escucha el clic del botón para mostrar el mapa
 mostrarMapaButton.addEventListener('click', mostrarMapa);
