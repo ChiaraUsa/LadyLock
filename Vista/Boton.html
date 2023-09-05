@@ -36,6 +36,21 @@
 </style>
 </head>
 <body>
-  <button class="boton-rojo">Ayuda</button>
+  <button class="boton-rojo" id="botonAyuda">Ayuda</button>
+
+  <script>
+    // Obtenemos el botón por su id
+    const botonAyuda = document.getElementById('botonAyuda');
+
+    
+    botonAyuda.addEventListener('click', function() {
+      
+      alert('Se ha solicitado ayuda.');
+
+      window.location.href = '/LadyLock/Vista/index.html#';
+      
+    });
+  </script>
 </body>
 </html>
+
