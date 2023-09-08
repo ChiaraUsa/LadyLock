@@ -11,7 +11,7 @@
 	<groupId>com.examples</groupId>
 	<artifactId>appAcoso</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Sports</name>
+	<name>appAcoso</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<jakarta-servlet.version>5.0.0</jakarta-servlet.version>

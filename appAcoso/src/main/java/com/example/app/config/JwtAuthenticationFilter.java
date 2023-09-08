@@ -58,11 +58,4 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
         filterChain.doFilter(request, response);
     }
-    private String getFirstName(String token){
-        Usuario user = new Usuario();
-        Claims c = jwtService.extractAllClaims(token);
-        user.setFirstname((String) c.get("firstname"));
-        return user.getFirstname();
-    }
-
 }
