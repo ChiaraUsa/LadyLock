@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 public class AuthenticationService {
 
     private final UsuarioCrudRepository repository;
+
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;

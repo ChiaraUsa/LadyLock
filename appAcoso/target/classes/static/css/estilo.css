@@ -35,7 +35,9 @@ body {
 }
 
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+select
+{
     width: 80%;
     padding: 15px;
     margin: 10px 0;
@@ -72,4 +74,3 @@ a {
     font-weight: bold;
     text-decoration: underline;
 }
-

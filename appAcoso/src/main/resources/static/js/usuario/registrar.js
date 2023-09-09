@@ -3,13 +3,14 @@ $(document).ready(function() {
   // on ready
 });
 
-function registrarUsuario(){
+function registrar(){
   let datos = {}
 
   datos.firstname = document.querySelector('#txtNombre').value
   datos.email = document.querySelector('#txtEmail').value
   datos.password = document.querySelector('#txtContraseña').value
 
+  rol = document.querySelector('#txtRol').value
   let repiteContraseña = document.querySelector('#txtRepiteContraseña').value
 
   if(repiteContraseña != datos.password)
@@ -18,24 +19,47 @@ function registrarUsuario(){
      return;
   }
 
-   $.ajax({
-  		 url:"/api/auth/register",
-  		 type:"POST",
-  		 contentType:"application/json",
-  		 dataType:"json",
+  //le indica al controlador quien se esta registrando
+  if(rol == 'usuario')
+  {
+    registrarUsuario('usuario',datos)
+  }
+  else if(rol ==  'empresa')
+  {
+    registrarEmpresa('empresa', datos)
+  }
+  else
+  {
+    alert('Debe escoger un Rol!')
+    return;
+  }
 
-  		 data:JSON.stringify(datos),
+}
 
-  		 success: function(rta) {
-  			 localStorage.email = datos.email
-  			 Cookies.set("token",rta['token']);
-  			 window.location.replace("inicio.html");
-  		 },
-  		 error: function(xhr, status) {
-  			 alert('Disculpe, existió un problema');
-  		 },
-  		 complete: function(xhr, status) {
-  			 //alert('Petición realizada');
-  		 }
-  	 });
+function registrarUsuario(via, datos){
+    $.ajax({
+      		 url:"/api/auth/register/"+via,
+      		 type:"POST",
+      		 contentType:"application/json",
+      		 dataType:"json",
+
+      		 data:JSON.stringify(datos),
+
+      		 success: function(rta) {
+      			 localStorage.email = datos.email
+      			 Cookies.set("token",rta['token']);
+      			 window.location.replace("inicio.html");
+      		 },
+      		 error: function(xhr, status) {
+      			 alert('Disculpe, existió un problema');
+      		 },
+      		 complete: function(xhr, status) {
+      			 //alert('Petición realizada');
+      		 }
+    });
+}
+
+function registrarEmpresa(via, datos){
+    alert(via)
+    console.log(datos)
 }
