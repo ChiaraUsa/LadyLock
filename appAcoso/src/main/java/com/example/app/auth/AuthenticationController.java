@@ -13,7 +13,7 @@ public class AuthenticationController {
     private final AuthenticationService service;
     private final UsuarioCrudRepository repository;
 
-    @PostMapping("/register")
+    @PostMapping("/register/usuario")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request){
         if(!request.getFirstname().isBlank() && !request.getEmail().isBlank() && !request.getPassword().isBlank() && !repository.findByEmail(request.getEmail()).isPresent()){
             return ResponseEntity.ok(service.register(request));

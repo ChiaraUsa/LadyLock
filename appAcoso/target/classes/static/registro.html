@@ -14,13 +14,20 @@
         <div>
             <input type="text" id="txtNombre" placeholder="Nombre">
             <input type="text" id="txtEmail" placeholder="Email">
+
+            <select id="txtRol">
+                <option value="vacio">-</option>
+                <option value="usuario">Usuario</option>
+                <option value="empresa">Empresa</option>
+            </select>
+
             <input type="password" id="txtContraseña" placeholder="Contraseña">
             <input type="password" id="txtRepiteContraseña" placeholder="Confirmar Contraseña">
             <div class="terms-checkbox">
                 <input type="checkbox">
                 <p>Acepto los términos y condiciones</p>
             </div>
-            <button type="button" onclick="registrarUsuario()">Registrarse</button>
+            <button type="button" onclick="registrar()">Registrarse</button>
         </div>
         <p>¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
     </div>
