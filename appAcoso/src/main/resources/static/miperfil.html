@@ -199,11 +199,10 @@
 
     <div class="profile-container">
         <h1>Mi Perfil</h1>
-        <input type="text" class="profile-input" value="Nombre" disabled>
+        <input type="text" class="profile-input" value="Nombre" disabled data-field="Nombre">
         <input type="text" class="profile-input" value="Rol" disabled>
         <input type="text" class="profile-input" value="ID" disabled>
-        <input type="text" class="profile-input" value="Correo" disabled>
-        <input type="password" class="profile-input" value="Contraseña" disabled>
+        <input type="text" class="profile-input" value="Correo" disabled data-field="Correo">
         <div class="action-buttons">
             <button class="delete-button" onclick="confirmarEliminacion()">Eliminar</button>
             <button class="edit-button" onclick="editarPerfil()">Editar</button>
@@ -216,12 +215,15 @@
     <script src="js/maps.js"></script>
     <script>
         function editarPerfil() {
-            var inputs = document.querySelectorAll(".profile-input");
-            for (var i = 0; i < inputs.length; i++) {
-                inputs[i].removeAttribute("disabled");
-            }
+            var nombreInput = document.querySelector(".profile-input[data-field='Nombre']");
+            var correoInput = document.querySelector(".profile-input[data-field='Correo']");
+
+            nombreInput.removeAttribute("disabled");
+            correoInput.removeAttribute("disabled");
+
             document.querySelector(".save-button").removeAttribute("disabled");
         }
+
 
         function guardarPerfil() {
             var inputs = document.querySelectorAll(".profile-input");

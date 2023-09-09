@@ -1,29 +1,217 @@
 <!DOCTYPE html>
-    <html lang="es">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Centro de Ayuda</title>
-            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-            <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-            <link rel="stylesheet" href="/css/estilo.css">
-        </head>
-        <body>
-            <div id="map-container">
-                <div id="map"></div>
-            </div>
-            <div class="container" id="help-container">
-                <p class="descripcion">¿Necesitas ayuda? Nuestro equipo está listo para ayudarte.</p>
-                <button class="boton-ayuda" id="mostrarMapa">Mi ubicación</button>
-            </div>
-            <div class="container" id="help-container2">
-                <p class="descripcion">¿Deseas comunicarte con un asesor?.</p>
-                <button class="boton-ayuda" id="comunicar">Iniciar chat</button>
-            </div>
-        </body>
-        <div class="container" style="margi-top:700px;" id="help-container3">
-            <button class="boton-ayuda" href="/inicio.html">¿Regresar?</button>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu {
+            background-color: rgb(140, 82, 255);
+            color: #fff;
+            height: 100vh;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            transition: left 0.3s;
+        }
+
+        .menu ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .menu ul li {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .menu-button {
+            background-color: rgb(140, 82, 255);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            padding: 1%;
+            font-size: 24px;
+            position: fixed;
+            top: 10px;
+            left: 10px;
+        }
+
+        .menu-button-styled {
+            background-color: rgb(139, 115, 255);
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            width: 100%;
+            height: 50px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: rgb(139, 0, 255);
+        }
+
+        button:active {
+            background-color: rgb(200, 0, 100);
+        }
+
+        .barra-superior {
+            justify-content: flex-start;
+            align-items: center;
+            padding-right: 10px;
+            background-color: rgb(140, 82, 255);
+            height: 11vh;
+            display: flex;
+            left: 0;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .user-button {
+            background-color: transparent;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .user-menu {
+            position: absolute;
+            top: 50px;
+            right: 20px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .user-menu button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            text-align: left;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 100px;
+        }
+
+        .profile-input {
+            width: 200px;
+            height: 30px;
+            margin: 10px;
+            padding: 5px;
+            border: none;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .edit-button {
+            background-color: rgb(140, 82, 255);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            font-size: 16px;
+            margin-right: 15px;
+        }
+
+        .save-button {
+            background-color: rgb(0, 128, 0);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .delete-button {
+            background-color: rgb(255, 0, 0);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            font-size: 16px;
+            margin-right: 15px; 
+        }
+    </style>
+</head>
+<body>
+    <div class="barra-superior">
+        <button class="menu-button" onclick="toggleMenu()">☰</button>
+        <button class="user-button" id="userButton" onclick="toggleUserMenu()">Nombre de Usuario ▼</button>
+    </div>
+    <div class="menu" id="menu">
+        <ul>
+            <li><button class="menu-button-styled" onclick="closeMenu()">Mi Perfil</button></li>
+            <li><button class="menu-button-styled" onclick="irCentroAyuda()">Centro de Ayuda</button></li>
+            <li><button class="menu-button-styled" onclick="closeMenu()">Servicios</button></li>
+            <li><button class="menu-button-styled" onclick="openUberLink()" style="background-color: rgb(0, 0, 0); color: white;" onmouseover="this.style.backgroundColor='rgb(44, 44, 44)'" onmouseout="this.style.backgroundColor='rgb(0, 0, 0)'">Ir a Uber</button></li>
+            <li><button class="menu-button-styled" onclick="closeMenu()">Contacto</button></li>
+            <li><button class="menu-button-styled" onclick="closeMenu()" style="background-color: rgb(200, 0, 100); color: white;" onmouseover="this.style.backgroundColor='rgb(161, 10, 55)'" onmouseout="this.style.backgroundColor='rgb(200, 0, 100)'">Cerrar</button></li>
+        </ul>
+    </div>
+
+    <div class="profile-container">
+        <h1>Mi Perfil</h1>
+        <input type="text" class="profile-input" value="Nombre" disabled>
+        <input type="text" class="profile-input" value="Rol" disabled>
+        <input type="text" class="profile-input" value="ID" disabled>
+        <input type="text" class="profile-input" value="Correo" disabled>
+        <input type="password" class="profile-input" value="Contraseña" disabled>
+        <div class="action-buttons">
+            <button class="delete-button" onclick="eliminarPerfil()">Eliminar</button>
+            <button class="edit-button" onclick="editarPerfil()">Editar</button>
+            <button class="save-button" onclick="guardarPerfil()" disabled>Guardar</button>
         </div>
-        <script src="/js/map.js"></script>
-        <script src="/js/contacto.js"></script>
-    </html>
+    </div>
+
+    <script src="js/usuario/login.js"></script>
+    <script src="js/usuario/inicio.js"></script>
+    <script src="js/maps.js"></script>
+    <script>
+        function editarPerfil() {
+            var inputs = document.querySelectorAll(".profile-input");
+            for (var i = 0; i < inputs.length; i++) {
+                inputs[i].removeAttribute("disabled");
+            }
+            document.querySelector(".save-button").removeAttribute("disabled");
+        }
+
+        function guardarPerfil() {
+            var inputs = document.querySelectorAll(".profile-input");
+            for (var i = 0; i < inputs.length; i++) {
+                inputs[i].setAttribute("disabled", "true");
+            }
+            document.querySelector(".save-button").setAttribute("disabled", "true");
+        }
+
+        function eliminarPerfil() {
+        }
+    </script>
+</body>
+</html>
