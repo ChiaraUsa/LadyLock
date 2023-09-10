@@ -3,11 +3,6 @@ $(document).ready(function() {
   // on ready
 });
 
-function toggleMenu() {
-    const menu = document.getElementById("menu");
-    menu.classList.toggle("active");
-}
-
 function registrar(){
   let datos = {}
 
