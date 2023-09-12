@@ -3,6 +3,8 @@ var mostrarMapaButton = document.getElementById('mostrarMapa');
 var mapContainer = document.getElementById('map-container');
 var helpContainer = document.getElementById("help-container");
 var helpContainer2 = document.getElementById("help-container2");
+var helpContainer3 = document.getElementById("help-container3");
+var helpContainer4 = document.getElementById("help-container4");
 
 // Función para mostrar el mapa
 function mostrarMapa() {
@@ -11,10 +13,14 @@ function mostrarMapa() {
       mapContainer.style.display = "block";
       helpContainer.style.display = "none";
       helpContainer2.style.display = "none";
+      helpContainer3.style.display = "none";
+      helpContainer4.style.display = "none";
   } else {
       // Ocultar ambos contenedores
       helpContainer.style.display = "none";
       helpContainer2.style.display = "none";
+      helpContainer3.style.display = "none";
+      helpContainer4.style.display = "none";
   }
 
   // Crea un mapa en el div con id "map"
