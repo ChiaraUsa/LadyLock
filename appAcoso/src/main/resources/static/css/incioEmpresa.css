@@ -22,9 +22,12 @@ body {
   background-color: rgb(140, 82, 255);
   padding: 20px;
   border-radius: 10px;
-  width: 40%;
-  margin: auto; /* Centra el contenedor */
-  z-index: 2;
+  width: 30%;
+  height: 45%;
+  display: inline-block;
+  margin-left: 10%;
+  justify-content: center;
+  align-items: center;
 }
 
 header {
@@ -100,7 +103,7 @@ main small {
   flex-direction: column;
   justify-content: center;
   z-index: 1;
-  -webkit-appearance: none;
+  appearance: none;
   border: 0;
   background: transparent;
   border-radius: 0;
@@ -113,15 +116,17 @@ main small {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
-.boton-ayuda{
+.boton-opciones{
   background-color: rgb(232,106,167);
   color: white;
   padding: 10px 20px;
   border: none;
-  width: 80%;
+  width: auto;
+  margin-top: 50%;
   border-radius: 40px;
   font-weight: bold;
   cursor: pointer;
+  justify-self: start;
 }
 
 .menu-button-styled{
@@ -247,8 +252,19 @@ a {
   transition: .2s ease-in-out;
 }
 
-h1, h2, h3, h4 {
+h2, h3, h4 {
   margin: 0;
+}
+
+h1 {
+  color: rgb(232,106,167);
+  font-weight: bold;
+  font-family: Arial Black, sans-serif;
+  text-align: left;
+}
+
+p {
+  color: rgb(0, 0, 0);
 }
 
 ul {
