@@ -3,11 +3,6 @@ $(document).ready(function() {
   // on ready
 });
 
-function toggleMenu() {
-    const menu = document.getElementById("menu");
-    menu.classList.toggle("active");
-}
-
 function registrar(){
   let datos = {}
 
@@ -33,6 +28,10 @@ function registrar(){
   {
     registrarEmpresa('empresa', datos)
   }
+  else if(rol ==  'administrador')
+    {
+      registrarAdministrador('administrador', datos)
+    }
   else
   {
     alert('Debe escoger un Rol!')
@@ -67,4 +66,25 @@ function registrarUsuario(via, datos){
 function registrarEmpresa(via, datos){
     alert(via)
     console.log(datos)
+}
+
+function registrarAdministrador(via, datos){
+    $.ajax({
+      		 url:"/api/auth/register/"+via,
+      		 type:"POST",
+      		 contentType:"application/json",
+      		 dataType:"json",
+
+      		 data:JSON.stringify(datos),
+
+      		 success: function(rta) {
+      			 alert('ok');
+      		 },
+      		 error: function(xhr, status) {
+      			 alert('Disculpe, existió un problema');
+      		 },
+      		 complete: function(xhr, status) {
+      			 //alert('Petición realizada');
+      		 }
+    });
 }

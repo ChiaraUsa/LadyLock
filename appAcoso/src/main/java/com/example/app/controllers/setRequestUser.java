@@ -1,4 +1,4 @@
-package com.example.app.auth;
+package com.example.app.controllers;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterRequest {
-    private String firstname;
+public class setRequestUser {
     private String email;
-    private String password;
+    private String name;
 }

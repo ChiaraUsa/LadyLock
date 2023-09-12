@@ -13,4 +13,20 @@ public class UsuarioServicio {
     public Optional<Usuario> findById(int id) {
         return repository.findById(id);
     }
+
+    public boolean actualizar(int id,String name, String email){
+        Usuario usuarioExiste = repository.findById(id).orElse(null);
+        Usuario usuarioX = repository.findByEmail(email).orElse(null);
+
+        if(!name.isBlank() && !email.isBlank())
+        {
+            if(usuarioX==null || usuarioExiste.getId()==usuarioX.getId()) {
+                usuarioExiste.setFirstname(name);
+                usuarioExiste.setEmail(email);
+                repository.save(usuarioExiste);
+                return true;
+            }
+        }
+        return false;
+    }
 }
