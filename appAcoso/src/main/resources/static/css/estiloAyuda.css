@@ -82,7 +82,7 @@
     height: calc(100% - 70px);
     visibility: hidden;
     transition: .3s;
-    background:  rgb(139, 115, 255);
+    background:  transparent;
   }
 
   #nav-container:focus-within .bg {
@@ -100,7 +100,7 @@
     flex-direction: column;
     justify-content: center;
     z-index: 1;
-    -webkit-appearance: none;
+    appearance: none;
     border: 0;
     background: transparent;
     border-radius: 0;
