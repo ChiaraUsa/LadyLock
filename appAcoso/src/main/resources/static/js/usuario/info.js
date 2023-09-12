@@ -73,8 +73,13 @@ function guardarPerfil() {
 }
 
 function eliminarPerfil() {
-}
 
-function confirmarEliminacion() {
+    /*const borrar = window.prompt("¿De verdad quiere borrar su cuenta?\n"+
+                     "Este cambio no se podra deshacer\n"+
+                     "Escriba 'BORRAR CUENTA' para confirmar su solicitud"))
+
+    if(borrar=="BORRAR CUENTA"){
+        console.log("borrada")
+    }*/
 
 }

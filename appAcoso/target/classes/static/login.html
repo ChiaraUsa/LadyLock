@@ -6,11 +6,17 @@
     <title>Inicio de Sesión</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="/css/estilo.css">
+        <link rel="stylesheet" href="/css/estilo.css">
 </head>
 <body>
     <div class="container">
         <h1>Welcome to LadyLock</h1>
+        <select id="txtRol" class="option">
+            <option value="vacio">-</option>
+            <option value="usuario">Usuario</option>
+            <option value="empresa">Empresa</option>
+            <option value="administrador">Administrador</option>
+        </select>
         <input type="text" id="txtEmail" placeholder="Email">
         <input type="password" id="txtContraseña" placeholder="Contraseña">
         <button type="button" onclick="iniciarSesion()">Ingresar</button>

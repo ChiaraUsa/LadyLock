@@ -1,5 +1,6 @@
 package com.example.app.config;
 
+import com.example.app.entidades.Admin;
 import com.example.app.entidades.Usuario;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -31,11 +32,26 @@ public class JwtService {
         return generateToken(new HashMap<>(), userDetails);
     }
 
+    public String generateToken(Admin adminDetails){
+        return generateToken(new HashMap<>(), adminDetails);
+    }
+
     public String generateToken(Map<String, Object> extraClaims,Usuario userDetails) {
         return Jwts
                 .builder()
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis()+ 1000 * 60 * 60 * 24))
+                .signWith(getSignInKey(), SignatureAlgorithm.HS256)
+                .compact();
+    }
+
+    public String generateToken(Map<String, Object> extraClaims,Admin adminDetails) {
+        return Jwts
+                .builder()
+                .setClaims(extraClaims)
+                .setSubject(adminDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis()+ 1000 * 60 * 60 * 24))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)

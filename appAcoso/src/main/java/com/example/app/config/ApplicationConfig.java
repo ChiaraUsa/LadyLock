@@ -1,5 +1,6 @@
 package com.example.app.config;
 
+import com.example.app.repository.AdminCrudRepository;
 import com.example.app.repository.UsuarioCrudRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -17,11 +18,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @RequiredArgsConstructor
 public class ApplicationConfig {
 
-    private final UsuarioCrudRepository repository;
+    private final UsuarioCrudRepository UserRepository;
+    private final AdminCrudRepository AdminRepository;
 
     @Bean
     public UserDetailsService userDetailsService(){
-        return username -> repository.findByEmail(username)
+        return username -> AdminRepository.findByEmail(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
