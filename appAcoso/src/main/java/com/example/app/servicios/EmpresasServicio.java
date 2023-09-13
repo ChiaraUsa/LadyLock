@@ -7,6 +7,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmpresasServicio {
     @Autowired
-    EmpresasCrudRepository lugaresCrudRepository;
-    public Object findAll() {return lugaresCrudRepository.findAll();}
+    EmpresasCrudRepository EmpresasRepository;
+    public Object findAll() {return EmpresasRepository.findAll();}
 }

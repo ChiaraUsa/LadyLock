@@ -28,9 +28,9 @@ function infoUser(){
 
 function editarPerfil() {
    var inputs = document.querySelectorAll(".profile-input");
-   for (var i = 0; i < inputs.length; i++) {
-      inputs[i].removeAttribute("disabled");
-   }
+   document.getElementById("txtNombre").removeAttribute("disabled");
+   document.getElementById("txtCorreo").removeAttribute("disabled");
+
    document.querySelector(".save-button").removeAttribute("disabled");
 }
 
@@ -46,7 +46,7 @@ function guardarPerfil() {
    datos.name = document.querySelector('#txtNombre').value
    datos.email = document.querySelector('#txtCorreo').value
 
-
+   
    $.ajax({
          url:"/api/user/setInfo",
          type:"POST",
@@ -57,11 +57,10 @@ function guardarPerfil() {
             "Authorization": "Bearer "+ Cookies.get('token')
          },
          success: function(rta) {
-            alert("Actualizacion exitosa\n"+
-                   "Vuelva a iniciar sesion para ver los cambios")
-                   localStorage.email = ''
-                   Cookies.remove('token');
-                   window.location.replace("login.html");
+            alert("Actualizacion exitosa")
+            localStorage.email = datos.email
+            Cookies.set('token',rta['token']);
+            location.reload();
          },
          error: function(xhr, status) {
             alert("Error al cargar los datos, verifique los datos")

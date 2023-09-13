@@ -4,6 +4,7 @@ import com.example.app.entidades.Admin;
 import com.example.app.entidades.Role;
 import com.example.app.entidades.Usuario;
 import com.example.app.repository.AdminCrudRepository;
+import com.example.app.repository.EmpresasCrudRepository;
 import com.example.app.repository.UsuarioCrudRepository;
 import com.example.app.config.JwtService;
 import lombok.RequiredArgsConstructor;
@@ -17,11 +18,37 @@ import org.springframework.stereotype.Service;
 public class AuthenticationService {
 
     private final UsuarioCrudRepository UserRepository;
+    private final EmpresasCrudRepository EmpresaRepository;
     private final AdminCrudRepository AdminRepository;
 
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+
+    public boolean existeCorreo(String email) {
+        if (UserRepository.findByEmail(email).isPresent() ||
+                AdminRepository.findByEmail(email).isPresent() ||
+                EmpresaRepository.findByEmail(email).isPresent()) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean UserEnOtraTablaExiste(String email) {
+        if (AdminRepository.findByEmail(email).isPresent() || EmpresaRepository.findByEmail(email).isPresent()) {
+            return true;
+        }
+        return false;
+    }
+
+    public AuthenticationResponse NuevoTokenUser(int id) {
+        Usuario user = UserRepository.findById(id).get();
+
+        var jwtToken = jwtService.generateToken(user);
+        return AuthenticationResponse.builder()
+                .token(jwtToken)
+                .build();
+    }
 
     public AuthenticationResponse registerUser(RegisterRequest request) {
         var user = Usuario.builder()
@@ -40,7 +67,7 @@ public class AuthenticationService {
     public AuthenticationResponse authenticateUser(AuthenticationRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                  request.getEmail(), request.getPassword()
+                        request.getEmail(), request.getPassword()
                 )
         );
         var user = UserRepository.findByEmail(request.getEmail())
@@ -75,3 +102,5 @@ public class AuthenticationService {
         return AuthenticationResponse.builder().token(jwtToken).build();
     }
 }
+
+

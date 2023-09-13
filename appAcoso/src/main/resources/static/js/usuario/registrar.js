@@ -3,6 +3,15 @@ $(document).ready(function() {
   // on ready
 });
 
+document.getElementById('txtRol').addEventListener('change', function () {
+    var codigoInput = document.getElementById('txtCodigo');
+    if (this.value === 'administrador') {
+        codigoInput.style.display = 'inline-block';
+    } else {
+        codigoInput.style.display = 'none';
+    }
+});
+
 function registrar(){
   let datos = {}
 

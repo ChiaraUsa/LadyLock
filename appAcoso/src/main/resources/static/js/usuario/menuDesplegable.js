@@ -48,3 +48,7 @@
  function irInfoUser(){
     window.location.replace("info.html");
  }
+
+ function irInicio(){
+   window.location.replace("inicio.html");
+}

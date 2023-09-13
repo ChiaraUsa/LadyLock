@@ -1,8 +1,11 @@
 package com.example.app.controllers;
 
 import com.example.app.auth.AuthenticationResponse;
+import com.example.app.auth.AuthenticationService;
+import com.example.app.config.JwtService;
 import com.example.app.entidades.Usuario;
 import com.example.app.servicios.UsuarioServicio;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -13,27 +16,31 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/user")
+@RequiredArgsConstructor
 public class UsuarioController {
 
     @Autowired
-    UsuarioServicio usuarioServicio;
+    private final UsuarioServicio UsuarioServicio;
+    private final AuthenticationService authenticationService;
 
     @GetMapping("/getInfo")
     public Optional<Usuario> getInfoUsuario(){
         UsuarioData userdata = new UsuarioData();
-        return usuarioServicio.findById(userdata.getId());
+        return UsuarioServicio.findById(userdata.getId());
     }
 
     @PostMapping("/setInfo")
     public ResponseEntity<AuthenticationResponse> setInfoUsuario(@RequestBody setRequestUser setRequestUser){
         UsuarioData userdata = new UsuarioData();
-        boolean exito = usuarioServicio.actualizar(userdata.getId(),setRequestUser.getName(),setRequestUser.getEmail());
+        boolean ExisteUserEnOtraTabla = authenticationService.UserEnOtraTablaExiste(setRequestUser.getEmail());
 
-        if(exito) {
-            return ResponseEntity.ok(AuthenticationResponse.builder().token("").build());
+        if (!ExisteUserEnOtraTabla)
+        {
+            boolean exitoActualizar = UsuarioServicio.actualizar(userdata.getId(),setRequestUser.getName(),setRequestUser.getEmail());
+            if(exitoActualizar) {
+                return ResponseEntity.ok(authenticationService.NuevoTokenUser(userdata.getId()));
+            }
         }
-        else {
-            return ResponseEntity.status(HttpStatusCode.valueOf(403)).build();
-        }
+        return ResponseEntity.status(HttpStatusCode.valueOf(403)).build();
     }
 }
