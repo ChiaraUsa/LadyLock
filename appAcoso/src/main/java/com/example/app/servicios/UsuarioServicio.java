@@ -1,29 +1,33 @@
 package com.example.app.servicios;
 
+import com.example.app.auth.AuthenticationResponse;
+import com.example.app.config.JwtService;
 import com.example.app.entidades.Usuario;
 import com.example.app.repository.UsuarioCrudRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class UsuarioServicio {
     @Autowired
-    private UsuarioCrudRepository repository;
+    private final UsuarioCrudRepository UserRepository;
     public Optional<Usuario> findById(int id) {
-        return repository.findById(id);
+        return UserRepository.findById(id);
     }
 
     public boolean actualizar(int id,String name, String email){
-        Usuario usuarioExiste = repository.findById(id).orElse(null);
-        Usuario usuarioX = repository.findByEmail(email).orElse(null);
+        Usuario usuarioExiste = UserRepository.findById(id).orElse(null);
+        Usuario usuarioX = UserRepository.findByEmail(email).orElse(null);
 
         if(!name.isBlank() && !email.isBlank())
         {
             if(usuarioX==null || usuarioExiste.getId()==usuarioX.getId()) {
                 usuarioExiste.setFirstname(name);
                 usuarioExiste.setEmail(email);
-                repository.save(usuarioExiste);
+                UserRepository.save(usuarioExiste);
                 return true;
             }
         }
