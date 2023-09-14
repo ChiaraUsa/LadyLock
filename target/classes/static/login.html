@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <link rel="stylesheet" href="/css/estilo.css">
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center;">Welcome to LadyLock</h1>
+        <select id="txtRol" class="option" style="width: 80%; padding: 15px; margin: 10px 0; border-radius: 40px; border: 1px solid #4B0082;">
+            <option value="vacio">-</option>
+            <option value="usuario">Usuario</option>
+            <option value="empresa">Empresa</option>
+            <option value="administrador">Administrador</option>
+        </select>
+        <input type="text" id="txtEmail" placeholder="Email">
+        <input type="password" id="txtContraseña" placeholder="Contraseña">
+        <button type="button" onclick="iniciarSesion()">Ingresar</button>
+        <p>No tienes cuenta, <a href="registro.html">regístrate</a></p>
+    </div>
+   
+    <script src="js/login.js"></script>
+
+</body>
+</html>
