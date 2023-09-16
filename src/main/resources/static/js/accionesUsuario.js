@@ -1,3 +1,13 @@
+var stompClient = null;
+var socket = new SockJS('/ws');
+        stompClient = Stomp.over(socket);
+        stompClient.connect({}, function(frame) {
+            console.log(frame);
+            stompClient.subscribe('/all/messages', function(result) {
+                show(JSON.parse(result.body));
+            });
+        });
+
 $(document).ready(function() {
   establecerCorreo();
   cargarLista();
@@ -39,7 +49,9 @@ function openUberLink() {
 }
 
 function irCentroAyuda(){
-   window.location.replace("CentroAyuda.html");
+var text = "ALERTA"
+     stompClient.send('/app/application', {}, JSON.stringify({ from: from, text: text }))
+     window.location.replace("CentroAyuda.html");
 }
 
 function cargarLista(){
