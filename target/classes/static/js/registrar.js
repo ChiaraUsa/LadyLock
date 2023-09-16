@@ -5,7 +5,6 @@ $(document).ready(function() {
 
 document.getElementById('txtRol').addEventListener('change', function () {
     var codigoInput = document.getElementById('txtCodigo');
-    var codigoButton = document.getElementById('txtButton');
     if (this.value === 'administrador') {
         codigoInput.style.display = 'inline-block';
         pedirCodigo();
@@ -92,8 +91,26 @@ function registrarUsuario(via, datos){
 }
 
 function registrarEmpresa(via, datos){
-    alert(via)
-    console.log(datos)
+    $.ajax({
+             url:"/api/auth/register/"+via,
+             type:"POST",
+             contentType:"application/json",
+             dataType:"json",
+
+             data:JSON.stringify(datos),
+
+             success: function(rta) {
+                 localStorage.email = datos.email
+                 Cookies.set("token",rta['token']);
+                 window.location.replace("inicioEmpresa.html");
+             },
+             error: function(xhr, status) {
+                 alert('Disculpe, existió un problema');
+             },
+             complete: function(xhr, status) {
+                 //alert('Petición realizada');
+             }
+        });
 }
 
 function registrarAdministrador(via, datos){

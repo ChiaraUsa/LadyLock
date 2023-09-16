@@ -29,7 +29,7 @@ public class SecurityConfiguration {
                         //Vistas Admin
                         "/inicioAdmin.html",
                         //Vistas Empresa
-                        "/inicioEmpresa.html","/perfilEmpresa.html")
+                        "/inicioEmpresa.html","/perfilEmpresa.html","/eventoEmpresa.html")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
