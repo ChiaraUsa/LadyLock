@@ -1,6 +1,7 @@
 package com.example.app.config;
 
 import com.example.app.entidades.Admin;
+import com.example.app.entidades.Empresa;
 import com.example.app.entidades.Usuario;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -36,6 +37,10 @@ public class JwtService {
         return generateToken(new HashMap<>(), adminDetails);
     }
 
+    public String generateToken(Empresa empresaDetails){
+        return generateToken(new HashMap<>(), empresaDetails);
+    }
+
     public String generateToken(Map<String, Object> extraClaims,Usuario userDetails) {
         return Jwts
                 .builder()
@@ -52,6 +57,17 @@ public class JwtService {
                 .builder()
                 .setClaims(extraClaims)
                 .setSubject(adminDetails.getUsername())
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis()+ 1000 * 60 * 60 * 24))
+                .signWith(getSignInKey(), SignatureAlgorithm.HS256)
+                .compact();
+    }
+
+    public String generateToken(Map<String, Object> extraClaims,Empresa empresaDetails) {
+        return Jwts
+                .builder()
+                .setClaims(extraClaims)
+                .setSubject(empresaDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis()+ 1000 * 60 * 60 * 24))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)

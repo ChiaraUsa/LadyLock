@@ -1,3 +1,4 @@
+var codigo = 0;
 $(document).ready(function() {
   // on ready
 });
@@ -6,10 +7,28 @@ document.getElementById('txtRol').addEventListener('change', function () {
     var codigoInput = document.getElementById('txtCodigo');
     if (this.value === 'administrador') {
         codigoInput.style.display = 'inline-block';
+        pedirCodigo();
     } else {
         codigoInput.style.display = 'none';
     }
 });
+
+function pedirCodigo(){
+    $.ajax({
+         url:"/api/admin/code",
+         type:"GET",
+         dataType:"json",
+         success: function(rta) {
+             codigo = rta['code']
+         },
+         error: function(xhr, status) {
+             alert('Fallo al generar codigo de autenticacion');
+         },
+         complete: function(xhr, status) {
+             //alert('Petición realizada');
+         }
+    });
+}
 
 function registrar(){
   let datos = {}
@@ -72,8 +91,26 @@ function registrarUsuario(via, datos){
 }
 
 function registrarEmpresa(via, datos){
-    alert(via)
-    console.log(datos)
+    $.ajax({
+             url:"/api/auth/register/"+via,
+             type:"POST",
+             contentType:"application/json",
+             dataType:"json",
+
+             data:JSON.stringify(datos),
+
+             success: function(rta) {
+                 localStorage.email = datos.email
+                 Cookies.set("token",rta['token']);
+                 window.location.replace("inicioEmpresa.html");
+             },
+             error: function(xhr, status) {
+                 alert('Disculpe, existió un problema');
+             },
+             complete: function(xhr, status) {
+                 //alert('Petición realizada');
+             }
+        });
 }
 
 function registrarAdministrador(via, datos){

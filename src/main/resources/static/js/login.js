@@ -20,9 +20,9 @@ function iniciarSesion(){
     inicioEmpresa('empresa', datos)
   }
   else if(rol ==  'administrador')
-   {
-      inicioAdmin('administrador', datos)
-   }
+  {
+    inicioAdmin('administrador', datos)
+  }
   else
   {
     alert('Debe escoger un Rol!')
@@ -56,8 +56,28 @@ function inicioUsuario(via, datos){
   });
 }
 
-function inicioEmpresa(){
-  alert('empresa');
+function inicioEmpresa(via, datos){
+  $.ajax({
+         url:"/api/auth/authenticate/"+via,
+         type:"POST",
+         contentType:"application/json",
+         dataType:"json",
+
+         data:JSON.stringify(datos),
+
+         success: function(rta) {
+             localStorage.email = datos.email
+             Cookies.set('token',rta['token']);
+             window.location.replace("inicioEmpresa.html");
+         },
+         error: function(xhr, status) {
+             alert('Usuario no existente');
+         },
+         complete: function(xhr, status) {
+             //alert('Petición realizada');
+         }
+
+    });
 }
 
 function inicioAdmin(via, datos){
