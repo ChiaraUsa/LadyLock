@@ -17,17 +17,14 @@ function editarPerfil() {
 
  function logout(){
    localStorage.email = ''
-  Cookies.remove('token');
-  window.location.replace("login.html");
+   Cookies.remove('token');
+   window.location.replace("login.html");
 }
 
 function guardarPerfil() {
    // Aquí puedes agregar el código para guardar los cambios del perfil
    // Puedes obtener los valores de los campos de entrada y hacer lo necesario
    // Luego, puedes deshabilitar los campos de nuevo y el botón de guardar
-   document.getElementById('txtNombre').setAttribute('disabled', 'disabled');
-   document.getElementById('txtCorreo').setAttribute('disabled', 'disabled');
-   document.getElementById('txtDescripcion').setAttribute('disabled', 'disabled');
 }
 
 function eliminarPerfil() {

@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="css/incioEmpresa.css">
     </head>
     <body>
-        <header tabindex="0">LadyLock</header>
+        <header tabindex="0">LadyLock Empresa</header>
         <div id="nav-container">
             <div class="bg"></div>
             <div class="button" tabindex="0">
@@ -17,14 +17,39 @@
             </div>
             <div id="nav-content" tabindex="0">
                 <ul>
-                <li><button class="menu-button-styled" onclick="irInicio()">Inicio</button></li>
-                <li><button class="menu-button-styled" onclick="closeMenu()">Mi Perfil</button></li>
-                <li><button class="menu-button-styled" onclick="irCentroAyuda()">Centro de Ayuda</button></li>
-                <li><button class="menu-button-styled" onclick="closeMenu()">Eventos</button></li>
-                <li><button class="menu-button-styled" onclick="closeMenu()" style="background-color: rgb(200, 0, 100); color: white;" onmouseover="this.style.backgroundColor='rgb(161, 10, 55)'" onmouseout="this.style.backgroundColor='rgb(200, 0, 100)'">Cerrar</button></li>
+                    <li><button class="menu-button-styled" onclick="irInicio()">Inicio</button></li>
+                    <li><button class="menu-button-styled" onclick="irPerfilEmpresa()">Mi Perfil</button></li>
+                    <li><button class="menu-button-styled" onclick="closeMenu()">Mis Eventos</button></li>
+                    <li><button class="menu-button-styled" onclick="irCentroAyuda()">Centro de Ayuda</button></li>
+                    <li><button class="menu-button-styled" onclick="closeMenu()">Otros lugares</button></li>
+                    <li><button class="menu-button-styled" onclick="logout()" style="background-color: rgb(200, 0, 100); color: white;" onmouseover="this.style.backgroundColor='rgb(161, 10, 55)'" onmouseout="this.style.backgroundColor='rgb(200, 0, 100)'">Cerrar Sesión</button></li>
                 </ul>
             </div>
         </div>
+
+        <div style="margin-left: auto; padding: 5%;">
+            <h1>Bienvenido a LadyLock Empresa</h1>
+            <p>¿En qué podemos ayudarte hoy?</p>
+        </div>
+
+        <div id="op-1" class="container">
+            <img src="images/Editar.png" alt="Kit de herramientas - Icono de Iconjam" />
+            <p class="descripcion">Un perfil actualizado te permite conectar con más clientes.</p>
+            <button class="boton-opciones" id="editar">Editar información de perfil</button>
+        </div>
+
+        <div id="op-2" class="container">
+            <img src="images/Agendar.png" alt="Simbolo de eventos" />
+            <p class="descripcion">Recuerda generar promociones y eventos para llamar la atención de tus clientes.</p>
+            <button class="boton-opciones" id="añadir">Añadir promoción o evento</button>
+        </div>
+
+        <div id="op-3" class="container">
+            <img src="images/Solicitudes.png" alt="Simbolo de solicitudes" />
+            <p class="descripcion">Recuerda aceptar o rechazar las solicitudes de reserva de tus clientes.</p>
+            <button class="boton-opciones" id="solicitudes">Ver solicitudes de reserva</button>
+        </div>
+
         <script src="js/accionesEmpresa.js"></script>
     </body>
 </html>
