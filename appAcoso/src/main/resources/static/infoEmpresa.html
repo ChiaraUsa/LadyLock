@@ -4,38 +4,37 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Inicio de Empresa</title>
-        <link rel="stylesheet" href="css/perfilEmp.css">
+        <link rel="stylesheet" href="css/infoEmp.css">
     </head>
     <body>
-        <header tabindex="0">LadyLock Empresa</header>
-        <div id="nav-container">
-            <div class="bg"></div>
-            <div class="button" tabindex="0">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+        <div class="barra-superior" style="display: flex; justify-content: flex-end; align-items: center; padding-right: 10px;">
+            <h1 style="font-weight: bold; color: white; margin-right: 30%; text-align: center;">Ladylock Empresas</h1>
+            <button class="menu-button" onclick="toggleMenu()">☰</button>
+            <button class="user-button" id="userButton" onclick="toggleUserMenu()">Nombre de Empresa ▼</button>
+            <button class="menu-button" onclick="toggleMenu()">☰</button>
+            <div class="user-menu" id="userMenu">
+                
+                <button onclick="logout()">Cerrar Sesión</button>
             </div>
-            <div id="nav-content" tabindex="0">
-                <ul>
+        </div>
+        <div class="menu" id="menu">
+            <ul>
                 <li><button class="menu-button-styled" onclick="irInicio()">Inicio</button></li>
                 <li><button class="menu-button-styled" onclick="irPerfilEmpresa()">Mi Perfil</button></li>
-                <li><button class="menu-button-styled" onclick="closeMenu()">Mis Eventos</button></li>
-                <li><button class="menu-button-styled" onclick="irCentroAyuda()">Centro de Ayuda</button></li>
-                <li><button class="menu-button-styled" onclick="closeMenu()">Otros lugares</button></li>
-                <li><button class="menu-button-styled" onclick="logout()" style="background-color: rgb(200, 0, 100); color: white;" onmouseover="this.style.backgroundColor='rgb(161, 10, 55)'" onmouseout="this.style.backgroundColor='rgb(200, 0, 100)'">Cerrar Sesión</button></li>
-                </ul>
-            </div>
+                <li><button class="menu-button-styled" onclick="irInfoEmpresa()">Editar Perfil</button></li>
+                <li><button class="menu-button-styled" onclick="irMisEventos()">Mis Eventos</button></li>
+                <li><button class="menu-button-styled" onclick="irCentroAyuda()">Centro Ayuda</button></li>
+                <li><button class="menu-button-styled" onclick="">Otros Lugares</button></li>
+                <li><button class="menu-button-styled" onclick="closeMenu()" style="color: white;" onmouseover="this.style.backgroundColor='rgb(0, 13, 200)'" onmouseout="this.style.backgroundColor='rgb(82, 157, 255)'">Cerrar</button></li>
+            </ul>
         </div>
 
-        <div style="margin-left: auto; padding: 4%;">
-            <h1>Bienvenido a tu perfil de Empresa</h1>
-        </div>
-        <div class="profile-image">
+        <div class="profile-image" style="margin-top: 5%; margin-left: 7%;">
             <img id="profile-img" src="images/Agendar.png" alt="Imagen de perfil">
             <button class="save-button" onclick="seleccionarImagen()" style="margin-left: 0%; margin-top: 1%; width: 30%;">Subir Imagen</button>
             <button class="save-button" onclick="guardarImagen()"  style="margin-left: 25%; margin-top: 1%; width: 30%;">Guardar Imagen</button>
         </div>
-        <div class="profile-container">
+        <div class="profile-container" style="margin-top: 6%;">
             <div class="profile-details">
                 <input type="text" id="txtRol" class="profile-input" value="Rol" disabled>
                 <input type="text" id="txtID" class="profile-input" value="ID" disabled>
@@ -53,6 +52,7 @@
             </div>   
         </div>
         <input type="file" id="file-input" style="display: none;" accept="image/*">
-        <script src="js/accionesEmpresa.js"></script>
+        <script src="js/empresa/infoEmpresa.js"></script>
+        <script src="js/empresa/menuDesplegable.js"></script>
     </body>
 </html>
