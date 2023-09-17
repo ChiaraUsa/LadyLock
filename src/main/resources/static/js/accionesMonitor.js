@@ -1,7 +1,10 @@
+var headers = {
+    Authorization: "Bearer "+ Cookies.get('token') // Reemplaza 'tuTokenJWT' con tu token real
+};
 var stompClient = null;
 var socket = new SockJS('/ws');
         stompClient = Stomp.over(socket);
-        stompClient.connect({}, function(frame) {
+        stompClient.connect(headers, function(frame) {
             console.log(frame);
             stompClient.subscribe('/all/messages', function(result) {
                 show(JSON.parse(result.body));
