@@ -18,10 +18,11 @@
             <div id="nav-content" tabindex="0">
                 <ul>
                 <li><button class="menu-button-styled" onclick="irInicio()">Inicio</button></li>
-                <li><button class="menu-button-styled" onclick="closeMenu()">Mi Perfil</button></li>
+                <li><button class="menu-button-styled" onclick="irPerfilEmpresa()">Mi Perfil</button></li>
+                <li><button class="menu-button-styled" onclick="closeMenu()">Mis Eventos</button></li>
                 <li><button class="menu-button-styled" onclick="irCentroAyuda()">Centro de Ayuda</button></li>
-                <li><button class="menu-button-styled" onclick="closeMenu()">Eventos</button></li>
-                <li><button class="menu-button-styled" onclick="closeMenu()" style="background-color: rgb(200, 0, 100); color: white;" onmouseover="this.style.backgroundColor='rgb(161, 10, 55)'" onmouseout="this.style.backgroundColor='rgb(200, 0, 100)'">Cerrar Sesión</button></li>
+                <li><button class="menu-button-styled" onclick="closeMenu()">Otros lugares</button></li>
+                <li><button class="menu-button-styled" onclick="logout()" style="background-color: rgb(200, 0, 100); color: white;" onmouseover="this.style.backgroundColor='rgb(161, 10, 55)'" onmouseout="this.style.backgroundColor='rgb(200, 0, 100)'">Cerrar Sesión</button></li>
                 </ul>
             </div>
         </div>
@@ -32,16 +33,25 @@
 
         <div class="profile-container">
             <h1>Mi Empresa</h1>
-            <input type="text" id="txtNombre" class="profile-input" value="Nombre" disabled>
-            <input type="text" id="txtRol" class="profile-input" value="Rol" disabled>
-            <input type="text" id="txtID" class="profile-input" value="ID" disabled>
-            <input type="text" id="txtCorreo" class="profile-input" value="Correo" disabled>
-            <input type="text" id="txtDescripción" class="profile-input" value="Descripcion" disabled>
+            <div class="profile-image">
+                <img src="ruta_de_la_imagen.jpg" alt="Imagen de perfil">
+                <button class="save-button" onclick="guardarImagen()" disabled>Guardar Imagen</button>
+            </div>
+            <div class="profile-details">
+                <input type="text" id="txtNombre" class="profile-input" value="Nombre" disabled>
+                <button class="save-button" onclick="guardarNombre()" disabled>Guardar Nombre</button>
+                <input type="text" id="txtRol" class="profile-input" value="Rol" disabled>
+                <input type="text" id="txtID" class="profile-input" value="ID" disabled>
+                <input type="text" id="txtCorreo" class="profile-input" value="Correo" disabled>
+                <button class="save-button" onclick="guardarCorreo()" disabled>Guardar Correo</button>
+                <input type="text" id="txtDescripcion" class="profile-input" value="Descripción" disabled>
+                <button class="save-button" onclick="guardarDesc()" disabled>Guardar Descripción</button>
+                <input type="text" id="txtLink" class="profile-input" value="Link" disabled>
+                <button class="save-button" onclick="guardarLink()" disabled>Guardar Correo</button>
+            </div>
             <div class="action-buttons">
                 <button class="delete-button" onclick="eliminarPerfil()">Eliminar</button>
-                <button class="edit-button" onclick="editarPerfil()">Editar</button>
-                <button class="save-button" onclick="guardarPerfil()" disabled>Guardar</button>
-            </div>
+            </div>   
         </div>
 
         <script src="js/accionesEmpresa.js"></script>
