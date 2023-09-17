@@ -38,7 +38,7 @@
  }
 
  function irCentroAyuda(){
-    window.location.replace("CentroAyudaEmpresa.html");
+   window.open("https://chat.whatsapp.com/Ctp0iQVRNXhD3Pi6STCX3y","_blank");
  }
 
  function irInfoEmpresa(){
@@ -52,3 +52,4 @@
  function irInicio(){
    window.location.replace("inicioEmpresa.html");
 }
+
