@@ -58,3 +58,24 @@ function guardarDesc() {
 function guardarLink() {
    // Aquí puedes agregar el código para guardar el enlace de la empresa
 }
+
+function seleccionarImagen() {
+   document.getElementById('file-input').click();
+}
+
+// Función para cargar una nueva imagen
+document.getElementById('file-input').addEventListener('change', function (e) {
+   var file = e.target.files[0];
+   var img = document.getElementById('profile-img');
+
+   if (file) {
+       var reader = new FileReader();
+
+       reader.onload = function (e) {
+           img.src = e.target.result;
+           document.querySelector('.save-button').removeAttribute('disabled');
+       };
+
+       reader.readAsDataURL(file);
+   }
+});
