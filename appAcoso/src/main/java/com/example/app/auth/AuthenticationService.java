@@ -1,6 +1,7 @@
 package com.example.app.auth;
 
 import com.example.app.entidades.Admin;
+import com.example.app.entidades.Empresa;
 import com.example.app.entidades.Role;
 import com.example.app.entidades.Usuario;
 import com.example.app.repository.AdminCrudRepository;
@@ -99,6 +100,27 @@ public class AuthenticationService {
         var admin = AdminRepository.findByEmail(request.getEmail())
                 .orElseThrow();
         var jwtToken = jwtService.generateToken(admin);
+        return AuthenticationResponse.builder().token(jwtToken).build();
+    }
+
+    public AuthenticationResponse registerEmpresa(RegisterRequest request) {
+        var empresa = Empresa.builder()
+                .name(request.getFirstname())
+                .email(request.getEmail())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .role(Role.EMPRESA)
+                .build();
+        EmpresaRepository.save(empresa);
+        var jwtToken = jwtService.generateToken(empresa);
+        return AuthenticationResponse.builder()
+                .token(jwtToken)
+                .build();
+    }
+
+    public AuthenticationResponse authenticateEmpresa(AuthenticationRequest request) {
+        var empresa = EmpresaRepository.findByEmail(request.getEmail())
+                .orElseThrow();
+        var jwtToken = jwtService.generateToken(empresa);
         return AuthenticationResponse.builder().token(jwtToken).build();
     }
 }

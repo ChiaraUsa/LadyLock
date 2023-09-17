@@ -41,4 +41,19 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> authenticationAdmin(@RequestBody AuthenticationRequest request){
         return ResponseEntity.ok(service.authenticateAdmin(request));
     }
+
+    @PostMapping("/register/empresa")
+    public ResponseEntity<AuthenticationResponse> registerEmpresa(@RequestBody RegisterRequest request){
+        boolean correoExiste = service.existeCorreo(request.getEmail());
+        if(!request.getFirstname().isBlank() && !request.getEmail().isBlank() && !request.getPassword().isBlank() && !correoExiste){
+            return ResponseEntity.ok(service.registerEmpresa(request));
+        }else {
+            return ResponseEntity.status(HttpStatusCode.valueOf(403)).build();
+        }
+    }
+
+    @PostMapping("/authenticate/empresa")
+    public ResponseEntity<AuthenticationResponse> authenticationEmpresa(@RequestBody AuthenticationRequest request){
+        return ResponseEntity.ok(service.authenticateEmpresa(request));
+    }
 }
