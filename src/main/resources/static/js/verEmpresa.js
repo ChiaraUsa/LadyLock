@@ -1,11 +1,38 @@
 $(document).ready(function(){
+    comprobarSuscripcion();
     getInfoEmpresa();
     getPromos();
 });
 
+function comprobarSuscripcion(){
+    $.ajax({
+  		 url:"/api/user/comprobar?valor="+localStorage.email+"&id="+localStorage.id,
+         type:"GET",
+         dataType:"json",
+         headers:{
+            "Authorization": "Bearer "+ Cookies.get('token')
+         },
+  		 success: function(rta) {
+  		    if(rta)
+  		    {
+                var boton = document.getElementById("btnSuscripcion");
+                var label = document.getElementById("txtSuscripcion");
+                boton.style.display = "none"; // Oculta el botón
+                label.style.display = "inline"; // Muestra la etiqueta
+            }
+  		 },
+  		 error: function(xhr, status) {
+  			 alert('Error al suscribirse');
+  		 },
+  		 complete: function(xhr, status) {
+  			 //alert('Petición realizada');
+  		 }
+   });
+}
+
 function getInfoEmpresa(){
     $.ajax({
-  		 url:"/api/lugares/getInfoInicioEmpresa",
+  		 url:"/api/lugares/verInfoEmpresa?valor="+localStorage.id,
          type:"GET",
          dataType:"json",
          headers:{
@@ -48,7 +75,7 @@ function getInfoEmpresa(){
 
 function getPromos(){
     $.ajax({
-  		 url:"/api/lugares/getPromosEmpresa",
+  		 url:"/api/lugares/verPromosEmpresa?valor="+localStorage.id,
          type:"GET",
          dataType:"json",
          headers:{
@@ -104,3 +131,50 @@ function getPromos(){
    });
 }
 
+function suscribirEmpresa(){
+    $.ajax({
+  		 url:"/api/lugares/suscribirse?valor="+localStorage.id,
+         type:"POST",
+         dataType:"json",
+         headers:{
+            "Authorization": "Bearer "+ Cookies.get('token')
+         },
+  		 success: function(rta) {
+            var boton = document.getElementById("btnSuscripcion");
+            var label = document.getElementById("txtSuscripcion");
+            alert('Suscripcion exitosa')
+            boton.style.display = "none"; // Oculta el botón
+            label.style.display = "inline"; // Muestra la etiqueta
+  		 },
+  		 error: function(xhr, status) {
+  			 alert('Error al suscribirse');
+  		 },
+  		 complete: function(xhr, status) {
+  			 //alert('Petición realizada');
+  		 }
+   });
+}
+
+function suscribirUsuario(){
+    $.ajax({
+  		 url:"/api/user/suscribirse?valor="+localStorage.id,
+         type:"POST",
+         dataType:"json",
+         headers:{
+            "Authorization": "Bearer "+ Cookies.get('token')
+         },
+  		 success: function(rta) {
+  		    var boton = document.getElementById("btnSuscripcion");
+            var label = document.getElementById("txtSuscripcion");
+            alert('Suscripcion exitosa')
+            boton.style.display = "none"; // Oculta el botón
+            label.style.display = "inline"; // Muestra la etiqueta
+  		 },
+  		 error: function(xhr, status) {
+  			 alert('Error al suscribirse');
+  		 },
+  		 complete: function(xhr, status) {
+  			 //alert('Petición realizada');
+  		 }
+   });
+}

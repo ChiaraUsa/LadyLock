@@ -1,8 +1,8 @@
 package com.example.app.servicios;
 
-import com.example.app.auth.AuthenticationResponse;
-import com.example.app.config.JwtService;
+import com.example.app.entidades.Empresa;
 import com.example.app.entidades.Usuario;
+import com.example.app.repository.EmpresasCrudRepository;
 import com.example.app.repository.UsuarioCrudRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +14,7 @@ import java.util.Optional;
 public class UsuarioServicio {
     @Autowired
     private final UsuarioCrudRepository UserRepository;
+    private final EmpresasCrudRepository EmpresaRepository;
     public Optional<Usuario> findById(int id) {
         return UserRepository.findById(id);
     }
@@ -32,5 +33,32 @@ public class UsuarioServicio {
             }
         }
         return false;
+    }
+
+    public Usuario suscribirse(int userid, Integer empresaid) {
+        Usuario user = UserRepository.findById(userid).get();
+        Empresa empresa = EmpresaRepository.findById(empresaid).get();
+        user.getEmpresasList().add(empresa);
+        return UserRepository.save(user);
+    }
+
+    public Boolean comprobarSuscripcion(String email, int empresaid) {
+
+        Optional<Usuario> userX = UserRepository.findByEmail(email);
+        Optional<Empresa> empresaX = EmpresaRepository.findByEmail(email);
+
+        boolean estaSuscrito=false;
+
+        if(userX.isPresent())
+        {
+            estaSuscrito = userX.get().getEmpresasList().stream()
+                    .anyMatch(Empresa -> Empresa.getId() == empresaid);
+        }
+        else if(empresaX.isPresent())
+        {
+            estaSuscrito = empresaX.get().getEmpresasList().stream()
+                    .anyMatch(Empresa -> Empresa.getId() == empresaid);
+        }
+        return estaSuscrito;
     }
 }

@@ -92,3 +92,9 @@ button:active {
     background-color: transparent;
     cursor: pointer;
 }
+
+.contenedor{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}

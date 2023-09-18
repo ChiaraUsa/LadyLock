@@ -60,7 +60,7 @@ function cargarLista(){
                     (function(id) {
                      botonVista.addEventListener("click", function() {
                          localStorage.id = id
-                         window.location.href = "/html/usuario/verEmpresa.html";
+                         window.location.href = "/html/empresa/verEmpresa.html";
                      });
                      })(lugar.id);
 

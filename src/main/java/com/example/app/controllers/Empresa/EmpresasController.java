@@ -33,13 +33,29 @@ public class EmpresasController {
 
     @GetMapping("/getInfoInicioEmpresa")
     public getEmpresa getInfoInicioEmpresa(){
-        EmpresaData userdata = new EmpresaData();
-        return EmpresasServicio.findById(userdata.getId());
+        EmpresaData empresadata= new EmpresaData();
+        return EmpresasServicio.findById(empresadata.getId());
     }
 
     @GetMapping("/getPromosEmpresa")
     public List<Promocion> getPromosEmpresa(){
         EmpresaData userdata = new EmpresaData();
         return EmpresasServicio.getPromos(userdata.getId());
+    }
+
+    @GetMapping("/verInfoEmpresa")
+    public getEmpresa verInfoEmpresa(@RequestParam("valor") Integer id){
+        return EmpresasServicio.findById(id);
+    }
+
+    @GetMapping("/verPromosEmpresa")
+    public List<Promocion> verPromosEmpresa(@RequestParam("valor") Integer id){
+        return EmpresasServicio.getPromos(id);
+    }
+
+    @PostMapping("/suscribirse")
+    public Empresa suscribirse(@RequestParam("valor") Integer empresaid){
+        EmpresaData empresadata = new EmpresaData();
+        return EmpresasServicio.suscribirse(empresadata.getId(),empresaid);
     }
 }

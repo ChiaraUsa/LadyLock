@@ -31,11 +31,11 @@ public class Empresa implements UserDetails{
     private String imagine;
     private String link;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Empresa> empresasList;
+
     @Enumerated(EnumType.STRING)
     private Role role;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Promocion> promoList;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
