@@ -42,10 +42,26 @@ public class AuthenticationService {
         return false;
     }
 
+    public boolean EmpresaEnOtraTablaExiste(String email) {
+        if (AdminRepository.findByEmail(email).isPresent() || UserRepository.findByEmail(email).isPresent()) {
+            return true;
+        }
+        return false;
+    }
+
     public AuthenticationResponse NuevoTokenUser(int id) {
         Usuario user = UserRepository.findById(id).get();
 
         var jwtToken = jwtService.generateToken(user);
+        return AuthenticationResponse.builder()
+                .token(jwtToken)
+                .build();
+    }
+
+    public AuthenticationResponse NuevoTokenEmpresa(int id) {
+        Empresa empresa = EmpresaRepository.findById(id).get();
+
+        var jwtToken = jwtService.generateToken(empresa);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();

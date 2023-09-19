@@ -1,5 +1,7 @@
 package com.example.app.servicios;
 
+import com.example.app.auth.AuthenticationResponse;
+import com.example.app.auth.AuthenticationService;
 import com.example.app.controllers.Empresa.getEmpresa;
 import com.example.app.entidades.Empresa;
 import com.example.app.entidades.Promocion;
@@ -29,6 +31,8 @@ public class EmpresasServicio {
         Empresa empresa = EmpresasRepository.findById(id).get();
 
         getEmpresa empresaInfo = getEmpresa.builder()
+                                .id(empresa.getId())
+                                .rol(empresa.getRole())
                                 .name(empresa.getName())
                                 .email(empresa.getEmail())
                                 .description(empresa.getDescription())
@@ -76,4 +80,44 @@ public class EmpresasServicio {
         myEmpresa.getEmpresasList().add(xEmpresa);
         return EmpresasRepository.save(myEmpresa);
     }
+
+    public Empresa actualizarFoto(int id, String foto) {
+        Empresa empresa = EmpresasRepository.findById(id).get();
+        empresa.setImagine(foto);
+        return EmpresasRepository.save(empresa);
+    }
+
+    public Empresa actualizarNombre(int id, String name) {
+        Empresa empresa = EmpresasRepository.findById(id).get();
+        empresa.setName(name);
+        return EmpresasRepository.save(empresa);
+    }
+
+    public boolean actualizarEmail(int id, String email) {
+        Empresa empresaExiste = EmpresasRepository.findById(id).orElse(null);
+        Empresa empresaX = EmpresasRepository.findByEmail(email).orElse(null);
+
+        if(!email.isBlank())
+        {
+            if(empresaX==null || empresaExiste.getId()==empresaX.getId()) {
+                empresaExiste.setEmail(email);
+                EmpresasRepository.save(empresaExiste);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Empresa actualizarDescripcion(int id, String des) {
+        Empresa empresa = EmpresasRepository.findById(id).get();
+        empresa.setDescription(des);
+        return EmpresasRepository.save(empresa);
+    }
+
+    public Empresa actualizarLink(int id, String link) {
+        Empresa empresa = EmpresasRepository.findById(id).get();
+        empresa.setLink(link);
+        return EmpresasRepository.save(empresa);
+    }
+
 }
