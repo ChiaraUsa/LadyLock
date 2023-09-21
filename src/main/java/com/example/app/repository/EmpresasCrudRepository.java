@@ -5,6 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
 
-public interface EmpresaCrudRepository extends CrudRepository<Empresa,Integer> {
+public interface EmpresasCrudRepository extends CrudRepository<Empresa,Integer> {
     Optional<Empresa> findByEmail (String email);
 }

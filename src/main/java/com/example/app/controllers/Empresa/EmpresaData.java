@@ -1,4 +1,4 @@
-package com.example.app.controllers;
+package com.example.app.controllers.Empresa;
 
 import com.example.app.entidades.Empresa;
 import com.example.app.entidades.Usuario;
@@ -9,14 +9,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 @Data
 public class EmpresaData {
 
-    private String email;
     private int id;
 
     public EmpresaData(){
         if(SecurityContextHolder.getContext().getAuthentication() != null){
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             Empresa userDetails = (Empresa) authentication.getPrincipal();
-            email = userDetails.getUsername();
             id = userDetails.getId();
         }
     }
