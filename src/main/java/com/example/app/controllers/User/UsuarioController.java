@@ -53,17 +53,14 @@ public class UsuarioController {
         return UsuarioServicio.comprobarSuscripcion(email,empresaid);
     }
 
-    @PostMapping("/eliminarCuenta")
-    public ResponseEntity<String> eliminarCuenta(@RequestParam("valor") String contraseña, @RequestParam("correo") String email){
+    @DeleteMapping("/eliminarCuenta")
+    public ResponseEntity<String> eliminarCuenta(){
         UsuarioData userdata = new UsuarioData();
-        if(authenticationService.verificarContraseñaParaBorrar(contraseña,email))
-        {
-            UsuarioServicio.eliminarCuenta(userdata.getId());
-            return ResponseEntity.ok("Usuario eliminado correctamente");
-        }
-        else
-        {
-            return ResponseEntity.status(HttpStatusCode.valueOf(403)).build();
+        boolean delete = UsuarioServicio.eliminarCuenta(userdata.getId());
+        if (delete) {
+            return ResponseEntity.ok("eliminado");
+        } else {
+            return ResponseEntity.badRequest().body("No eliminado");
         }
     }
 }
