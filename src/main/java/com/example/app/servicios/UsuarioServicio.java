@@ -61,4 +61,8 @@ public class UsuarioServicio {
         }
         return estaSuscrito;
     }
+
+    public void eliminarCuenta(int id) {
+        UserRepository.deleteById(id);
+    }
 }

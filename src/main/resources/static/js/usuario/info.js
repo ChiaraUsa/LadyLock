@@ -73,12 +73,29 @@ function guardarPerfil() {
 
 function eliminarPerfil() {
 
-    /*const borrar = window.prompt("¿De verdad quiere borrar su cuenta?\n"+
+    const borrar = window.prompt("¿De verdad quiere borrar su cuenta?\n"+
                      "Este cambio no se podra deshacer\n"+
-                     "Escriba 'BORRAR CUENTA' para confirmar su solicitud"))
+                     "Escriba su contraseña para confirmar solicitud")
 
-    if(borrar=="BORRAR CUENTA"){
-        console.log("borrada")
-    }*/
+    $.ajax({
+             url:"/api/user/eliminarCuenta?valor="+borrar+"&correo="+localStorage.email,
+             type:"POST",
+             dataType:"json",
+             headers:{
+                "Authorization": "Bearer "+ Cookies.get('token')
+             },
+             success: function(rta) {
+                alert(rta)
+                localStorage.email = ''
+                Cookies.remove('token');
+                window.location.replace("/html/login.html");
+             },
+             error: function(xhr, status) {
+                alert("Error al eliminar, verifique la contraseña")
+             },
+             complete: function(xhr, status) {
+                 //alert('Petición realizada');
+             }
+    });
 
 }

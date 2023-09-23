@@ -139,6 +139,15 @@ public class AuthenticationService {
         var jwtToken = jwtService.generateToken(empresa);
         return AuthenticationResponse.builder().token(jwtToken).build();
     }
+
+    public boolean verificarContraseñaParaBorrar(String contraseña, String correo) {
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        correo, contraseña
+                )
+        );
+        return true;
+    }
 }
 
 

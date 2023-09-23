@@ -52,4 +52,18 @@ public class UsuarioController {
     public Boolean suscribirse(@RequestParam("valor") String email, @RequestParam("id") Integer empresaid){
         return UsuarioServicio.comprobarSuscripcion(email,empresaid);
     }
+
+    @PostMapping("/eliminarCuenta")
+    public ResponseEntity<String> eliminarCuenta(@RequestParam("valor") String contraseña, @RequestParam("correo") String email){
+        UsuarioData userdata = new UsuarioData();
+        if(authenticationService.verificarContraseñaParaBorrar(contraseña,email))
+        {
+            UsuarioServicio.eliminarCuenta(userdata.getId());
+            return ResponseEntity.ok("Usuario eliminado correctamente");
+        }
+        else
+        {
+            return ResponseEntity.status(HttpStatusCode.valueOf(403)).build();
+        }
+    }
 }
