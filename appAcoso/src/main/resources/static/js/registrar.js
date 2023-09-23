@@ -79,7 +79,7 @@ function registrarUsuario(via, datos){
       		 success: function(rta) {
       			 localStorage.email = datos.email
       			 Cookies.set("token",rta['token']);
-      			 window.location.replace("inicio.html");
+      			 window.location.replace("/html/usuario/inicio.html");
       		 },
       		 error: function(xhr, status) {
       			 alert('Disculpe, existió un problema');
@@ -102,7 +102,7 @@ function registrarEmpresa(via, datos){
              success: function(rta) {
                  localStorage.email = datos.email
                  Cookies.set("token",rta['token']);
-                 window.location.replace("inicioEmpresa.html");
+                 window.location.replace("/html/empresa/inicioEmpresa.html");
              },
              error: function(xhr, status) {
                  alert('Disculpe, existió un problema');
@@ -133,7 +133,7 @@ function registrarAdministrador(via, datos){
       		 success: function(rta) {
       			 localStorage.email = datos.email
                  Cookies.set('token',rta['token']);
-                 window.location.replace("inicioAdmin.html");
+                 window.location.replace("/html/admin/inicioAdmin.html");
       		 },
       		 error: function(xhr, status) {
       			 alert('Disculpe, existió un problema');
