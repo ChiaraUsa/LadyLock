@@ -5,7 +5,7 @@ $(document).ready(function() {
 function logout(){
     localStorage.email = ''
     Cookies.remove('token');
-    window.location.replace("login.html");
+    window.location.replace("/html/login.html");
 }
 
 function establecerCorreo(){
@@ -26,6 +26,10 @@ window.location.replace("eventoEmpresa.html");
 
 function irCentroAyuda(){
 window.location.replace("CentroAyuda.html");
+}
+
+function irOtrosLugares(){
+window.location.replace("otrosLugares.html");
 }
 
 function toggleMenu() {
