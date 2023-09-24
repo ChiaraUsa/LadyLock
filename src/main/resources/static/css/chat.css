@@ -84,7 +84,7 @@ h2, h3, h4, h5, h6 {
     color: #ffffff;
 }
   
-button{
+.button-aux{
     background-color: rgb(232,106,167);
     color: white;
     padding: 10px 20px;
@@ -101,12 +101,6 @@ input[type="text"] {
     margin: 10px 0;
     border-radius: 40px;
     border: 1px solid #4B0082; 
-}
-
-button.default {
-    background-color: #e8e8e8;
-    color: #333;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
 }
 
 #username-page {
@@ -220,7 +214,7 @@ button.default {
 }
 
 .connecting {
-    padding-top: 5px;
+    padding-top: 20px;
     text-align: center;
     color: #777;
     position: absolute;

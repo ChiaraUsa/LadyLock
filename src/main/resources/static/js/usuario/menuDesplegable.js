@@ -42,13 +42,13 @@
  }
 
  function irCentroAyuda(){
-    window.location.replace("CentroAyuda.html");
+    window.location.replace("../usuario/CentroAyuda.html");
  }
 
  function irInfoUser(){
-    window.location.replace("info.html");
+    window.location.replace("../usuario/info.html");
  }
 
  function irInicio(){
-   window.location.replace("inicio.html");
+   window.location.replace("../usuario/inicio.html");
 }
