@@ -2,6 +2,7 @@ package com.example.app.entidades;
 
 import jakarta.persistence.*;
 import lombok.Data;
+
 import java.io.Serializable;
 
 @Data

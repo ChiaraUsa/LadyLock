@@ -41,4 +41,26 @@ public class UsuarioController {
         }
         return ResponseEntity.status(HttpStatusCode.valueOf(403)).build();
     }
+
+    @PostMapping("/suscribirse")
+    public Usuario suscribirse(@RequestParam("valor") Integer empresaid){
+        UsuarioData userdata = new UsuarioData();
+        return UsuarioServicio.suscribirse(userdata.getId(),empresaid);
+    }
+
+    @GetMapping("/comprobar")
+    public Boolean suscribirse(@RequestParam("valor") String email, @RequestParam("id") Integer empresaid){
+        return UsuarioServicio.comprobarSuscripcion(email,empresaid);
+    }
+
+    @DeleteMapping("/eliminarCuenta")
+    public ResponseEntity<String> eliminarCuenta(){
+        UsuarioData userdata = new UsuarioData();
+        boolean delete = UsuarioServicio.eliminarCuenta(userdata.getId());
+        if (delete) {
+            return ResponseEntity.ok("eliminado");
+        } else {
+            return ResponseEntity.badRequest().body("No eliminado");
+        }
+    }
 }
