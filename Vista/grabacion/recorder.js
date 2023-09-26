@@ -1,87 +1,52 @@
-(function(window){
+// Obtén los elementos del DOM
+const startRecordButton = document.getElementById("startRecord");
+const stopRecordButton = document.getElementById("stopRecord");
+const playAudioButton = document.getElementById("playAudio");
+const audioElement = document.getElementById("audioElement");
 
-  var WORKER_PATH = 'recorderWorker.js';
+let mediaRecorder;
+let audioChunks = [];
 
-  var Recorder = function(source, cfg){
-    var config = cfg || {};
-    var bufferLen = config.bufferLen || 4096;
-    this.context = source.context;
-    this.node = this.context.createJavaScriptNode(bufferLen, 2, 2);
-    var worker = new Worker(config.workerPath || WORKER_PATH);
-    worker.postMessage({
-      command: 'init',
-      config: {
-        sampleRate: this.context.sampleRate
-      }
+// Obtén el acceso al micrófono y crea el objeto MediaRecorder
+navigator.mediaDevices.getUserMedia({ audio: true })
+    .then(stream => {
+        mediaRecorder = new MediaRecorder(stream);
+
+        // Cuando se recibe un nuevo chunk de audio, guárdalo
+        mediaRecorder.ondataavailable = event => {
+            if (event.data.size > 0) {
+                audioChunks.push(event.data);
+            }
+        };
+
+        // Cuando la grabación se detiene, crea un archivo de audio y habilita los botones
+        mediaRecorder.onstop = () => {
+            const audioBlob = new Blob(audioChunks, { type: "audio/wav" });
+            audioElement.src = URL.createObjectURL(audioBlob);
+            audioElement.controls = true;
+            playAudioButton.disabled = false;
+        };
+    })
+    .catch(error => {
+        console.error("Error al acceder al micrófono:", error);
     });
-    var recording = false,
-      currCallback;
 
-    this.node.onaudioprocess = function(e){
-      if (!recording) return;
-      worker.postMessage({
-        command: 'record',
-        buffer: [
-          e.inputBuffer.getChannelData(0),
-          e.inputBuffer.getChannelData(1)
-        ]
-      });
-    }
+// Evento para iniciar la grabación
+startRecordButton.addEventListener("click", () => {
+    audioChunks = [];
+    mediaRecorder.start();
+    startRecordButton.disabled = true;
+    stopRecordButton.disabled = false;
+});
 
-    this.configure = function(cfg){
-      for (var prop in cfg){
-        if (cfg.hasOwnProperty(prop)){
-          config[prop] = cfg[prop];
-        }
-      }
-    }
+// Evento para detener la grabación
+stopRecordButton.addEventListener("click", () => {
+    mediaRecorder.stop();
+    startRecordButton.disabled = false;
+    stopRecordButton.disabled = true;
+});
 
-    this.record = function(){
-      recording = true;
-    }
-
-    this.stop = function(){
-      recording = false;
-    }
-
-    this.clear = function(){
-      worker.postMessage({ command: 'clear' });
-    }
-
-    this.getBuffer = function(cb) {
-      currCallback = cb || config.callback;
-      worker.postMessage({ command: 'getBuffer' })
-    }
-
-    this.exportWAV = function(cb, type){
-      currCallback = cb || config.callback;
-      type = type || config.type || 'audio/wav';
-      if (!currCallback) throw new Error('Callback not set');
-      worker.postMessage({
-        command: 'exportWAV',
-        type: type
-      });
-    }
-
-    worker.onmessage = function(e){
-      var blob = e.data;
-      currCallback(blob);
-    }
-
-    source.connect(this.node);
-    this.node.connect(this.context.destination);    //this should not be necessary
-  };
-
-  Recorder.forceDownload = function(blob, filename){
-    var url = (window.URL || window.webkitURL).createObjectURL(blob);
-    var link = window.document.createElement('a');
-    link.href = url;
-    link.download = filename || 'output.wav';
-    var click = document.createEvent("Event");
-    click.initEvent("click", true, true);
-    link.dispatchEvent(click);
-  }
-
-  window.Recorder = Recorder;
-
-})(window);
+// Evento para reproducir el audio grabado
+playAudioButton.addEventListener("click", () => {
+    audioElement.play();
+});
