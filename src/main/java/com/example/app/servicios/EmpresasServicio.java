@@ -120,4 +120,13 @@ public class EmpresasServicio {
         return EmpresasRepository.save(empresa);
     }
 
+    public boolean eliminarCuenta(int id) {
+        if(EmpresasRepository.findById(id).isPresent())
+        {
+            EmpresasRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
 }

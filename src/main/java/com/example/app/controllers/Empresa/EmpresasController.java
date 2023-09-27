@@ -104,4 +104,15 @@ public class EmpresasController {
         return EmpresasServicio.actualizarLink(empresadata.getId(),link);
     }
 
+    @DeleteMapping("/eliminarCuenta")
+    public ResponseEntity<String> eliminarCuenta(){
+        EmpresaData empresadata = new EmpresaData();
+        boolean delete = EmpresasServicio.eliminarCuenta(empresadata.getId());
+        if (delete) {
+            return ResponseEntity.ok("eliminado");
+        } else {
+            return ResponseEntity.badRequest().body("No eliminado");
+        }
+    }
+
 }
