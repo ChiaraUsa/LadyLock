@@ -1,12 +1,17 @@
 package com.example.app.servicios;
 
 import com.example.app.entidades.Empresa;
+import com.example.app.entidades.Promocion;
 import com.example.app.entidades.Usuario;
 import com.example.app.repository.EmpresasCrudRepository;
+import com.example.app.repository.PreguntaCrudRepository;
 import com.example.app.repository.UsuarioCrudRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -15,6 +20,7 @@ public class UsuarioServicio {
     @Autowired
     private final UsuarioCrudRepository UserRepository;
     private final EmpresasCrudRepository EmpresaRepository;
+    private final PreguntaCrudRepository PreguntaRepository;
     public Optional<Usuario> findById(int id) {
         return UserRepository.findById(id);
     }
@@ -69,5 +75,21 @@ public class UsuarioServicio {
             return true;
         }
         return false;
+    }
+
+    public List<Promocion> getPromos(int id) {
+        Usuario user = UserRepository.findById(id).get();
+
+        //Lista de promociones que se retorna
+        List<Promocion> promos = new ArrayList<>();
+
+        List<Empresa> empresas = user.getEmpresasList();
+
+        for(Empresa p: empresas)
+        {
+            promos.addAll(PreguntaRepository.findByEmpresa_id(p.getId()));
+        }
+
+        return promos;
     }
 }
