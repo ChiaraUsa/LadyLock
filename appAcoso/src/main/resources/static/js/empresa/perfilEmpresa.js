@@ -151,3 +151,37 @@ function actualizarLink(){
        }
    });
 }
+
+function eliminarPerfil() {
+
+    const borrar = window.prompt("¿De verdad quiere borrar su cuenta?\n"+
+                     "Este cambio no se podra deshacer\n"+
+                     "Escriba ELIMINAR para confirmar solicitud")
+
+    if(borrar!='ELIMINAR')
+    {
+        alert('Solicitud cancelada')
+        return;
+    }
+
+    $.ajax({
+             url:"/api/lugares/eliminarCuenta",
+             type:"DELETE",
+             headers:{
+                "Authorization": "Bearer "+ Cookies.get('token')
+             },
+             success: function(rta) {
+                alert('Usuario eliminado')
+                localStorage.email = ''
+                Cookies.remove('token');
+                window.location.replace("/html/login.html");
+             },
+             error: function(xhr, status) {
+                alert("Error al eliminar")
+             },
+             complete: function(xhr, status) {
+                 //alert('Petición realizada');
+             }
+    });
+
+}
