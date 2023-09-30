@@ -41,6 +41,10 @@
     window.open("https://m.uber.com/go/pickup?effect=&marketing_vistor_id=fc40b7fa-51d6-4ea9-bbb1-d5397bef16c5&uclick_id=7886bca6-83ea-4ef8-b488-8bc0c53e71ec", "_blank");
  }
 
+function irVerPromos(){
+    window.location.replace("verPromos.html");
+}
+
  function irCentroAyuda(){
     window.location.replace("CentroAyuda.html");
  }
