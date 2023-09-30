@@ -68,7 +68,7 @@ function inicioEmpresa(via, datos){
          success: function(rta) {
              localStorage.email = datos.email
              Cookies.set('token',rta['token']);
-             window.location.replace("inicioAdmin.html");
+             window.location.replace("inicioEmpresa.html");
          },
          error: function(xhr, status) {
              alert('Usuario no existente');
