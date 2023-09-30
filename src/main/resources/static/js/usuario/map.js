@@ -5,6 +5,18 @@ var helpContainer3 = document.getElementById("help-container3");
 var helpContainer4 = document.getElementById("help-container4");
 var volver = document.getElementById("Volver");
 
+var headers = {
+    Authorization: "Bearer "+ Cookies.get('token') // Reemplaza 'tuTokenJWT' con tu token real
+};
+var stompClient = null;
+var socket = new SockJS('/ws');
+        stompClient = Stomp.over(socket);
+        stompClient.connect(headers, function(frame) {
+            console.log(frame);
+            stompClient.subscribe('/all/messages', function(result) {
+            });
+        });
+
 // Función para mostrar u ocultar el mapa
 function toggleMap() {
     var mapContainer = document.getElementById('map');

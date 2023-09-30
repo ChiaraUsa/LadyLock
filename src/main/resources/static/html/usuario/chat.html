@@ -100,9 +100,16 @@
         </div>
     </div>
 
+    <button  class="button-aux" id="startRecord" style="width: 150px;position:absolute;right: 10px;bottom:10px;">Iniciar Grabación de Audio</button>
+    <div id="Grabacion" class="hidden">
+        <button  class="button-aux" id="stopRecord" disabled  style="width: 150px;position:absolute;right: 10px;bottom:10px;">Detener Grabación</button>
+        <audio id="audioElement" controls  style="width: 300px;position:absolute;right: 200px;bottom:10px;"></audio>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     <script src="../../js/chat.js"></script>
+    <script src="../../js/usuario/grabacion.js"></script>
     <script src="../../js/usuario/formulario.js"></script>
     <script src="../../js/usuario/menuDesplegable.js"></script>
 </body>
