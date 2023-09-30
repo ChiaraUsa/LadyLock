@@ -30,21 +30,24 @@
         </ul>
     </div>
 
-    <div id="main-container" style="display: flex; justify-content: space-between;">
-
-        <div id="username-page" style="width: 50%; margin: 0 auto; margin-top: 10%;">
-            <div class="container">
-                <h2 class="descripcion">Ingrese su nombre para ingresar al Chat</h2>
-                <form id="usernameForm" name="usernameForm">
-                    <div class="form-group">
-                        <input type="text" id="name" placeholder="Nombre" autocomplete="off" class="form-control" />
-                    </div>
-                </form>
+    <div id="username-page" style="width: 50%;margin-left: 18%; margin-top: 10%;">
+        <div class="container">
+            <h2 class="descripcion">Ingrese su nombre para ingresar al Chat</h2>
+            <form id="usernameForm" name="usernameForm">
+                <div class="form-group">
+                    <input type="text" id="name" placeholder="Nombre" autocomplete="off" class="form-control" />
+                </div>
+            </form>
+            <div class="form-group" style="text-align: center; margin-top: 20px;">
+                <button type="submit" class="accent button-aux">Comenzar chat</button>
             </div>
         </div>
+    </div>
 
+    <div id="cont-formulario" class="hidden">
         <div class="container" id="formulario">
-            <h2 class="descripcion">Información de Vehículo</h2>
+            <h1>Solicitud de Información de Vehículo</h1>
+            <p class="descripcion">Por favor, proporcione los detalles del vehículo solicitado.</p>
 
             <div class="input-group">
                 <label class="descripcion" for="nombre">Nombre del conductor:</label>
@@ -70,17 +73,15 @@
                 <label class="descripcion" for="descripcion">Descripción adicional:</label>
                 <textarea id="descripcion" placeholder="Descripción adicional" rows="4"></textarea>
             </div>
+
+            <button id="enviar" onclick="enviarSolicitud()" class="boton-enviar">Enviar Solicitud</button>
         </div>
-    </div>
-    
-    <div class="form-group" style="text-align: center; margin-top: 20px;">
-        <button type="submit" class="accent button-aux">Comenzar chat</button>
     </div>
 
     <div id="chat-page" class="hidden">
         <div class="chat-container">
             <div class="descripcion">
-                <h2>Chat Demo - Lady Lock</h2>
+                <h2 style="color: white;">Chat Demo - Lady Lock</h2>
             </div>
             <div class="connecting">
                 Conectando...
