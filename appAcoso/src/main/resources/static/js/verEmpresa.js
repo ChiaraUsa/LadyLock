@@ -1,3 +1,5 @@
+var idEmpresa = 0;
+
 $(document).ready(function(){
     comprobarSuscripcion();
     getInfoEmpresa();
@@ -13,12 +15,44 @@ function comprobarSuscripcion(){
             "Authorization": "Bearer "+ Cookies.get('token')
          },
   		 success: function(rta) {
+
+  		    var boton1 = document.getElementById("btnSuscripcion");
+            var boton2 = document.getElementById("btnDesuscripcion");
+
   		    if(rta)
   		    {
-                var boton = document.getElementById("btnSuscripcion");
-                var label = document.getElementById("txtSuscripcion");
-                boton.style.display = "none"; // Oculta el botón
-                label.style.display = "inline"; // Muestra la etiqueta
+                boton1.style.display = "none"; // Oculta el botón
+                boton2.style.display = "inline"; // Muestra la etiqueta
+            }
+            else
+            {
+                boton2.style.display = "none"; // Oculta el botón
+                boton1.style.display = "inline"; // Muestra la etiqueta
+            }
+  		 },
+  		 error: function(xhr, status) {
+  			 alert('Error al suscribirse');
+  		 },
+  		 complete: function(xhr, status) {
+  			 //alert('Petición realizada');
+  		 }
+   });
+}
+
+function cancelarSuscripcion(){
+    $.ajax({
+  		 url:"/api/user/cancelarSuscripcion?idEmpresa="+idEmpresa,
+         type:"DELETE",
+         headers:{
+            "Authorization": "Bearer "+ Cookies.get('token')
+         },
+  		 success: function(rta) {
+  		    if(rta)
+  		    {
+                var boton1 = document.getElementById("btnSuscripcion");
+                var boton2 = document.getElementById("btnDesuscripcion");
+                boton2.style.display = "none"; // Oculta el botón
+                boton1.style.display = "inline"; // Muestra la etiqueta
             }
   		 },
   		 error: function(xhr, status) {
@@ -39,6 +73,8 @@ function getInfoEmpresa(){
             "Authorization": "Bearer "+ Cookies.get('token')
          },
   		 success: function(rta) {
+
+             idEmpresa = rta.id;
 
             //Setear nombre y descripcion de la pagina
   		    var nombre = document.getElementById("txtNombre");
@@ -164,11 +200,10 @@ function suscribirUsuario(){
             "Authorization": "Bearer "+ Cookies.get('token')
          },
   		 success: function(rta) {
-  		    var boton = document.getElementById("btnSuscripcion");
-            var label = document.getElementById("txtSuscripcion");
-            alert('Suscripcion exitosa')
-            boton.style.display = "none"; // Oculta el botón
-            label.style.display = "inline"; // Muestra la etiqueta
+  		    var boton1 = document.getElementById("btnSuscripcion");
+            var boton2 = document.getElementById("btnDesuscripcion");
+            boton1.style.display = "none"; // Oculta el botón
+            boton2.style.display = "inline"; // Muestra la etiqueta
   		 },
   		 error: function(xhr, status) {
   			 alert('Error al suscribirse');

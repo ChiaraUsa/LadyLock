@@ -102,6 +102,7 @@ public class UsuarioServicio {
             if(e.getId()==idEmpresa)
             {
                 empresas.remove(e);
+                UserRepository.save(user);
                 return true;
             }
         }
