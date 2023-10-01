@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grabación y Reproducción de Audio</title>
+</head>
+<body>
+    <button id="startRecording">Iniciar Grabación</button>
+    <button id="stopRecording" disabled>Detener Grabación</button>
+    <button id="playRecording" disabled>Reproducir Grabación</button>
+    <audio id="audioPlayer" controls></audio>
+
+    <script>
+        let mediaRecorder;
+        let audioChunks = [];
+
+        const startRecordingButton = document.getElementById("startRecording");
+        const stopRecordingButton = document.getElementById("stopRecording");
+        const playRecordingButton = document.getElementById("playRecording");
+        const audioPlayer = document.getElementById("audioPlayer");
+
+        // Obtener acceso al micrófono y comenzar la grabación cuando se presiona el botón "Iniciar Grabación".
+        startRecordingButton.addEventListener("click", async () => {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaRecorder = new MediaRecorder(stream);
+
+            mediaRecorder.ondataavailable = (event) => {
+                if (event.data.size > 0) {
+                    audioChunks.push(event.data);
+                }
+            };
+
+            mediaRecorder.onstop = () => {
+                const audioBlob = new Blob(audioChunks, { type: "audio/wav" });
+                const audioUrl = URL.createObjectURL(audioBlob);
+                audioPlayer.src = audioUrl;
+                audioChunks = [];
+                playRecordingButton.disabled = false;
+            };
+
+            mediaRecorder.start();
+            startRecordingButton.disabled = true;
+            stopRecordingButton.disabled = false;
+        });
+
+        // Detener la grabación cuando se presiona el botón "Detener Grabación".
+        stopRecordingButton.addEventListener("click", () => {
+            mediaRecorder.stop();
+            startRecordingButton.disabled = false;
+            stopRecordingButton.disabled = true;
+        });
+
+        // Reproducir la grabación cuando se presiona el botón "Reproducir Grabación".
+        playRecordingButton.addEventListener("click", () => {
+            audioPlayer.play();
+        });
+    </script>
+</body>
+</html>
