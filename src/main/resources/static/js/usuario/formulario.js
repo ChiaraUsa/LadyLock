@@ -1,6 +1,13 @@
 var chatPage = document.querySelector('#chat-page');
 var formulario = document.querySelector('#cont-formulario')
 
+function mostrarFormulario(){
+    const contFormulario = document.getElementById('cont-formulario');
+    const contUser = document.getElementById('username-page');
+    contUser.style.display = 'none';
+    contFormulario.style.display = 'block';
+}
+
 function enviarSolicitud() {
     var nombre = document.getElementById("nombre").value;
     var marca = document.getElementById("marca").value;

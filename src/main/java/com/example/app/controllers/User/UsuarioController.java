@@ -68,6 +68,17 @@ public class UsuarioController {
         }
     }
 
+    @DeleteMapping("/cancelarSuscripcion")
+    public ResponseEntity<String> cancelarSuscripcion(@RequestParam("idEmpresa") Integer empresaid){
+        UsuarioData userdata = new UsuarioData();
+        boolean delete = UsuarioServicio.cancelarSuscripcion(userdata.getId(), empresaid);
+        if (delete) {
+            return ResponseEntity.ok("cancelada");
+        } else {
+            return ResponseEntity.badRequest().body("No cancelada");
+        }
+    }
+
     @GetMapping("/getPromosUser")
     public List<Promocion> getPromosUser(){
         UsuarioData userdata = new UsuarioData();

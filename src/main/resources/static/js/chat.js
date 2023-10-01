@@ -2,7 +2,6 @@
 
 var usernamePage = document.querySelector('#username-page');
 var chatPage = document.querySelector('#chat-page');
-var formulario = document.querySelector('#cont-formulario')
 var usernameForm = document.querySelector('#usernameForm');
 var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#message');
@@ -22,14 +21,13 @@ function connect(event) {
 
     if(username) {
         usernamePage.classList.add('hidden');
-        formulario.classList.remove('hidden');
+        chatPage.classList.remove('hidden');
 
         var socket = new SockJS('/ws');
         stompClient = Stomp.over(socket);
 
         stompClient.connect({}, onConnected, onError);
     }
-    
     event.preventDefault();
 }
 

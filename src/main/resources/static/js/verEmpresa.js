@@ -1,3 +1,5 @@
+var idEmpresa;
+
 $(document).ready(function(){
     comprobarSuscripcion();
     getInfoEmpresa();
@@ -30,6 +32,31 @@ function comprobarSuscripcion(){
    });
 }
 
+function cancelarSuscripcion(){
+    $.ajax({
+  		 url:"/api/user/cancelarSuscripcion?idEmpresa="+idEmpresa,
+         type:"DELETE",
+         headers:{
+            "Authorization": "Bearer "+ Cookies.get('token')
+         },
+  		 success: function(rta) {
+  		    if(rta)
+  		    {
+                var boton = document.getElementById("btnSuscripcion");
+                var label = document.getElementById("txtSuscripcion");
+                label.style.display = "none"; // Muestra la etiqueta
+                boton.style.display = "inline"; // Oculta el botón
+            }
+  		 },
+  		 error: function(xhr, status) {
+  			 alert('Error al suscribirse');
+  		 },
+  		 complete: function(xhr, status) {
+  			 //alert('Petición realizada');
+  		 }
+   });
+}
+
 function getInfoEmpresa(){
     $.ajax({
   		 url:"/api/lugares/verInfoEmpresa?valor="+localStorage.id,
@@ -39,6 +66,8 @@ function getInfoEmpresa(){
             "Authorization": "Bearer "+ Cookies.get('token')
          },
   		 success: function(rta) {
+
+             idEmpresa = rta.id;
 
             //Setear nombre y descripcion de la pagina
   		    var nombre = document.getElementById("txtNombre");
