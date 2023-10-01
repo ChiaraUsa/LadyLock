@@ -1,4 +1,4 @@
-var idEmpresa;
+var idEmpresa = 0;
 
 $(document).ready(function(){
     comprobarSuscripcion();
@@ -15,12 +15,19 @@ function comprobarSuscripcion(){
             "Authorization": "Bearer "+ Cookies.get('token')
          },
   		 success: function(rta) {
+
+  		    var boton1 = document.getElementById("btnSuscripcion");
+            var boton2 = document.getElementById("btnDesuscripcion");
+
   		    if(rta)
   		    {
-                var boton = document.getElementById("btnSuscripcion");
-                var label = document.getElementById("txtSuscripcion");
-                boton.style.display = "none"; // Oculta el botón
-                label.style.display = "inline"; // Muestra la etiqueta
+                boton1.style.display = "none"; // Oculta el botón
+                boton2.style.display = "inline"; // Muestra la etiqueta
+            }
+            else
+            {
+                boton2.style.display = "none"; // Oculta el botón
+                boton1.style.display = "inline"; // Muestra la etiqueta
             }
   		 },
   		 error: function(xhr, status) {
@@ -42,10 +49,10 @@ function cancelarSuscripcion(){
   		 success: function(rta) {
   		    if(rta)
   		    {
-                var boton = document.getElementById("btnSuscripcion");
-                var label = document.getElementById("txtSuscripcion");
-                label.style.display = "none"; // Muestra la etiqueta
-                boton.style.display = "inline"; // Oculta el botón
+                var boton1 = document.getElementById("btnSuscripcion");
+                var boton2 = document.getElementById("btnDesuscripcion");
+                boton2.style.display = "none"; // Oculta el botón
+                boton1.style.display = "inline"; // Muestra la etiqueta
             }
   		 },
   		 error: function(xhr, status) {
@@ -193,11 +200,10 @@ function suscribirUsuario(){
             "Authorization": "Bearer "+ Cookies.get('token')
          },
   		 success: function(rta) {
-  		    var boton = document.getElementById("btnSuscripcion");
-            var label = document.getElementById("txtSuscripcion");
-            alert('Suscripcion exitosa')
-            boton.style.display = "none"; // Oculta el botón
-            label.style.display = "inline"; // Muestra la etiqueta
+  		    var boton1 = document.getElementById("btnSuscripcion");
+            var boton2 = document.getElementById("btnDesuscripcion");
+            boton1.style.display = "none"; // Oculta el botón
+            boton2.style.display = "inline"; // Muestra la etiqueta
   		 },
   		 error: function(xhr, status) {
   			 alert('Error al suscribirse');
