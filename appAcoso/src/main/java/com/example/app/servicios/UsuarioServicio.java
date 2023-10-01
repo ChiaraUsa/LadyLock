@@ -92,4 +92,19 @@ public class UsuarioServicio {
 
         return promos;
     }
+
+    public boolean cancelarSuscripcion(int id, int idEmpresa) {
+        Usuario user = UserRepository.findById(id).get();
+        List<Empresa> empresas = user.getEmpresasList();
+
+        for(Empresa e: empresas)
+        {
+            if(e.getId()==idEmpresa)
+            {
+                empresas.remove(e);
+                return true;
+            }
+        }
+        return false;
+    }
 }

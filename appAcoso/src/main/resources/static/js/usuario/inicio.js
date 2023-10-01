@@ -9,7 +9,7 @@ function cargarLista(){
   		 type:"GET",
   		 dataType:"json",
          headers:{
-         	"Authorization": "Bearer "+ Cookies.get('token')
+         	"Authorization": "Bearer " + Cookies.get('token')
          },
   		 success: function(rta) {
   		     var contenedor = document.getElementById('contenedorRectangulos');
