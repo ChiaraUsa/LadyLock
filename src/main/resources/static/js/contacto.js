@@ -9,5 +9,9 @@ function openLineaPurpura() {
     window.open("https://www.sdmujer.gov.co/nuestros-servicios/servicios-para-las-mujeres/linea-purpura", "_blank");
 }
 
+function openChat(){
+    window.location.replace("../usuario/chat.html");
+}
+
 botonUnirse.addEventListener('click', unionGrupo);
 botonLinea.addEventListener('click',openLineaPurpura);
