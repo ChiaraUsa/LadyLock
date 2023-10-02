@@ -7,8 +7,6 @@ function enviarSolicitud() {
     var modelo = document.getElementById("modelo").value;
     var color = document.getElementById("color").value;
     var descripcion = document.getElementById("descripcion").value;
-    formulario.classList.add('hidden');
-    chatPage.classList.remove('hidden');
 
     // Aquí puedes realizar la lógica para enviar los datos a la plataforma externa
     // Puedes utilizar la función fetch o una biblioteca como Axios para realizar la solicitud AJAX
