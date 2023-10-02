@@ -37,18 +37,19 @@
     }
  }
 
- function openUberLink() {
-    window.open("https://m.uber.com/go/pickup?effect=&marketing_vistor_id=fc40b7fa-51d6-4ea9-bbb1-d5397bef16c5&uclick_id=7886bca6-83ea-4ef8-b488-8bc0c53e71ec", "_blank");
- }
-
  function irCentroAyuda(){
-    window.location.replace("CentroAyuda.html");
+   window.open("https://chat.whatsapp.com/Ctp0iQVRNXhD3Pi6STCX3y","_blank");
  }
 
- function irInfoUser(){
-    window.location.replace("info.html");
+ function irInfoEmpresa(){
+    window.location.replace("infoEmpresa.html");
  }
+
+ function irPerfilEmpresa(){
+   window.location.replace("perfilEmpresa.html");
+}
 
  function irInicio(){
-   window.location.replace("inicio.html");
+   window.location.replace("inicioEmpresa.html");
 }
+
