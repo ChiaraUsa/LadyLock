@@ -23,6 +23,8 @@
 <div class="menu" id="menu">
     <ul>
         <li><button class="menu-button-styled" onclick="irAtenciones()">Atenciones</button></li>
+        <li><button class="menu-button-styled" onclick="irChat()">Chat</button></li>
+        <li><button class="menu-button-styled" onclick="irNotificaciones()">Notificaciones</button></li>
         <li><button class="menu-button-styled" onclick="closeMenu()" style="background-color: rgb(4, 80, 27); color: white;" onmouseover="this.style.backgroundColor='rgb(82, 255, 148)'" onmouseout="this.style.backgroundColor='rgb(4, 80, 27)'">Cerrar</button></li>
     </ul>
 </div>
@@ -30,9 +32,10 @@
 <div class="contenedor">
     <div style="display: inline-block; margin-left: 18.3%; padding: 20px; width: 60%;">
         <h2 style="margin-top: 30px;">Historial de Atenciones</h2>
+        <div id="contenedorAtenciones"></div>
     </div>
 </div>
-
+<script src="../../js/admin/atenciones.js"></script>
 <script src="../../js/admin/menuDesplegableAdmin.js"></script>
 </body>
 </html>

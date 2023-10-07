@@ -26,7 +26,7 @@ public class Admin implements UserDetails {
     private String email;
     private String password;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Emergencia> emergenciaList;
 
     @Enumerated(EnumType.STRING)

@@ -16,6 +16,14 @@ function irAtenciones(){
     window.location.replace("atenciones.html");
 }
 
+function irChat(){
+    window.location.replace("chatAdmin.html");
+}
+
+function irNotificaciones(){
+    window.location.replace("notificaciones.html");
+}
+
 function toggleMenu() {
     const menu = document.getElementById('menu');
     if (menu.style.left === '0px') {

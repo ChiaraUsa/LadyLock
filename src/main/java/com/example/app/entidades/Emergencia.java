@@ -19,6 +19,6 @@ public class Emergencia implements Serializable {
     private String modeloAuto;
     private String colorAuto;
     private String descripcion;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Admin admin;
 }

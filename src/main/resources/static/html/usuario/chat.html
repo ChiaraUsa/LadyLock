@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>Chat Application</title>
+    <title>Spring Boot WebSocket Chat Application</title>
     <link rel="stylesheet" href="/css/chat.css" />
     <link rel="stylesheet" href="/css/estiloFormulario.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.js"></script>
@@ -38,20 +35,19 @@
         </ul>
     </div>
 
-    <div id="username-page" style="width: 50%;margin-left: 18%; margin-top: 10%;">
+    <div id="username-page">
         <div class="container">
             <h2 class="descripcion">Ingrese su nombre para ingresar al Chat</h2>
             <form id="usernameForm" name="usernameForm">
                 <div class="form-group">
                     <input type="text" id="name" placeholder="Nombre" autocomplete="off" class="form-control" />
                 </div>
+                <div class="form-group">
+                    <button type="submit" class="accent button-aux">Comenzar chat</button>
+                </div>
             </form>
-            <div class="form-group" style="text-align: center; margin-top: 20px;">
-                <button type="submit" class="accent button-aux" onclick="mostrarFormulario()">Comenzar chat</button>
-            </div>
         </div>
     </div>
-
     <div id="cont-formulario" class="hidden">
         <div class="container" id="formulario">
             <h1>Solicitud de Información de Vehículo</h1>
@@ -85,11 +81,10 @@
             <button id="enviar" onclick="enviarSolicitud()" class="boton-enviar">Enviar Solicitud</button>
         </div>
     </div>
-
     <div id="chat-page" class="hidden">
         <div class="chat-container">
             <div class="descripcion">
-                <h2 style="color: white;">Chat Demo - Lady Lock</h2>
+                <h1>Chat Demo - Lady Lock</h1>
             </div>
             <div class="connecting">
                 Conectando...
@@ -107,18 +102,16 @@
             </form>
         </div>
     </div>
-
     <button  class="button-aux" id="startRecord" style="width: 150px;position:absolute;right: 10px;bottom:10px;">Iniciar Grabación de Audio</button>
     <div id="Grabacion" class="hidden">
         <button  class="button-aux" id="stopRecord" disabled  style="width: 150px;position:absolute;right: 10px;bottom:10px;">Detener Grabación</button>
         <audio id="audioElement" controls  style="width: 300px;position:absolute;right: 200px;bottom:10px;"></audio>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     <script src="../../js/chat.js"></script>
-    <script src="../../js/usuario/grabacion.js"></script>
-    <script src="../../js/usuario/formulario.js"></script>
     <script src="../../js/usuario/menuDesplegable.js"></script>
-</body>
+    <script src="../../js/usuario/formulario.js"></script>
+    <script src="../../js/usuario/grabacion.js"></script>
+
+    </body>
 </html>
