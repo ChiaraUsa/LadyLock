@@ -7,7 +7,7 @@
  function logout(){
     localStorage.email = ''
 	Cookies.remove('token');
-	window.location.replace("login.html");
+	window.location.replace("/html/login.html");
  }
 
  async function establecerCorreo(){
