@@ -29,14 +29,25 @@
     </ul>
 </div>
 
-<div style="margin-left: 250px; padding: 20px;">
-    <h1>Bienvenido a mi sitio web</h1>
-    <p>Este es el contenido principal de la página.</p>
+<div class="contenedor">
+    <div style="display: inline-block; margin-left: 18.3%; padding: 20px; width: 60%;">
 
-    <div id="contenedorRectangulos"></div>
+        <h1 id="txtNombre">Nombre Empresa</h1>
+        <h2> Descripcion Empresa:</h2>
+        <h3 id="txtDescripcion" style="font-weight: normal;"> Aca va la descripcion de la empresa</h3>
+        <h2 style="margin-top: 50px; margin-bottom: 50px;">Mis Eventos / promociones</h2>
+        <div id="contenedorEventos"></div>
+    </div>
 
+    <div style=" padding: 20px; width: 20%;">
+        <div id=imagen style="width: 200px; height: 200px; background-color: blue; margin: 0 auto;"></div>
+        <button id="txtLink" style="width: 200px; display: block; margin: 10px auto; background-color: rgb(115, 164, 255); color: white; font-weight: bold; padding: 10px 20px; border: none; cursor: pointer;" onmouseover="this.style.backgroundColor='rgb(0, 13, 200)'" onmouseout="this.style.backgroundColor='rgb(82, 157, 255)'">Ir</button>
+        <button id="btnSuscripcion" onclick="suscribirUsuario()" style="width: 200px; display: block; margin: 10px auto; background-color: rgb(115, 164, 255); color: white; font-weight: bold; padding: 10px 20px; border: none; cursor: pointer;" onmouseover="this.style.backgroundColor='rgb(0, 13, 200)'" onmouseout="this.style.backgroundColor='rgb(82, 157, 255)'">Suscribirse</button>
+        <button id="btnDesuscripcion" onclick="cancelarSuscripcion()" style="width: 200px; display: block; margin: 10px auto; background-color: rgb(184, 20, 20); color: white; font-weight: bold; padding: 10px 20px; border: none; cursor: pointer;" onmouseover="this.style.backgroundColor='rgb(184, 20, 20)'" onmouseout="this.style.backgroundColor='rgb(82, 157, 255)'">Desuscribirse</button>
+        <label id="txtSuscripcion" style="display:none;">Estas Suscrito</label>
+    </div>
 </div>
+<script src="../../js/verEmpresa.js"></script>
 <script src="../../js/usuario/menuDesplegable.js"></script>
-<script src="../../js/usuario/inicio.js"></script>
 </body>
 </html>

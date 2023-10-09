@@ -3,6 +3,7 @@ package com.example.app.auth;
 import com.example.app.repository.AdminCrudRepository;
 import com.example.app.repository.UsuarioCrudRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
 public class AuthenticationController {
+
+    @Autowired
     private final AuthenticationService service;
 
     @PostMapping("/register/usuario")
