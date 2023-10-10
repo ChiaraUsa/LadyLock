@@ -14,7 +14,7 @@
 </head>
 <body>
 <div class="barra-superior" style="display: flex; justify-content: flex-end; align-items: center; padding-right: 10px;" id="barra-superior">
-    <h1 style="font-weight: bold; color: white; margin-right: 40%; text-align: center;">Ladylock</h1>
+    <h1 style="font-weight: bold; color: white; margin-right: 40%; text-align: center;" onclick="irInicio()">Ladylock</h1>
     <button class="menu-button" onclick="toggleMenu()">☰</button>
     <button class="user-button" id="userButton" onclick="toggleUserMenu()">Nombre de Usuario ▼</button>
     <button class="menu-button" onclick="toggleMenu()">☰</button>
@@ -34,23 +34,23 @@
 </div>
 <div class="container" id="help-container" style="margin-left: 7%;">
     <p class="descripcion">¿Dónde estoy?</p>
-    <img src="../../imagenes/mapa.png" alt="Simbolo de eventos" />
+    <img src="../../imagenes/mapa.png" alt="Simbolo de ubicación" />
     <button class="boton-ayuda" id="mostrarMapa" onclick="toggleMap()">Mi ubicación</button>
 </div>
 <div class="container" id="help-container4">
     <p class="descripcion">Solicitar Ayuda</p>
-    <img src="../../imagenes/ayuda.png" alt="Simbolo de eventos" />
+    <img src="../../imagenes/ayuda.png" alt="Simbolo de ayuda" />
     <button class="boton-ayuda" id="ayuda" onclick="openChat()">Ayuda</button>
 </div>
 <div id="map" style="width: 65%; height: 400px; display: none; justify-content: center; align-items: center; margin-left: 25%; margin-top: 5%;"></div>
 <div class="container" id="help-container2">
     <p class="descripcion">Conectarse con la comunidad</p>
-    <img src="../../imagenes/gente.png" alt="Simbolo de eventos" />
+    <img src="../../imagenes/gente.png" alt="Simbolo de comunidad" />
     <button class="boton-ayuda" id="comunicar" onclick="unionForo()">Entrar a los foros</button>
 </div>
 <div class="container" id="help-container3">
     <p class="descripcion">Línea Púrpura Distrital.</p>
-    <img src="../../imagenes/viber.png" alt="Simbolo de eventos" />
+    <img src="../../imagenes/viber.png" alt="Simbolo de línea purpura" />
     <button class="boton-ayuda" id="lineapurpura" onclick="openLineaPurpura()">Más información</button>
 </div>
 <button style="width: 150px;position:absolute;right: 10px;bottom:10px;z-index: 9999;display: none;" class="boton-ayuda" onclick="irCentroAyuda()" id="Volver">Volver</button>
