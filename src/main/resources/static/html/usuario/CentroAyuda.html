@@ -33,8 +33,6 @@
     </ul>
 </div>
 
-<div class="content">Hola, voy a desaparecer en 3 segundos!</div>
-<div class="content2" style="display:none;">Hola, soy un nuevo div!</div>
 <div class="container" id="help-container" style="margin-left: 7%;">
     <p class="descripcion">¿Dónde estoy?</p>
     <img src="../../imagenes/mapa.png" alt="Simbolo de ubicación" />
@@ -56,6 +54,13 @@
     <img src="../../imagenes/viber.png" alt="Simbolo de línea purpura" />
     <button class="boton-ayuda" id="lineapurpura" onclick="openLineaPurpura()">Más información</button>
 </div>
+
+<div class="container2" id="consejos">
+    <div class="content">Hola, voy a desaparecer en 3 segundos!</div>
+    <div class="content" style="display:none;">Hola, soy un nuevo div!</div>
+    <div class="content" style="display:none;">...</div>
+</div>
+
 <button style="width: 150px;position:absolute;right: 10px;bottom:10px;z-index: 9999;display: none;" class="boton-ayuda" onclick="irCentroAyuda()" id="Volver">Volver</button>
 </body>
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
