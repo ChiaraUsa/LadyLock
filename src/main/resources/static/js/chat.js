@@ -1,8 +1,6 @@
 'use strict';
 
-var usernamePage = document.querySelector('#username-page');
-var chatPage = document.querySelector('#chat-page');
-var usernameForm = document.querySelector('#usernameForm');
+import { establecerCorreo } from '../js/usuario/menuDesplegable.js';
 var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
@@ -18,13 +16,10 @@ var colors = [
 ];
 
 function connect(event) {
-    username = document.querySelector('#name').value.trim();
+    username = establecerCorreo()
 
     if(username) {
-        usernamePage.classList.add('hidden');
         formulario.classList.remove('hidden');
-
-
         var socket = new SockJS('/ws');
         stompClient = Stomp.over(socket);
 
@@ -116,5 +111,5 @@ function getAvatarColor(messageSender) {
     return colors[index];
 }
 
-usernameForm.addEventListener('submit', connect, true)
+connect(new Event("submit"));
 messageForm.addEventListener('submit', sendMessage, true)
