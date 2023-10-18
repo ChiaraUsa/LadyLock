@@ -20,6 +20,10 @@ function irPerfilEmpresa(){
 window.location.replace("perfilEmpresa.html");
 }
 
+function irPerfil(){
+   window.location.replace("infoEmpresa.html");
+}
+
 function irMisEventos(){
 window.location.replace("eventoEmpresa.html");
 }

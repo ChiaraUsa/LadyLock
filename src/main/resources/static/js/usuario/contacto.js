@@ -1,5 +1,6 @@
-function unionGrupo(){
-    window.open("https://chat.whatsapp.com/Ctp0iQVRNXhD3Pi6STCX3y","_blank");
+function unionForo(){
+    window.location.replace("../usuario/foro.html");
+    //window.open("https://ladylock-foro.foroactivo.com/","_blank");
 }
 
 function openLineaPurpura() {

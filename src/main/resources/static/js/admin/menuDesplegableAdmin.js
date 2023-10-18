@@ -20,6 +20,10 @@ function irChat(){
     window.location.replace("chatAdmin.html");
 }
 
+function irInicio(){
+    window.location.replace("inicioAdmin.html");
+}
+
 function irNotificaciones(){
     window.location.replace("notificaciones.html");
 }
