@@ -115,5 +115,5 @@ function getAvatarColor(messageSender) {
     return colors[index];
 }
 
-connect(new Event("submit"));
+usernameForm.addEventListener('submit', connect, true)
 messageForm.addEventListener('submit', sendMessage, true)
