@@ -1,7 +1,8 @@
 'use strict';
 
-
-import { establecerCorreo } from '../js/usuario/menuDesplegable.js';
+var usernamePage = document.querySelector('#username-page');
+var chatPage = document.querySelector('#chat-page');
+var usernameForm = document.querySelector('#usernameForm');
 var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
@@ -17,10 +18,12 @@ var colors = [
 ];
 
 function connect(event) {
-    username = establecerCorreo()
+    username = document.querySelector('#name').value.trim();
 
     if(username) {
+        usernamePage.classList.add('hidden');
         formulario.classList.remove('hidden');
+
         var socket = new SockJS('/ws');
         stompClient = Stomp.over(socket);
 
