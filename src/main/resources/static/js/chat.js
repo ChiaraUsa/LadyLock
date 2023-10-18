@@ -1,5 +1,6 @@
 'use strict';
 
+
 import { establecerCorreo } from '../js/usuario/menuDesplegable.js';
 var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#message');
