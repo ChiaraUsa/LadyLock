@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Inicio de Empresa</title>
+        <link rel="stylesheet" href="../../css/inicioEmpresa.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
+    </head>
+    <body>
+        <div class="barra-superior" style="display: flex; justify-content: flex-end; align-items: center; padding-right: 10px;">
+            <h1 style="font-weight: bold; color: white; margin-right: 32%; text-align: center;">Ladylock Empresas</h1>
+            <button class="menu-button" onclick="toggleMenu()">☰</button>
+            <button class="user-button" id="userButton" onclick="toggleUserMenu()">Nombre de Empresa ▼</button>
+            <button class="menu-button" onclick="toggleMenu()">☰</button>
+            <div class="user-menu" id="userMenu">
+                
+                <button onclick="logout()">Cerrar Sesión</button>
+            </div>
+        </div>
+        <div class="menu" id="menu">
+            <ul>
+                <li><button class="menu-button-styled" onclick="irInicio()">Inicio</button></li>
+                <li><button class="menu-button-styled" onclick="irPerfilEmpresa()">Mi Perfil</button></li>
+                <li><button class="menu-button-styled" onclick="irPerfil()">Editar Perfil</button></li>
+                <li><button class="menu-button-styled" onclick="irMisEventos()">Mis Eventos</button></li>
+                <li><button class="menu-button-styled" onclick="irOtrosLugares()">Otros Lugares</button></li>
+                <li><button class="menu-button-styled" onclick="closeMenu()" style="color: white;" onmouseover="this.style.backgroundColor='rgb(0, 13, 200)'" onmouseout="this.style.backgroundColor='rgb(82, 157, 255)'">Cerrar</button></li>
+            </ul>
+        </div>
+        <div id="op-1" class="container" style="margin-left: 5%;">
+            <p class="descripcion">Un perfil actualizado te permite conectar con más clientes.</p>
+            <img src="../../imagenes/portafolio-profesional.png" alt="Kit de herramientas - Icono de Iconjam" />
+            <button class="boton-opciones" onclick="irPerfilEmpresa()">Ver perfil</button>
+        </div>  
+        <div id="op-2" class="container">
+            <p class="descripcion">Recuerda generar eventos para llamar la atención de tus clientes.</p>
+            <img src="../../imagenes/evento.png" alt="Simbolo de eventos" />
+            <button class="boton-opciones" onclick="irMisEventos()">Mis Eventos</button>
+        </div>
+        <div id="op-3" class="container">
+            <p class="descripcion">Visita otras empresas y mantente informado.</p>
+            <img src="../../imagenes/empresa.png" alt="Simbolo de solicitudes" />
+            <button class="boton-opciones" onclick="irOtrosLugares()">Otros Lugares</button>
+        </div>
+        <script src="../../js/empresa/menuDesplegableEmpresa.js"></script>
+    </body>
+</html>
