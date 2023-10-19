@@ -1,12 +1,12 @@
 'use strict';
 
-
-import { establecerCorreo } from '../js/usuario/menuDesplegable.js';
+var usernamePage = document.querySelector('#username-page');
+var formulario = document.querySelector('#cont-formulario');
+var usernameForm = document.querySelector('#usernameForm');
 var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
-var formulario = document.querySelector('#cont-formulario')
 
 var stompClient = null;
 var username = null;
@@ -17,10 +17,12 @@ var colors = [
 ];
 
 function connect(event) {
-    username = establecerCorreo()
+    username = document.querySelector('#name').value.trim();
 
     if(username) {
+        usernamePage.classList.add('hidden');
         formulario.classList.remove('hidden');
+
         var socket = new SockJS('/ws');
         stompClient = Stomp.over(socket);
 
@@ -112,5 +114,5 @@ function getAvatarColor(messageSender) {
     return colors[index];
 }
 
-connect(new Event("submit"));
+usernameForm.addEventListener('submit', connect, true)
 messageForm.addEventListener('submit', sendMessage, true)

@@ -35,8 +35,22 @@
             <li><button class="menu-button-styled" onclick="closeMenu()" style="background-color: rgb(200, 0, 100); color: white;" onmouseover="this.style.backgroundColor='rgb(161, 10, 55)'" onmouseout="this.style.backgroundColor='rgb(200, 0, 100)'">Cerrar</button></li>
         </ul>
     </div>
+
+    <div id="username-page" style="width: 50%;margin-left: 18%; margin-top: 10%;">
+        <div class="container">
+            <h2 class="descripcion">Ingrese su nombre para ingresar al Chat</h2>
+            <form id="usernameForm" name="usernameForm">
+                <div class="form-group">
+                    <input type="text" id="name" placeholder="Nombre" autocomplete="off" class="form-control" />
+                </div>
+            </form>
+            <div class="form-group" style="text-align: center; margin-top: 20px;">
+                <button type="submit" class="accent button-aux">Comenzar chat</button>
+            </div>
+        </div>
+    </div>   
     
-    <div id="cont-formulario">
+    <div id="cont-formulario" class="hidden">
         <div class="container" id="formulario">
             <h1>Solicitud de Información de Vehículo</h1>
             <p class="descripcion">Por favor, proporcione los detalles del vehículo solicitado.</p>
@@ -69,6 +83,7 @@
             <button id="enviar" onclick="enviarSolicitud()" class="boton-enviar">Enviar Solicitud</button>
         </div>
     </div>
+
     <div id="chat-page" class="hidden">
         <div class="chat-container">
             <div class="descripcion">
