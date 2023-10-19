@@ -1,6 +1,5 @@
 function unionForo(){
-    window.location.replace("../usuario/foro.html");
-    //window.open("https://ladylock-foro.foroactivo.com/","_blank");
+    window.open("https://ladylock-foro.foroactivo.com/","_blank");
 }
 
 function openLineaPurpura() {
