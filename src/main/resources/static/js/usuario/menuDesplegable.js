@@ -45,6 +45,10 @@
     window.location.replace("CentroAyuda.html");
  }
 
+ function irCalendario(){
+   window.location.replace("Calendario.html");
+}
+
  function irInfoUser(){
     window.location.replace("info.html");
  }

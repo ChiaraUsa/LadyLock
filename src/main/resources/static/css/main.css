@@ -17,26 +17,109 @@ a {
     margin: 10px 0px 10px 0px;
 }
 
-.header {
-    background: #003267;
-    background: linear-gradient(to right, #011329 0%, #00639e 44%, #011329 100%);
-    padding: 20px 10px;
+header {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    height: 5%;
+    background: rgb(140, 82, 255);
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+  }
+   
+.menu {
+    background-color: rgb(140, 82, 255);
+    color: #fff;
+    height: 100vh;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    transition: left 0.3s;
+    z-index: 10000;
+  }
+  .menu ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  .menu ul li {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .menu-button {
+    background-color: rgb(140, 82, 255);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 1%;
+    font-size: 24px;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+  }
+  
+  .menu-button-styled {
+    background-color: rgb(139, 115, 255);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+    height: 50px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: rgb(139, 0, 255);
+  }
+  
+  button:active {
+    background-color: rgb(200, 0, 100);
+  }
+  
+  .barra-superior {
+    justify-content: flex-start;
+    align-items:center;
+    padding-right: 10px;
+    background-color: rgb(140, 82, 255);
+    height: 11vh;
+    display: flex;
+    left: 0;
+    align-items: center;
+    padding: 0 20px;
+  }
+  
+  .user-button {
+    background-color: transparent;
     color: white;
-    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.75);
-}
-
-.header a {
-    color: white;
-}
-
-.header h1 a {
-    text-decoration: none;
-}
-
-.header h1 {
-    padding: 0px;
-    margin: 0px;
-}
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  
+  .user-menu {
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: none;
+  }
+  
+  .user-menu button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
 
 .main {
     padding: 10px;
@@ -79,16 +162,19 @@ a {
     margin-bottom: 20px;
 }
 
-.toolbar button {
-    display: inline-block;
+.boton{
+    background-color: rgb(232,106,167);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    width: 45%;
+    border-radius: 40px;
+    justify-content: center;
     text-align: center;
-    background-color: #3c78d8;
-    border: 1px solid #1155cc;
-    color: #fff;
-    padding: 6px 20px;
-    border-radius: 2px;
+    font-weight: bold;
     cursor: pointer;
-    margin-right: 5px;
-    width: 100px;
-    text-decoration: none;
+  }
+
+.month_default_event_inner {
+    border-radius: 20px;
 }

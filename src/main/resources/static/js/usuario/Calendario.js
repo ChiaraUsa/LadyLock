@@ -1,6 +1,6 @@
 const datePicker = new DayPilot.Navigator("nav", {
-    showMonths: 3,
-    skipMonths: 3,
+    showMonths: 2,
+    skipMonths: 2,
     selectMode: "Month",
     onTimeRangeSelected: args => {
       calendar.update({
