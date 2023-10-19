@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitor de Seguridad - Acoso Sexual</title>
+    <link rel="stylesheet" href="../../css/estiloInicioAdmin.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
+</head>
+<body>
+    <div class="barra-superior" style="display: flex; justify-content: flex-end; align-items: center; padding-right: 10px;">
+        <h1 style="font-weight: bold; color: white; margin-right: 32%; text-align: center;">Ladylock Administrador</h1>
+        <button class="menu-button" onclick="toggleMenu()">☰</button>
+        <button class="user-button" id="userButton" onclick="toggleUserMenu()">Nombre de Usuario ▼</button>
+        <button class="menu-button" onclick="toggleMenu()">☰</button>
+        <div class="user-menu" id="userMenu">
+    
+            <button onclick="logout()">Cerrar Sesión</button>
+        </div>
+    </div>
+    <div class="menu" id="menu">
+        <ul>
+            <li><button class="menu-button-styled" onclick="irInicio()">Inicio</button></li>
+            <li><button class="menu-button-styled" onclick="irAtenciones()">Atenciones</button></li>
+            <li><button class="menu-button-styled" onclick="irChat()">Chat</button></li>
+            <li><button class="menu-button-styled" onclick="irNotificaciones()">Notificaciones</button></li>
+            <li><button class="menu-button-styled" onclick="closeMenu()" style="background-color: rgb(4, 80, 27); color: white;" onmouseover="this.style.backgroundColor='rgb(82, 255, 148)'" onmouseout="this.style.backgroundColor='rgb(4, 80, 27)'">Cerrar</button></li>
+        </ul>
+    </div>
+
+    <div class="container" id="help-container" style="margin-left: 17%;">
+        <p class="descripcion">Ver mis atenciones</p>
+        <img src="../../imagenes/agente-de-servicio-al-cliente.png" alt="Síbolo de atenciones" />
+        <button class="boton-ayuda"  onclick="irAtenciones()">Atenciones</button>
+    </div>
+    <div class="container" id="help-container4">
+        <p class="descripcion">Ver notificaciones de Usuarios</p>
+        <img src="../../imagenes/campana.png" alt="Simbolo de ayuda" />
+        <button class="boton-ayuda" onclick="irNotificaciones()">Notificaciones</button>
+    </div>
+    <div class="container" id="help-container2">
+        <p class="descripcion">Chat con Usuarios</p>
+        <img src="../../imagenes/charla.png" alt="Simbolo de comunidad" />
+        <button class="boton-ayuda" onclick="irChat()">Chat</button>
+    </div>
+<script src="../../js/admin/accionesMonitor.js"></script>
+<script src="../../js/admin/menuDesplegableAdmin.js"></script>
+</body>
+</html>
