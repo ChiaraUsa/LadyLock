@@ -14,7 +14,7 @@ function enviarSolicitud() {
     // Puedes utilizar la función fetch o una biblioteca como Axios para realizar la solicitud AJAX
 
     // Ejemplo usando fetch:
-    fetch('https://api.externa.com/solicitud-vehiculo', {
+    /*fetch('https://api.externa.com/solicitud-vehiculo', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -34,6 +34,6 @@ function enviarSolicitud() {
     })
     .catch(error => {
         console.error('Error al enviar la solicitud:', error);
-    });
+    });*/
 
 }
