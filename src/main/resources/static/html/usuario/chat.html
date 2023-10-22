@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>Chat Application User</title>
     <link rel="stylesheet" href="../../css/chat.css" />
@@ -29,62 +28,12 @@
         <ul>
             <li><button class="menu-button-styled" onclick="irInicio()">Inicio</button></li>
             <li><button class="menu-button-styled" onclick="irInfoUser()">Mi Perfil</button></li>
-            <li><button class="menu-button-styled" onclick="irCalendario()">Mi Calendario</button></li>
             <li><button class="menu-button-styled" onclick="irVerPromos()">Mis Suscripciones</button></li>
             <li><button class="menu-button-styled" onclick="irCentroAyuda()">Centro de Ayuda</button></li>
             <li><button class="menu-button-styled" onclick="openUberLink()" style="background-color: rgb(0, 0, 0); color: white;" onmouseover="this.style.backgroundColor='rgb(44, 44, 44)'" onmouseout="this.style.backgroundColor='rgb(0, 0, 0)'">Ir a Uber</button></li>
             <li><button class="menu-button-styled" onclick="closeMenu()" style="background-color: rgb(200, 0, 100); color: white;" onmouseover="this.style.backgroundColor='rgb(161, 10, 55)'" onmouseout="this.style.backgroundColor='rgb(200, 0, 100)'">Cerrar</button></li>
         </ul>
     </div>
-
-    <div id="username-page" style="width: 50%;margin-left: 18%; margin-top: 10%;">
-        <div class="container">
-            <h2 class="descripcion">Ingrese su nombre para ingresar al Chat</h2>
-            <form id="usernameForm" name="usernameForm">
-                <div class="form-group">
-                    <input type="text" id="name" placeholder="Nombre" autocomplete="off" class="form-control" />
-                </div>
-            </form>
-            <div class="form-group" style="text-align: center; margin-top: 20px;">
-                <button type="submit" class="accent button-aux">Comenzar chat</button>
-            </div>
-        </div>
-    </div>   
-    
-    <div id="cont-formulario" class="hidden">
-        <div class="container" id="formulario">
-            <h1>Solicitud de Información de Vehículo</h1>
-            <p class="descripcion">Por favor, proporcione los detalles del vehículo solicitado.</p>
-
-            <div class="input-group">
-                <label class="descripcion" for="nombre">Nombre del conductor:</label>
-                <input type="text" id="nombre" placeholder="Nombre">
-            </div>
-
-            <div class="input-group">
-                <label class="descripcion" for="marca">Marca del vehículo:</label>
-                <input type="text" id="marca" placeholder="Marca">
-            </div>
-
-            <div class="input-group">
-                <label class="descripcion" for="modelo">Modelo del vehículo:</label>
-                <input type="text" id="modelo" placeholder="Modelo">
-            </div>
-
-            <div class="input-group">
-                <label class="descripcion" for="color">Color del vehículo:</label>
-                <input type="text" id="color" placeholder="Color">
-            </div>
-
-            <div class="input-group">
-                <label class="descripcion" for="descripcion">Descripción adicional:</label>
-                <textarea id="descripcion" placeholder="Descripción adicional" rows="4"></textarea>
-            </div>
-
-            <button id="enviar" onclick="enviarSolicitud()" class="boton-enviar">Enviar Solicitud</button>
-        </div>
-    </div>
-
     <div id="chat-page" class="hidden">
         <div class="chat-container">
             <div class="descripcion">
@@ -99,8 +48,8 @@
             <form id="messageForm" name="messageForm">
                 <div class="form-group">
                     <div class="input-group clearfix">
-                        <input type="text" id="message" style="margin-top: 0px;" placeholder="Escriba su mensaje..." autocomplete="off" class="form-control"/>
-                        <button type="submit" class="button-aux" style="margin-top: 0px;">Enviar</button>
+                        <input type="text" id="message" placeholder="Escriba su mensaje..." autocomplete="off" class="form-control"/>
+                        <button type="submit" class="button-aux" style="margin-top: 15px;">Enviar</button>
                     </div>
                 </div>
             </form>

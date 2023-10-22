@@ -1,12 +1,16 @@
 'use strict';
 
-var usernamePage = document.querySelector('#username-page');
-var formulario = document.querySelector('#cont-formulario');
+ $(document).ready(function() {
+    establecerNombre();
+    connect()
+ });
+var chatPage = document.querySelector('#chat-page');
 var usernameForm = document.querySelector('#usernameForm');
 var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
+var username
 
 var stompClient = null;
 var username = null;
@@ -16,19 +20,38 @@ var colors = [
     '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
 ];
 
-function connect(event) {
-    username = document.querySelector('#name').value.trim();
+async function establecerNombre(){
+     $.ajax({
+           url : "/api/user/getInfo",
+           type : 'GET',
+           dataType : 'json',
+           headers:{
+           	"Authorization": "Bearer "+ Cookies.get('token')
+           },
+           success : function(rta) {
+     			 username = rta.firstname
+     			 connect(username)
+     	     },
+           error : function(xhr, status) {
+              alert('ha sucedido un problema');
+           },
+           complete : function(xhr, status) {
+              //  alert('Petición realizada');
+           }
+     });
 
+ }
+
+function connect(username) {
     if(username) {
-        usernamePage.classList.add('hidden');
-        formulario.classList.remove('hidden');
+        console.log("ji")
 
         var socket = new SockJS('/ws');
         stompClient = Stomp.over(socket);
 
         stompClient.connect({}, onConnected, onError);
     }
-    event.preventDefault();
+    console.log("ji2")
 }
 
 
@@ -114,5 +137,4 @@ function getAvatarColor(messageSender) {
     return colors[index];
 }
 
-usernameForm.addEventListener('submit', connect, true)
 messageForm.addEventListener('submit', sendMessage, true)
