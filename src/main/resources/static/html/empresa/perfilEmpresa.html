@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="../../css/inicioEmpresa.css">
+
+</head>
+<body>
+    <div class="barra-superior" style="display: flex; justify-content: flex-end; align-items: center; padding-right: 10px;">
+        <h1 style="font-weight: bold; color: white; margin-right: 40%; text-align: center;">Ladylock Empresas</h1>
+        <button class="menu-button" onclick="toggleMenu()">☰</button>
+        <button class="user-button" id="userButton" onclick="toggleUserMenu()">Nombre de Usuario ▼</button>
+        <button class="menu-button" onclick="toggleMenu()">☰</button>
+        <div class="user-menu" id="userMenu">
+            
+            <button onclick="logout()">Cerrar Sesión</button>
+        </div>
+    </div>
+    <div class="menu" id="menu">
+        <ul>
+            <li><button class="menu-button-styled" onclick="irInicio()">Inicio</button></li>
+            <li><button class="menu-button-styled" onclick="irPerfilEmpresa()">Mi Perfil</button></li>
+            <li><button class="menu-button-styled" onclick="irPerfil()">Editar Perfil</button></li>
+            <li><button class="menu-button-styled" onclick="irMisEventos()">Mis Eventos</button></li>
+            <li><button class="menu-button-styled" onclick="irOtrosLugares()">Otros Lugares</button></li>
+            <li><button class="menu-button-styled" onclick="closeMenu()" style="color: white;" onmouseover="this.style.backgroundColor='rgb(0, 13, 200)'" onmouseout="this.style.backgroundColor='rgb(82, 157, 255)'">Cerrar</button></li>
+        </ul>
+    </div>
+
+    <div class="contenedor">
+        <div style="display: inline-block; margin-left: 18.3%; padding: 20px; width: 60%;">
+     
+            <h1>Nombre Empresa</h1>
+            <h2> Descripcion Empresa:</h2>
+            <h3 style="font-weight: normal;"> Ingresa la descripcion de la empresa</h3>
+            <h2 style="margin-top: 50px; margin-bottom: 50px;">Mis Eventos </h2>
+        </div>
+
+        <div style=" padding: 20px; width: 20%;">
+            <div style="width: 200px; height: 200px; background-color: blue; margin: 0 auto;"></div>
+            <button onclick="window.location.href='tu_link_aqui'" style="width: 200px; display: block; margin: 10px auto; background-color: rgb(115, 164, 255); color: white; font-weight: bold; padding: 10px 20px; border: none; cursor: pointer;" onmouseover="this.style.backgroundColor='rgb(0, 13, 200)'" onmouseout="this.style.backgroundColor='rgb(82, 157, 255)'">Ir</button>
+    <button onclick="" style="width: 200px; display: block; margin: 10px auto; background-color: rgb(115, 164, 255); color: white; font-weight: bold; padding: 10px 20px; border: none; cursor: pointer;" onmouseover="this.style.backgroundColor='rgb(0, 13, 200)'" onmouseout="this.style.backgroundColor='rgb(82, 157, 255)'">Suscribirse</button>
+        </div>
+    </div>
+
+    <script src="../../js/empresa/menuDesplegableEmpresa.js"></script>
+    <script src="../../js/empresa/perfilEmpresa.js"></script>
+</body>
+</html>
