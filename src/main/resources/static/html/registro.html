@@ -10,17 +10,18 @@
 </head>
 <body>
     <div class="container">
+        <img src="../imagenes/Mundo.png" class="imagen-responsive" style="float: left; margin-right: -50px; width: 10%">
         <h1 style="text-align: center;">Crea tu perfil de LadyLock</h1>
         <div>
-            <input type="text" id="txtNombre" placeholder="Nombre">
-            <input type="text" id="txtEmail" placeholder="Email">
-
             <select id="txtRol" style="width: 80%; padding: 15px; margin: 10px 0; border-radius: 40px; border: 1px solid #4B0082;">
                 <option value="vacio">-</option>
                 <option value="usuario">Usuario</option>
                 <option value="empresa">Empresa</option>
                 <option value="administrador">Administrador</option>
             </select>
+            <input type="text" id="txtNombre" placeholder="Nombre">
+            <input type="text" id="txtEmail" placeholder="Email">
+
 
             <div class="center-text">
                 <input type="text" id="txtCodigo" placeholder="Código" style="display: none;">
@@ -28,10 +29,7 @@
 
             <input type="password" id="txtContraseña" placeholder="Contraseña">
             <input type="password" id="txtRepiteContraseña" placeholder="Confirmar Contraseña">
-            <div class="terms-checkbox">
-                <input type="checkbox">
-                <p>Acepto los términos y condiciones</p>
-            </div>
+            <br>
             <button type="button" onclick="registrar()">Registrarse</button>
         </div>
         <p>¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
