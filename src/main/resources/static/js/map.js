@@ -81,7 +81,7 @@ function mostrarMapa() {
     setInterval(function() {
         // Llamar a la función mostrarMapa nuevamente
         mostrarMapa();
-    }, 3000);
+    }, 10000);
 }
   // Escucha el clic del botón para mostrar el mapa
 mostrarMapaButton.addEventListener('click', toggleMap);
