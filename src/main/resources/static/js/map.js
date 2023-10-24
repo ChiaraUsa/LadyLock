@@ -77,6 +77,11 @@ function mostrarMapa() {
     helpContainer.style.display = "none";
     helpContainer2.style.display = "none";
     helpContainer3.style.display = "none";
+
+    setInterval(function() {
+        // Llamar a la función mostrarMapa nuevamente
+        mostrarMapa();
+    }, 3000);
 }
   // Escucha el clic del botón para mostrar el mapa
 mostrarMapaButton.addEventListener('click', toggleMap);
