@@ -37,7 +37,7 @@ function toggleMap() {
 
 // Función para mostrar el mapa
 function mostrarMapa() {
-
+    clearInterval(mapRefreshInterval);
     // Crea un mapa en el div con id "map"
     var map = L.map('map').setView([0, 0], 2); // Centrado en latitud 0, longitud 0, y zoom 2
 
@@ -77,11 +77,11 @@ function mostrarMapa() {
     helpContainer.style.display = "none";
     helpContainer2.style.display = "none";
     helpContainer3.style.display = "none";
-
-    setInterval(function() {
-        // Llamar a la función mostrarMapa nuevamente
+    
+    var mapRefreshInterval = setInterval(function() {
         mostrarMapa();
     }, 10000);
+
 }
   // Escucha el clic del botón para mostrar el mapa
 mostrarMapaButton.addEventListener('click', toggleMap);
