@@ -3,6 +3,7 @@ package com.example.app.servicios;
 import com.example.app.controllers.Admin.ResponseCode;
 import com.example.app.entidades.Admin;
 import com.example.app.entidades.Emergencia;
+import com.example.app.entidades.Usuario;
 import com.example.app.repository.AdminCrudRepository;
 import com.example.app.repository.EmergenciaCrudRepository;
 import jakarta.annotation.PostConstruct;
@@ -19,6 +20,10 @@ public class AdminServicio {
     @Autowired
     private final AdminCrudRepository AdminRepository;
     private final EmergenciaCrudRepository EmergenciaRepository;
+
+    public Optional<Admin> findById(int id) {
+        return AdminRepository.findById(id);
+    }
 
     public ResponseCode newCode() {
         Random random = new Random();
