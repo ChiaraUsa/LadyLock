@@ -50,3 +50,32 @@ function toggleUserMenu() {
      userMenu.style.display = 'block';
   }
 }
+
+function irInicioYcerrarChat(){
+    var cerrar = window.confirm("¿Seguro quiere cerrar el chat?")
+
+    if(!cerrar)
+    {
+        return;
+    }
+
+    $.ajax({
+         url:"/api/admin/cierraAdmin",
+         type:"POST",
+         contentType:"application/json",
+         headers:{
+             "Authorization": "Bearer "+ Cookies.get('token')
+         },
+         success: function(rta) {
+             window.location.replace("inicioAdmin.html");
+         },
+         error: function(xhr, status) {
+             alert('Admin no existente');
+         },
+         complete: function(xhr, status) {
+             //alert('Petición realizada');
+         }
+    });
+}
+
+

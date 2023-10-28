@@ -29,7 +29,6 @@
         <ul>
             <li><button class="menu-button-styled" onclick="irInicio()">Inicio</button></li>
             <li><button class="menu-button-styled" onclick="irAtenciones()">Atenciones</button></li>
-            <li><button class="menu-button-styled" onclick="irChat()">Chat</button></li>
             <li><button class="menu-button-styled" onclick="irNotificaciones()">Notificaciones</button></li>
             <li><button class="menu-button-styled" onclick="closeMenu()" style="background-color: rgb(4, 80, 27); color: white;" onmouseover="this.style.backgroundColor='rgb(82, 255, 148)'" onmouseout="this.style.backgroundColor='rgb(4, 80, 27)'">Cerrar</button></li>
         </ul>
@@ -67,8 +66,10 @@
                     </div>
                 </div>
             </form>
+            <button style="width: 150px;position:absolute;left: 10px;bottom:540px;" class="button-aux" onclick="irInicioYcerrarChat()">Cerrar chat</button>
         </div>
+    </div>
     <script src="../../js/chatAdmin.js"></script>
     <script src="../../js/admin/menuDesplegableAdmin.js"></script>
-    </body>
+</body>
 </html>
