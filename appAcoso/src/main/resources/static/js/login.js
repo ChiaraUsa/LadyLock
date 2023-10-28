@@ -104,4 +104,3 @@ function inicioAdmin(via, datos){
 
   });
 }
-

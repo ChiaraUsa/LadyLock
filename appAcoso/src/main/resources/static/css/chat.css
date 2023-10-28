@@ -78,12 +78,12 @@ h2, h3, h4, h5, h6 {
     justify-content: center;
     vertical-align: top;
 }
-  
+
 .descripcion{
     text-decoration: none;
     color: #ffffff;
 }
-  
+
 .button-aux{
     background-color: rgb(232,106,167);
     color: white;
@@ -100,7 +100,7 @@ input[type="text"] {
     padding: 15px;
     margin: 10px 0;
     border-radius: 40px;
-    border: 1px solid #4B0082; 
+    border: 1px solid #4B0082;
 }
 
 #username-page {
@@ -269,7 +269,7 @@ input[type="text"] {
     }
 }
 
- 
+
 .menu {
     background-color: rgb(140, 82, 255);
     color: #fff;
@@ -289,7 +289,7 @@ input[type="text"] {
     padding: 10px;
     text-align: center;
   }
-  
+
   .menu-button {
     background-color: rgb(140, 82, 255);
     color: #fff;
@@ -301,7 +301,7 @@ input[type="text"] {
     top: 10px;
     left: 10px;
   }
-  
+
   .menu-button-styled {
     background-color: rgb(139, 115, 255);
     color: #fff;
@@ -313,15 +313,15 @@ input[type="text"] {
     font-weight: bold;
     transition: background-color 0.3s ease;
   }
-  
+
   button:hover {
     background-color: rgb(139, 0, 255);
   }
-  
+
   button:active {
     background-color: rgb(200, 0, 100);
   }
-  
+
   .barra-superior {
     justify-content: flex-start;
     align-items:center;
@@ -333,7 +333,7 @@ input[type="text"] {
     align-items: center;
     padding: 0 20px;
   }
-  
+
   .user-button {
     background-color: transparent;
     color: white;
@@ -341,7 +341,7 @@ input[type="text"] {
     cursor: pointer;
     font-size: 18px;
   }
-  
+
   .user-menu {
     position: absolute;
     top: 50px;
@@ -351,7 +351,7 @@ input[type="text"] {
     border-radius: 5px;
     display: none;
   }
-  
+
   .user-menu button {
     display: block;
     width: 100%;

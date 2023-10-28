@@ -46,7 +46,7 @@ function guardarPerfil() {
    datos.name = document.querySelector('#txtNombre').value
    datos.email = document.querySelector('#txtCorreo').value
 
-   
+
    $.ajax({
          url:"/api/user/setInfo",
          type:"POST",
