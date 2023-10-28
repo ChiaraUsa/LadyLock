@@ -84,4 +84,15 @@ public class UsuarioController {
         UsuarioData userdata = new UsuarioData();
         return UsuarioServicio.getPromos(userdata.getId());
     }
+
+    @PostMapping("/reporte")
+    public String reportar(@RequestParam("userEmail") String userEmail){
+        return UsuarioServicio.reportar(userEmail);
+    }
+
+    @GetMapping("/numReportes")
+    public int numReportes(){
+        UsuarioData userdata = new UsuarioData();
+        return UsuarioServicio.numReportes(userdata.getId());
+    }
 }

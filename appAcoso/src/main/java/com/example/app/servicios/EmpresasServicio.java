@@ -31,13 +31,13 @@ public class EmpresasServicio {
         Empresa empresa = EmpresasRepository.findById(id).get();
 
         getEmpresa empresaInfo = getEmpresa.builder()
-                                .id(empresa.getId())
-                                .rol(empresa.getRole())
-                                .name(empresa.getName())
-                                .email(empresa.getEmail())
-                                .description(empresa.getDescription())
-                                .imagine(empresa.getImagine())
-                                .link(empresa.getLink()).build();
+                .id(empresa.getId())
+                .rol(empresa.getRole())
+                .name(empresa.getName())
+                .email(empresa.getEmail())
+                .description(empresa.getDescription())
+                .imagine(empresa.getImagine())
+                .link(empresa.getLink()).build();
 
         return empresaInfo;
     }

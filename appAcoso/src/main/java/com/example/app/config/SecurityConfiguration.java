@@ -1,6 +1,5 @@
 package com.example.app.config;
 
-import com.example.app.entidades.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,7 +22,7 @@ public class SecurityConfiguration {
 
         http
                 .authorizeHttpRequests()
-                .requestMatchers("/api/auth/**","/api/user/**","/api/admin/**","/css/**","/js/**","/html/**","/imagenes/**")
+                .requestMatchers("/api/auth/**","/api/user/**","/api/admin/**","/css/**","/js/**","/html/**","/imagenes/**","/","/ws/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
