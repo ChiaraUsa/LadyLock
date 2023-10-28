@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Info</title>
+    <link rel="stylesheet" href="../../css/estiloInicioAdmin.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .titulo {
+            text-align: center;
+            font-size: 24px;
+            margin: 20px 0;
+        }
+        .cuadrado {
+            width: 500px; /* El ancho deseado */
+            height: 400px; /* La altura deseada */
+            background-color: white;
+            border: 6px solid green; /* El ancho del borde deseado */
+            margin: 0 auto; /* Centra horizontalmente el cuadro */
+        }
+        .button-container {
+            text-align: center;
+        }
+        .button-aux {
+            width: 150px;
+            height: 40px;
+            background-color: green;
+            color: white;
+            border: none;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="barra-superior" style="display: flex; justify-content: flex-end; align-items: center; padding-right: 10px;">
+    <h1 style="font-weight: bold; color: white; margin-right: 32%;">Ladylock Administrador</h1>
+</div>
+<div class="titulo">Información del usuario</div>
+<div class="cuadrado">
+    <div id="contenedorEmergencia"></div>
+</div>
+<div class="button-container">
+    <button style="position: relative; left: -5%;" id="btnReportar" class="button-aux" onclick="reportarUsuario()">Reportar Usuario</button>
+    <button style="position: relative; left: 5%;" class="button-aux" onclick="cerrarVentana()">Cerrar Ventana</button>
+</div>
+<script src="../../js/admin/userInfo.js"></script>
+</body>
+</html>

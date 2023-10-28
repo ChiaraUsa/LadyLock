@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monitor de Seguridad - Acoso Sexual</title>
-    <link rel="stylesheet" href="../../css/estiloInicioAdmin.css">
+    <title>Notificaciones Administrador</title>
+    <link rel="stylesheet" href="../../css/estiloatenciones.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.js"></script>
@@ -29,24 +29,13 @@
             <li><button class="menu-button-styled" onclick="closeMenu()" style="background-color: rgb(4, 80, 27); color: white;" onmouseover="this.style.backgroundColor='rgb(82, 255, 148)'" onmouseout="this.style.backgroundColor='rgb(4, 80, 27)'">Cerrar</button></li>
         </ul>
     </div>
-
-    <div class="container" id="help-container" style="margin-left: 17%;">
-        <p class="descripcion">Ver mis atenciones</p>
-        <img src="../../imagenes/agente-de-servicio-al-cliente.png" alt="Síbolo de atenciones" />
-        <button class="boton-ayuda"  onclick="irAtenciones()">Atenciones</button>
-    </div>
-    <div class="container" id="help-container4">
-        <p class="descripcion">Ver notificaciones de Usuarios</p>
-        <img src="../../imagenes/campana.png" alt="Simbolo de ayuda" />
-        <button class="boton-ayuda" onclick="irNotificaciones()">Notificaciones</button>
-    </div>
-    <div class="container" id="help-container2">
-        <p class="descripcion">Chat con Usuarios</p>
-        <img src="../../imagenes/charla.png" alt="Simbolo de comunidad" />
-        <button class="boton-ayuda" id="botonChat" onclick="irChat()">Chat</button>
-    </div>
+    <main>
+        <div id="notificaciones">
+            <h2 style="margin-left: 18.3%;">Notificaciones:</h2>
+        </div>
+    </main>
 <script src="../../js/admin/accionesMonitor.js"></script>
+<script src="../../js/admin/grabacionMonitor.js"></script>
 <script src="../../js/admin/menuDesplegableAdmin.js"></script>
-    <script src="../../js/admin/inicioAdmin.js"></script>
 </body>
 </html>

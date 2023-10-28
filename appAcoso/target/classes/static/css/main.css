@@ -1,10 +1,20 @@
+p, body, td, input, select, button {
+    font-family: -apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+    font-size: 14px;
+}
 
 body {
-    height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
-    overflow: hidden;
-    position: relative;
+    padding: 0px;
+    margin: 0px;
+    background-color: #ffffff;
+}
+
+a {
+    color: #1155a3;
+}
+
+.space {
+    margin: 10px 0px 10px 0px;
 }
 
 header {
@@ -17,77 +27,8 @@ header {
     justify-content: center;
     align-items: center;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
-}
-
-.input-group {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-h1 {
-    color: white;
-    font-weight: bold;
-    font-family: Arial Black, sans-serif;
-    text-align: center;
-}
-
-h2{
-    color: rgb(232,106,167);
-    font-weight: bold;
-    font-family: Arial Black, sans-serif;
-    text-align: center;
-}
-
-.container {
-    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
-    width: 100%;
-    max-width: 1000px;
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    text-align: center;
-    background-color: rgb(140, 82, 255);
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 2%;
-    justify-content: center;
-    vertical-align: top;
-    margin-left: 15%;
-}
-
-.descripcion{
-    text-decoration: none;
-    color: #ffffff;
-}
-
-.boton-enviar   {
-    background-color: rgb(232,106,167);
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    width: 80%;
-    border-radius: 40px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-input[type="text"] {
-    width: 80%;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 40px;
-    border: 1px solid #4B0082;
-}
-
-textarea{
-    width: 80%;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 40px;
-    border: 1px solid #4B0082;
-}
-
+  }
+   
 .menu {
     background-color: rgb(140, 82, 255);
     color: #fff;
@@ -107,7 +48,7 @@ textarea{
     padding: 10px;
     text-align: center;
   }
-
+  
   .menu-button {
     background-color: rgb(140, 82, 255);
     color: #fff;
@@ -119,7 +60,7 @@ textarea{
     top: 10px;
     left: 10px;
   }
-
+  
   .menu-button-styled {
     background-color: rgb(139, 115, 255);
     color: #fff;
@@ -131,15 +72,15 @@ textarea{
     font-weight: bold;
     transition: background-color 0.3s ease;
   }
-
+  
   button:hover {
     background-color: rgb(139, 0, 255);
   }
-
+  
   button:active {
     background-color: rgb(200, 0, 100);
   }
-
+  
   .barra-superior {
     justify-content: flex-start;
     align-items:center;
@@ -151,7 +92,7 @@ textarea{
     align-items: center;
     padding: 0 20px;
   }
-
+  
   .user-button {
     background-color: transparent;
     color: white;
@@ -159,7 +100,7 @@ textarea{
     cursor: pointer;
     font-size: 18px;
   }
-
+  
   .user-menu {
     position: absolute;
     top: 50px;
@@ -169,7 +110,7 @@ textarea{
     border-radius: 5px;
     display: none;
   }
-
+  
   .user-menu button {
     display: block;
     width: 100%;
@@ -179,3 +120,61 @@ textarea{
     background-color: transparent;
     cursor: pointer;
   }
+
+.main {
+    padding: 10px;
+    margin-top: 20px;
+}
+
+/* context menu icons */
+.icon:before {
+    position: absolute;
+    left: 0px;
+    margin-left: 8px;
+    margin-top: 3px;
+    width: 14px;
+    height: 14px;
+    content: '';
+}
+
+.icon-blue:before { background-color: #2e78d6; }
+.icon-green:before { background-color: #6aa84f; }
+.icon-yellow:before { background-color: #efb914; }
+.icon-red:before { background-color: #cc4125; }
+
+
+/* columns */
+
+.wrap {
+    display: flex;
+}
+
+.left {
+    margin-right: 10px;
+}
+
+.right {
+    flex-grow: 1;
+}
+
+/* toolbar */
+.toolbar {
+    margin-bottom: 20px;
+}
+
+.boton{
+    background-color: rgb(232,106,167);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    width: 45%;
+    border-radius: 40px;
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+.month_default_event_inner {
+    border-radius: 20px;
+}
