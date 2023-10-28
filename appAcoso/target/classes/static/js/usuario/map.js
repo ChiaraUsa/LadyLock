@@ -59,6 +59,7 @@ function mostrarMapa() {
                 .then(response => response.json())
                 .then(data => {
                     var locationInfo = data.display_name; // Obtiene la información del lugar
+                    stompClient.send('/app/application', headers, JSON.stringify({'text': locationInfo }))
                     var userMarker = L.marker([lat, lng]).addTo(map);
                     userMarker.bindPopup(locationInfo).openPopup();
                 }).catch(error => {
@@ -76,4 +77,4 @@ function mostrarMapa() {
     helpContainer.style.display = "none";
     helpContainer2.style.display = "none";
     helpContainer3.style.display = "none";
-}
+    }

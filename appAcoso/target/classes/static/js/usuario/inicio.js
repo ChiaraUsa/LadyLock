@@ -1,6 +1,34 @@
 $(document).ready(function() {
+  verificarReportes();
   cargarLista();
 });
+
+function verificarReportes(){
+     $.ajax({
+      		 url:"/api/user/numReportes",
+      		 type:"GET",
+             headers:{
+             	"Authorization": "Bearer "+ Cookies.get('token')
+             },
+      		 success: function(rta) {
+                if(rta>2)
+                {
+                    alert("Tu cuenta a sido reportada\n"+
+                          "Si crees que es un error CONTACTATE con nosotros")
+
+                    localStorage.email = ''
+                    Cookies.remove('token');
+                    window.location.replace("/html/login.html");
+                }
+      		 },
+      		 error: function(xhr, status) {
+      			 alert('Error al traer reportes');
+      		 },
+      		 complete: function(xhr, status) {
+      			 //alert('Petición realizada');
+      		 }
+       });
+}
 
 function cargarLista(){
 
@@ -9,9 +37,10 @@ function cargarLista(){
   		 type:"GET",
   		 dataType:"json",
          headers:{
-         	"Authorization": "Bearer " + Cookies.get('token')
+         	"Authorization": "Bearer "+ Cookies.get('token')
          },
   		 success: function(rta) {
+
   		     var contenedor = document.getElementById('contenedorRectangulos');
 
                 for (var lugar of rta) {
@@ -50,21 +79,22 @@ function cargarLista(){
                      titulo.style.top = '10px';
                      titulo.style.fontWeight = 'bold';
 
-                     //Crea el botón para ver la pagina de inicio de cada empresa
-                     var botonVista = document.createElement('button');
-                     botonVista.textContent = 'Ver perfil';
-                     botonVista.style.position = 'absolute';
-                     botonVista.style.bottom = '60px';
-                     botonVista.style.right = '10px';
+                      // Crea el botón
+                      //Crea el botón para ver la pagina de inicio de cada empresa
+                      var botonVista = document.createElement('button');
+                      botonVista.textContent = 'Ver perfil';
+                      botonVista.style.position = 'absolute';
+                      botonVista.style.bottom = '60px';
+                      botonVista.style.right = '10px';
 
-                    (function(id) {
-                     botonVista.addEventListener("click", function() {
-                         localStorage.id = id
-                         window.location.href = "/html/usuario/verEmpresa.html";
-                     });
-                     })(lugar.id);
+                     (function(id) {
+                      botonVista.addEventListener("click", function() {
+                          localStorage.id = id
+                          window.location.href = "/html/usuario/verEmpresa.html";
+                      });
+                      })(lugar.id);
 
-                     // Crea el botón con el link de la empresa
+                     // Crea el botón
                      var boton = document.createElement('button');
                      boton.textContent = 'Ir al sitio web 🌐';
                      boton.style.position = 'absolute';

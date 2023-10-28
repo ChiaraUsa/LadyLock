@@ -41,20 +41,16 @@
     window.open("https://m.uber.com/go/pickup?effect=&marketing_vistor_id=fc40b7fa-51d6-4ea9-bbb1-d5397bef16c5&uclick_id=7886bca6-83ea-4ef8-b488-8bc0c53e71ec", "_blank");
  }
 
-function irVerPromos(){
-    window.location.replace("verPromos.html");
-}
-
-function irCentroAyuda(){
+ function irCentroAyuda(){
     window.location.replace("CentroAyuda.html");
-}
+ }
 
-function irInfoUser(){
+ function irInfoUser(){
     window.location.replace("info.html");
-}
+ }
 
-function irInicio(){
-    window.location.replace("inicio.html");
+ function irInicio(){
+   window.location.replace("inicio.html");
 }
 
 function unionGrupo(){
@@ -67,4 +63,42 @@ function openLineaPurpura() {
 
 function openChat(){
     window.location.replace("chat.html");
+}
+
+function irVerPromos(){
+    window.location.replace("verPromos.html");
+}
+
+function irCalendario(){
+   window.location.replace("Calendario.html");
+}
+
+function irForo(){
+   window.location.replace("foro.html");
+}
+
+function irCentroAyudaYcerrarChat(){
+
+    var cerrar = window.confirm("¿Seguro quiere cerrar el chat?")
+
+    if(!cerrar)
+    {
+        return;
+    }
+
+    $.ajax({
+         url:"/api/admin/cierraUsuario?idAdmin="+localStorage.idAdmin,
+         type:"POST",
+         contentType:"application/json",
+         success: function(rta) {
+             localStorage.idAdmin = -1;
+             window.location.replace("CentroAyuda.html");
+         },
+         error: function(xhr, status) {
+             alert('Admin no existente');
+         },
+         complete: function(xhr, status) {
+             //alert('Petición realizada');
+         }
+    });
 }
