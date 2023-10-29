@@ -44,7 +44,7 @@ function inicioUsuario(via, datos){
   		 success: function(rta) {
   		     localStorage.email = datos.email
   			 Cookies.set('token',rta['token']);
-  			 window.location.replace("inicio.html");
+  			 window.location.replace("/html/usuario/inicio.html");
   		 },
   		 error: function(xhr, status) {
   			 alert('Usuario no existente');
@@ -68,7 +68,7 @@ function inicioEmpresa(via, datos){
          success: function(rta) {
              localStorage.email = datos.email
              Cookies.set('token',rta['token']);
-             window.location.replace("inicioAdmin.html");
+             window.location.replace("/html/empresa/inicioEmpresa.html");
          },
          error: function(xhr, status) {
              alert('Usuario no existente');
@@ -93,7 +93,7 @@ function inicioAdmin(via, datos){
   		 success: function(rta) {
   		     localStorage.email = datos.email
              Cookies.set('token',rta['token']);
-             window.location.replace("inicioAdmin.html");
+             window.location.replace("/html/admin/inicioAdmin.html");
   		 },
   		 error: function(xhr, status) {
   			 alert('Usuario no existente');
@@ -104,4 +104,3 @@ function inicioAdmin(via, datos){
 
   });
 }
-

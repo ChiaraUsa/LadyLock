@@ -1,6 +1,52 @@
+const alertBox = document.getElementById("custom-alert");
+
 $(document).ready(function() {
-  cargarLista();
+  verificarReportes();
 });
+
+function verificarReportes(){
+     $.ajax({
+      		 url:"/api/user/numReportes",
+      		 type:"GET",
+             headers:{
+             	"Authorization": "Bearer "+ Cookies.get('token')
+             },
+      		 success: function(rta) {
+                if(rta>2)
+                {
+                    showCustomAlert();
+                }
+                else
+                {
+                    cargarLista();
+                }
+      		 },
+      		 error: function(xhr, status) {
+      			 alert('Error al traer reportes');
+      		 },
+      		 complete: function(xhr, status) {
+      			 //alert('Petición realizada');
+      		 }
+       });
+}
+
+function showCustomAlert() {
+  const alertMessage = document.getElementById("alert-message");
+  alertMessage.innerText = "Tu cuenta a sido reportada\n"+
+                           "Si crees que es un error CONTACTATE con nosotros";
+  alertBox.style.display = "block";
+
+  const botonMenu = document.getElementById("menu");
+  menu.style.pointerEvents = "none";
+  menu.style.opacity = "0.5";
+}
+
+function closeCustomAlert() {
+  alertBox.style.display = "none";
+  localStorage.email = ''
+  Cookies.remove('token');
+  window.location.replace("/html/login.html");
+}
 
 function cargarLista(){
 
@@ -51,6 +97,21 @@ function cargarLista(){
                      titulo.style.top = '10px';
                      titulo.style.fontWeight = 'bold';
 
+                      // Crea el botón
+                      //Crea el botón para ver la pagina de inicio de cada empresa
+                      var botonVista = document.createElement('button');
+                      botonVista.textContent = 'Ver perfil';
+                      botonVista.style.position = 'absolute';
+                      botonVista.style.bottom = '60px';
+                      botonVista.style.right = '10px';
+
+                     (function(id) {
+                      botonVista.addEventListener("click", function() {
+                          localStorage.id = id
+                          window.location.href = "/html/usuario/verEmpresa.html";
+                      });
+                      })(lugar.id);
+
                      // Crea el botón
                      var boton = document.createElement('button');
                      boton.textContent = 'Ir al sitio web 🌐';
@@ -70,6 +131,7 @@ function cargarLista(){
                      nuevoRectangulo.appendChild(descripcion);
                      nuevoRectangulo.appendChild(titulo);
                      nuevoRectangulo.appendChild(enlace);
+                     nuevoRectangulo.appendChild(botonVista);
 
                      // Agrega el rectángulo al contenedor
                      contenedor.appendChild(nuevoRectangulo);

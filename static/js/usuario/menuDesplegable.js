@@ -7,7 +7,7 @@
  function logout(){
     localStorage.email = ''
 	Cookies.remove('token');
-	window.location.replace("login.html");
+	window.location.replace("/html/login.html");
  }
 
  async function establecerCorreo(){
@@ -51,4 +51,54 @@
 
  function irInicio(){
    window.location.replace("inicio.html");
+}
+
+function unionGrupo(){
+    window.open("https://chat.whatsapp.com/Ctp0iQVRNXhD3Pi6STCX3y","_blank");
+}
+
+function openLineaPurpura() {
+    window.open("https://www.sdmujer.gov.co/nuestros-servicios/servicios-para-las-mujeres/linea-purpura", "_blank");
+}
+
+function openChat(){
+    window.location.replace("chat.html");
+}
+
+function irVerPromos(){
+    window.location.replace("verPromos.html");
+}
+
+function irCalendario(){
+   window.location.replace("Calendario.html");
+}
+
+function irForo(){
+   window.location.replace("foro.html");
+}
+
+function irCentroAyudaYcerrarChat(){
+
+    var cerrar = window.confirm("¿Seguro quiere cerrar el chat?")
+
+    if(!cerrar)
+    {
+        return;
+    }
+
+    $.ajax({
+         url:"/api/admin/cierraUsuario?idAdmin="+localStorage.idAdmin,
+         type:"POST",
+         contentType:"application/json",
+         success: function(rta) {
+             localStorage.idAdmin = -1;
+             window.location.replace("CentroAyuda.html");
+         },
+         error: function(xhr, status) {
+             alert('Admin no existente');
+         },
+         complete: function(xhr, status) {
+             //alert('Petición realizada');
+         }
+    });
 }

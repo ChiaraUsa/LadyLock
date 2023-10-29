@@ -93,9 +93,18 @@ button:active {
     cursor: pointer;
 }
 
-.contenedor {
+.contenedor{
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-  }
-  
+}
+
+.custom-alert {
+  background-color: purple;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 24px;
+  display: none;
+}

@@ -1,44 +1,34 @@
 $(document).ready(function(){
-    getInfoEmpresa();
     getPromos();
 });
 
-function getInfoEmpresa(){
-    $.ajax({
-  		 url:"/api/lugares/getInfoInicioEmpresa",
-         type:"GET",
-         dataType:"json",
+function newPromo(){
+
+  let promocion = {};
+
+  promocion.titulo = document.querySelector('#txtTitulo').value
+  promocion.contenido = document.querySelector('#txtDescripcion').value
+
+  if(promocion.titulo==null || promocion.contenido==null)
+  {
+    alert("No pueden existir eventos/promociones sin contenido")
+    return
+  }
+
+   $.ajax({
+  		 url:"/api/lugares/generatePromocion",
+  		 type:"POST",
+  		 contentType:"application/json",
+  		 dataType:"json",
          headers:{
-            "Authorization": "Bearer "+ Cookies.get('token')
+         	"Authorization": "Bearer "+ Cookies.get('token')
          },
+         data:JSON.stringify(promocion),
   		 success: function(rta) {
-
-            //Setear nombre y descripcion de la pagina
-  		    var nombre = document.getElementById("txtNombre");
-  		    var des = document.getElementById("txtDescripcion");
-            nombre.innerHTML = rta.name;
-            des.innerHTML = rta.description;
-
-            //Setear imagen al div
-            var miDiv = document.getElementById("imagen");
-            var imagen = document.createElement("img");
-            imagen.src = rta.imagine;
-            imagen.style.width = "100%";
-            imagen.style.height = "100%";
-            miDiv.appendChild(imagen);
-
-            //Setear link al boton
-            var boton = document.getElementById("txtLink");
-            boton.setAttribute("data-href", rta.link);
-
-            // Agrega un controlador de eventos para abrir la URL cuando se haga clic en el botón
-            boton.addEventListener("click", function() {
-              var enlace = this.getAttribute("data-href");
-              window.open(enlace, "_blank");
-            });
+            location.reload();
   		 },
   		 error: function(xhr, status) {
-  			 alert('Error al traer la informacion');
+  			 alert('Error al generar promocion');
   		 },
   		 complete: function(xhr, status) {
   			 //alert('Petición realizada');
@@ -82,8 +72,16 @@ function getPromos(){
                      titulo.style.top = '10px';
                      titulo.style.fontWeight = 'bold';
 
+                     var boton = document.createElement('button');
+                     boton.textContent = 'Eliminar';
+                     boton.style.position = 'absolute';
+                     boton.style.bottom = '20px';
+                     boton.style.right = '10px';
+                     boton.style.backgroundColor = 'rgba(255, 102, 102, 0.7)';
+
                      nuevoRectangulo.appendChild(descripcion);
                      nuevoRectangulo.appendChild(titulo);
+                     nuevoRectangulo.appendChild(boton);
 
                      contenedor.appendChild(nuevoRectangulo);
                 }
@@ -103,4 +101,3 @@ function getPromos(){
   		 }
    });
 }
-

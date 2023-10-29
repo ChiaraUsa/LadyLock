@@ -1,8 +1,49 @@
-body {
+.container {
+    position: relative;
+    text-align: center;
+    background-color:  rgb(55, 170, 99);
+    padding: 20px;
+    border-radius: 10px;
+    width: 15%;
+    height: 30%;
+    display: inline-block;
+    margin-top: 10%;
+    margin-left: 5%;
+    justify-content: center;
+    vertical-align: top;
+    z-index: 9999;
+  }
+
+  body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
   }
+
+  
+.descripcion{
+    text-decoration: none;
+    color: #ffffff;
+  }
+  
+  .boton-ayuda{
+    background-color: rgb(232,106,167);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    width: 80%;
+    border-radius: 40px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  img {
+    vertical-align: middle;
+    height: auto;
+    width: 50%;
+    padding: 10px;
+  }
+  
   .menu {
     background-color: rgb(55, 170, 99);
     color: #fff;
@@ -91,25 +132,4 @@ body {
     border: none;
     background-color: transparent;
     cursor: pointer;
-  }
-  
-  .contenedor {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
-  
-  .evento-container {
-    display: flex;
-    border: 1px solid black;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    margin-top: 20px;
-  }
-  
-  .evento-text {
-    color: rgb(0, 0, 0);
-    text-align: right;
-    margin-right: 10px;
   }
