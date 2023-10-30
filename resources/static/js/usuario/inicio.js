@@ -1,6 +1,7 @@
+const alertBox = document.getElementById("custom-alert");
+
 $(document).ready(function() {
   verificarReportes();
-  cargarLista();
 });
 
 function verificarReportes(){
@@ -13,12 +14,11 @@ function verificarReportes(){
       		 success: function(rta) {
                 if(rta>2)
                 {
-                    alert("Tu cuenta a sido reportada\n"+
-                          "Si crees que es un error CONTACTATE con nosotros")
-
-                    localStorage.email = ''
-                    Cookies.remove('token');
-                    window.location.replace("/html/login.html");
+                    showCustomAlert();
+                }
+                else
+                {
+                    cargarLista();
                 }
       		 },
       		 error: function(xhr, status) {
@@ -28,6 +28,24 @@ function verificarReportes(){
       			 //alert('Petición realizada');
       		 }
        });
+}
+
+function showCustomAlert() {
+  const alertMessage = document.getElementById("alert-message");
+  alertMessage.innerText = "Tu cuenta a sido reportada\n"+
+                           "Si crees que es un error CONTACTATE con nosotros";
+  alertBox.style.display = "block";
+
+  const botonMenu = document.getElementById("menu");
+  menu.style.pointerEvents = "none";
+  menu.style.opacity = "0.5";
+}
+
+function closeCustomAlert() {
+  alertBox.style.display = "none";
+  localStorage.email = ''
+  Cookies.remove('token');
+  window.location.replace("/html/login.html");
 }
 
 function cargarLista(){
