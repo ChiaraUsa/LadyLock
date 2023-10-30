@@ -29,12 +29,7 @@ var socket = new SockJS('/ws');
             helpContainer4.style.marginTop = '10%';
             helpContainer4.style.float = 'left';
             volver.style.display ="block";
-
-            // Mostrar el mapa solo si no se ha mostrado antes
-            if (!mapShown) {
-                mostrarMapa();
-                mapShown = true;
-            }
+            mostrarMapa();
             // Enviar la ubicación del mapa en intervalos de 5 segundos
             setInterval(sendLocation, 5000);
         } else {
@@ -84,6 +79,23 @@ var socket = new SockJS('/ws');
         helpContainer.style.display = "none";
         helpContainer2.style.display = "none";
         helpContainer3.style.display = "none";
+    }
+
+    // Función para enviar la ubicación al servidor
+    function sendLocation() {
+        // Obtener la ubicación del usuario y enviarla al servidor
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var lat = position.coords.latitude;
+                var lng = position.coords.longitude;
+                // ... (resto del código para enviar la ubicación al servidor)
+            }, function () {
+                // Manejo de errores
+                console.log('No se pudo obtener la ubicación');
+            });
+        } else {
+            console.log('La geolocalización no es compatible con este navegador.');
+        }
     }
   // Escucha el clic del botón para mostrar el mapa
 mostrarMapaButton.addEventListener('click', toggleMap);
