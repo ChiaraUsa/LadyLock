@@ -28,8 +28,8 @@ public class AdminController {
     }
 
     @PostMapping("/newEmergencia")
-    public int newEmergencia(@RequestBody Emergencia m){
-        return adminServicio.newEmergencia(m);
+    public int newEmergencia(@RequestParam("userEmail") String email){
+        return adminServicio.newEmergencia(email);
     }
 
     @PostMapping("/cierraUsuario")

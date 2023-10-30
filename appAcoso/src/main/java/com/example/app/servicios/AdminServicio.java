@@ -3,10 +3,10 @@ package com.example.app.servicios;
 import com.example.app.controllers.Admin.ResponseCode;
 import com.example.app.entidades.Admin;
 import com.example.app.entidades.Emergencia;
-import com.example.app.entidades.Empresa;
+import com.example.app.entidades.Usuario;
 import com.example.app.repository.AdminCrudRepository;
 import com.example.app.repository.EmergenciaCrudRepository;
-import jakarta.annotation.PostConstruct;
+import com.example.app.repository.UsuarioCrudRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +20,7 @@ public class AdminServicio {
     @Autowired
     private final AdminCrudRepository AdminRepository;
     private final EmergenciaCrudRepository EmergenciaRepository;
+    private final UsuarioCrudRepository UsuarioRepository;
 
     public ResponseCode newCode() {
         Random random = new Random();
@@ -28,7 +29,27 @@ public class AdminServicio {
         return ResponseCode.builder().code(code).build();
     }
 
-    public int newEmergencia(Emergencia m) {
+    public int newEmergencia(String userEmail) {
+
+        Usuario user = UsuarioRepository.findByEmail(userEmail).get();
+        String[] NombresConductor = {"Juan", "María", "Pedro", "Laura", "Carlos", "Ana", "Luis", "Sofía", "Miguel", "Isabel"};
+        String[] Marca = {"Toyota", "Ford", "Honda", "Chevrolet", "Volkswagen", "Nissan", "Hyundai", "Kia", "Subaru", "Mazda"};
+        String[] Modelo = {"2020", "2019", "2018", "2022", "2017", "2021", "2016", "2015", "2014", "2013"};
+        String[] Color = {"Rojo", "Azul", "Gris", "Blanco", "Negro", "Plata", "Verde", "Amarillo", "Naranja", "Marrón"};
+        String[] Descripcion = {"Ayuda", "Peligro", "Socorro", "A que horas llega el pollo?", "D:", "Noooo", "Me muero", "Ya me mori", ":C", "Terror"};
+
+        Random rand = new Random();
+        int indiceAleatorio = rand.nextInt(NombresConductor.length);
+
+        Emergencia m = new Emergencia();
+        m.setUserEmail(userEmail);
+        m.setUserName(user.getUsername());
+        m.setConductorName(NombresConductor[indiceAleatorio]);
+        m.setMarcaAuto(Marca[indiceAleatorio]);
+        m.setModeloAuto(Modelo[indiceAleatorio]);
+        m.setColorAuto(Color[indiceAleatorio]);
+        m.setDescripcion(Descripcion[indiceAleatorio]);
+
         List<Admin> admins = (List<Admin>) AdminRepository.findAll();
         for(Admin a : admins)
         {
