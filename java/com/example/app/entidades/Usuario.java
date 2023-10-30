@@ -25,6 +25,7 @@ public class Usuario implements UserDetails {
     private String firstname;
     private String email;
     private String password;
+    private int reportes = 0;
 
     @Enumerated(EnumType.STRING)
     private Role role;

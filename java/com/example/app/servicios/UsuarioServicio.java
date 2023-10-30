@@ -108,4 +108,16 @@ public class UsuarioServicio {
         }
         return false;
     }
+
+    public String reportar(String userEmail) {
+        Usuario user = UserRepository.findByEmail(userEmail).get();
+        user.setReportes(user.getReportes()+1);
+        UserRepository.save(user);
+        return "Exito";
+    }
+
+    public int numReportes(int id) {
+        Usuario user = UserRepository.findById(id).get();
+        return user.getReportes();
+    }
 }
