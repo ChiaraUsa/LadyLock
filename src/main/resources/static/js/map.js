@@ -88,7 +88,18 @@ var socket = new SockJS('/ws');
             navigator.geolocation.getCurrentPosition(function (position) {
                 var lat = position.coords.latitude;
                 var lng = position.coords.longitude;
-                // ... (resto del código para enviar la ubicación al servidor)
+                var apiUrl = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`;
+
+                fetch(apiUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        var locationInfo = data.display_name; // Obtiene la información del lugar
+                        stompClient.send('/app/application', headers, JSON.stringify({'text': locationInfo }))
+                        var userMarker = L.marker([lat, lng]).addTo(map);
+                        userMarker.bindPopup(locationInfo).openPopup();
+                    }).catch(error => {
+                        console.error('Error en la geocodificación:', error);
+                    });
             }, function () {
                 // Manejo de errores
                 console.log('No se pudo obtener la ubicación');
