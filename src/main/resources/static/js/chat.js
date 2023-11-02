@@ -45,17 +45,23 @@ async function establecerNombre(){
 
  }
 
+function cargarMensajes() {
+    $.get('/app/chat.mensajes', function(mensajes) {
+        mensajes.forEach(function(mensaje) {
+            onMessageReceived(mensaje);
+        });
+    });
+}
+
 function connect(username) {
     if(username) {
         formulario.classList.remove('hidden');
-        console.log("ji")
 
         var socket = new SockJS('/ws');
         stompClient = Stomp.over(socket);
 
         stompClient.connect({}, onConnected, onError);
     }
-    console.log("ji2")
 }
 
 
@@ -70,6 +76,7 @@ function onConnected() {
     )
 
     connectingElement.classList.add('hidden');
+    cargarMensajes();
 }
 
 
@@ -89,8 +96,34 @@ function sendMessage(event) {
         };
         stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
         messageInput.value = '';
+        sendMessageServer(chatMessage)
     }
     event.preventDefault();
+
+}
+
+function sendMessageServer(mensaje) {
+    // Suponiendo que `mensaje` es un objeto que contiene los datos del mensaje a enviar al servidor
+
+    fetch('api/mensajes', {
+        method: 'POST',
+        headers: {
+        },
+        body: JSON.stringify(mensaje) // Convertir el objeto a formato JSON
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log('Mensaje guardado correctamente');
+            // Realizar cualquier acción adicional después de guardar el mensaje
+        } else {
+            console.error('Error al guardar el mensaje');
+            // Manejar el error o realizar alguna acción adicional en caso de error
+        }
+    })
+    .catch(error => {
+        console.error('Error de red:', error);
+        // Manejar errores de red
+    });
 }
 
 
