@@ -9,7 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name="chat")
+@Table(name = "chat_message")
 public class ChatMessage {
 
     @Id

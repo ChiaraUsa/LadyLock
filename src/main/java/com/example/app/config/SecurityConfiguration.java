@@ -22,7 +22,7 @@ public class SecurityConfiguration {
 
         http
                 .authorizeHttpRequests()
-                .requestMatchers("/api/auth/**","api/events/**","/api/user/**","/api/admin/**","/css/**","/js/**","/html/**","/imagenes/**","/","/ws/**")
+                .requestMatchers("/api/auth/**","/api/chat/**","/api/events/**","/api/user/**","/api/admin/**","/css/**","/js/**","/html/**","/imagenes/**","/","/ws/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
