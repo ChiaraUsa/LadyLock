@@ -32,6 +32,7 @@ function show(message) {
 
         userMarker = L.marker(latLng).addTo(map);
         userMarker.bindPopup(locationInfo).openPopup();
+        map.setView(latLng, 15);
 
         // Mostrar en formato de texto
         var response = document.getElementById('notificaciones');
