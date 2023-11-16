@@ -1,6 +1,10 @@
 'use strict';
 
-var usernamePage = document.querySelector('#username-page');
+ $(document).ready(function() {
+    establecerNombre();
+    setIdChat();
+    connect();
+ });
 var chatPage = document.querySelector('#chat-page');
 var usernameForm = document.querySelector('#usernameForm');
 var messageForm = document.querySelector('#messageForm');
@@ -10,54 +14,90 @@ var connectingElement = document.querySelector('.connecting');
 
 var stompClient = null;
 var username = null;
+var chatID = 0;
 
 var colors = [
     '#2196F3', '#32c787', '#00BCD4', '#ff5652',
     '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
 ];
 
-function connect(event) {
+async function establecerNombre(){
+     $.ajax({
+           url : "/api/admin/getInfo",
+           type : 'GET',
+           headers:{
+           	"Authorization": "Bearer "+ Cookies.get('token')
+           },
+           success : function(rta) {
+                 console.log(rta)
+     			 username = rta
+     			 connect(username)
+     	     },
+           error : function(xhr, status) {
+              alert('ha sucedido un problema');
+           },
+           complete : function(xhr, status) {
+              //  alert('Petición realizada');
+           }
+     });
 
-    username = document.querySelector('#name').value.trim();
+ }
 
-    if(username) {
-        usernamePage.classList.add('hidden');
-        chatPage.classList.remove('hidden')
+ function setIdChat(){
+    $.ajax({
+        url: "/api/chat/setChatID",
+        type: 'GET',
+        headers: {
+            "Authorization": "Bearer " + Cookies.get('token')
+        },
+        success: function (rta) {
+            chatID = rta
+        },
+        error: function (xhr, status) {
+            alert('ha sucedido un problema con el id del chat');
+        },
+        complete: function (xhr, status) {
+            //  alert('Petición realizada');
+        }
+    });
+ }
 
+function connect(username) {
+    if (username) {
 
         var socket = new SockJS('/ws');
         stompClient = Stomp.over(socket);
 
-        stompClient.connect({}, onConnected, onError);
+        stompClient.connect({}, function (frame) {
+            onConnected(frame);
+            loadChatHistory();
+        }, onError);
     }
-    event.preventDefault();
 }
 
-
-function onConnected() {
+function onConnected(frame) {
     // Subscribe to the Public Topic
     stompClient.subscribe('/topic/public', onMessageReceived);
 
     // Tell your username to the server
     stompClient.send("/app/chat.addUser",
         {},
-        JSON.stringify({sender: username, type: 'JOIN'})
+        JSON.stringify({ sender: username, type: 'JOIN' })
     )
 
     connectingElement.classList.add('hidden');
 }
-
 
 function onError(error) {
     connectingElement.textContent = 'Could not connect to WebSocket server. Please refresh this page to try again!';
     connectingElement.style.color = 'red';
 }
 
-
 function sendMessage(event) {
     var messageContent = messageInput.value.trim();
-    if(messageContent && stompClient) {
+    if (messageContent && stompClient) {
         var chatMessage = {
+            chatId:  chatID,
             sender: username,
             content: messageInput.value,
             type: 'CHAT'
@@ -68,13 +108,15 @@ function sendMessage(event) {
     event.preventDefault();
 }
 
-
 function onMessageReceived(payload) {
     var message = JSON.parse(payload.body);
+    displayMessage(message);
+}
 
+function displayMessage(message) {
     var messageElement = document.createElement('li');
 
-    if(message.type === 'JOIN') {
+    if (message.type === 'JOIN') {
         messageElement.classList.add('event-message');
         message.content = message.sender + ' joined!';
     } else if (message.type === 'LEAVE') {
@@ -106,6 +148,21 @@ function onMessageReceived(payload) {
     messageArea.scrollTop = messageArea.scrollHeight;
 }
 
+function loadChatHistory() {
+    $.ajax({
+        type: 'GET',
+        url: '/api/chat/history', // Debes ajustar la ruta de la API según tu configuración del servidor
+        success: function (response) {
+            // Procesar los mensajes históricos y mostrarlos en la interfaz de usuario
+            response.forEach(function (message) {
+                displayMessage(message);
+            });
+        },
+        error: function (error) {
+            console.error('Error al cargar el historial del chat:', error);
+        }
+    });
+}
 
 function getAvatarColor(messageSender) {
     var hash = 0;
@@ -116,5 +173,4 @@ function getAvatarColor(messageSender) {
     return colors[index];
 }
 
-usernameForm.addEventListener('submit', connect, true)
-messageForm.addEventListener('submit', sendMessage, true)
+messageForm.addEventListener('submit', sendMessage, true);
