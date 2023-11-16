@@ -111,4 +111,23 @@ public class AdminServicio {
         }
         return "Fallo";
     }
+
+    public String getNombre(int id) {
+        Admin admin = AdminRepository.findById(id).get();
+        return admin.getFirstname();
+    }
+
+    public List<String> getUsuariosAtendidos(int id) {
+        Admin admin = AdminRepository.findById(id).get();
+        List<Emergencia> listEmergencias = admin.getEmergenciaList();
+
+        Set<String> usuarios = new HashSet<>();
+
+        for(Emergencia emergencia:listEmergencias)
+        {
+            usuarios.add(emergencia.getUserEmail());
+        }
+
+        return new ArrayList<>(usuarios);
+    }
 }
