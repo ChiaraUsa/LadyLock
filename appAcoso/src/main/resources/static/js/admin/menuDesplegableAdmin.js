@@ -28,6 +28,10 @@ function irNotificaciones(){
     window.location.replace("notificaciones.html");
 }
 
+function irHistorialChats(){
+    window.location.replace("HistorialChat.html")
+}
+
 function toggleMenu() {
     const menu = document.getElementById('menu');
     if (menu.style.left === '0px') {
