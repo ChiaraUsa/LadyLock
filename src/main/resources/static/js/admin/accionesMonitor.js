@@ -7,7 +7,11 @@ stompClient = Stomp.over(socket);
 stompClient.connect(headers, function (frame) {
     console.log(frame);
     stompClient.subscribe('/all/messages', function (result) {
-        show(JSON.parse(result.body));
+        try {
+                show(JSON.parse(result.body));
+            } catch (error) {
+                console.error("Error al procesar el mensaje:", error);
+            }
     });
 });
 
@@ -21,10 +25,15 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 var userMarker = null; // Variable para mantener una referencia al marcador del usuario
 
 function show(message) {
-    var locationInfo = message.text;
-    var latLng = parseLocationInfo(locationInfo); // Parsea la ubicación
+    var locationInfo = message.text; // Accede a la propiedad 'text'
+    var lat = message.latitude; // Accede a la posición 1 del array numérico
+    var lng = message.longitude; // Accede a la posición 2 del array numérico
 
-    if (latLng) {
+
+    // Verifica si lat y lng están definidas
+    if (lat !== undefined && lng !== undefined) {
+        var latLng = [lat, lng];
+
         // Mostrar en el mapa
         if (userMarker) {
             map.removeLayer(userMarker); // Elimina el marcador anterior
@@ -42,16 +51,3 @@ function show(message) {
     }
 }
 
-function parseLocationInfo(locationInfo) {
-    // Implementa lógica para analizar la ubicación desde locationInfo
-    // Ejemplo: locationInfo tiene el formato "Lat: 123.456, Lng: 78.910"
-    var matches = locationInfo.match(/Lat: ([-+]?\d*\.\d+|\d+), Lng: ([-+]?\d*\.\d+|\d+)/);
-
-    if (matches && matches.length >= 3) {
-        var lat = parseFloat(matches[1]);
-        var lng = parseFloat(matches[2]);
-        return [lat, lng];
-    }
-
-    return null;
-}
