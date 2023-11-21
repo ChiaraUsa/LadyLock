@@ -1,57 +1,68 @@
 var headers = {
-    Authorization: "Bearer " + Cookies.get('token')
+    Authorization: "Bearer "+ Cookies.get('token') // Reemplaza 'tuTokenJWT' con tu token real
 };
 var stompClient = null;
 var socket = new SockJS('/ws');
-stompClient = Stomp.over(socket);
-stompClient.connect(headers, function (frame) {
-    console.log(frame);
-    stompClient.subscribe('/all/messages', function (result) {
-        show(JSON.parse(result.body));
-    });
-});
-
-var map = L.map('map').setView([0, 0], 2); // Aquí se mantiene 'map' como el ID del div del mapa
-
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
-
-
-var userMarker = null; // Variable para mantener una referencia al marcador del usuario
+        stompClient = Stomp.over(socket);
+        stompClient.connect(headers, function(frame) {
+            console.log(frame);
+            stompClient.subscribe('/all/messages', function(result) {
+                show(JSON.parse(result.body));
+            });
+        });
 
 function show(message) {
-    var locationInfo = message.text;
-    var latLng = parseLocationInfo(locationInfo); // Parsea la ubicación
+                var response = document.getElementById('notificaciones');
+                var p = document.createElement('p');
+                p.innerHTML= "message: "  + message.text;
+                response.appendChild(p);
+            }
 
-    if (latLng) {
-        // Mostrar en el mapa
-        if (userMarker) {
-            map.removeLayer(userMarker); // Elimina el marcador anterior
-        }
+$(document).ready(function() {
+    establecerCorreo();
+});
 
-        userMarker = L.marker(latLng).addTo(map);
-        userMarker.bindPopup(locationInfo).openPopup();
-        map.setView(latLng, 15);
-
-        // Mostrar en formato de texto
-        var response = document.getElementById('notificaciones');
-        var p = document.createElement('p');
-        p.innerHTML = "Ubicación: " + locationInfo;
-        response.appendChild(p);
-    }
+function logout(){
+    localStorage.email = ''
+    Cookies.remove('token');
+    window.location.replace("/html/login.html");
 }
 
-function parseLocationInfo(locationInfo) {
-    // Implementa lógica para analizar la ubicación desde locationInfo
-    // Ejemplo: locationInfo tiene el formato "Lat: 123.456, Lng: 78.910"
-    var matches = locationInfo.match(/Lat: ([-+]?\d*\.\d+|\d+), Lng: ([-+]?\d*\.\d+|\d+)/);
+function establecerCorreo(){
+    document.getElementById("userButton").textContent = localStorage.email+" ▼"
+}
 
-    if (matches && matches.length >= 3) {
-        var lat = parseFloat(matches[1]);
-        var lng = parseFloat(matches[2]);
-        return [lat, lng];
+function irAtenciones(){
+    window.location.replace("atenciones.html");
+}
+
+function irNotificaciones(){
+    window.location.replace("notificaciones.html");
+}
+
+function irChat(){
+    window.location.replace("../../html/usuario/chat.html");
+}
+
+function toggleMenu() {
+    const menu = document.getElementById('menu');
+    if (menu.style.left === '0px') {
+        menu.style.left = '-250px';
+    } else {
+        menu.style.left = '0px';
+    }
     }
 
-    return null;
+function closeMenu() {
+    const menu = document.getElementById('menu');
+    menu.style.left = '-250px';
+}
+
+function toggleUserMenu() {
+    const userMenu = document.getElementById('userMenu');
+    if (userMenu.style.display === 'block') {
+        userMenu.style.display = 'none';
+    }else {
+        userMenu.style.display = 'block';
+    }
 }
