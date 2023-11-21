@@ -10,19 +10,22 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class MessageController {
 
-    @Autowired
-    SimpMessagingTemplate simpMessagingTemplate;
+    private final SimpMessagingTemplate simpMessagingTemplate;
+
+    public MessageController(SimpMessagingTemplate simpMessagingTemplate) {
+        this.simpMessagingTemplate = simpMessagingTemplate;
+    }
 
     // Mapped as /app/application
     @MessageMapping("/application")
     @SendTo("/all/messages")
-    public Message send(final Message message) throws Exception {
-        return message;
+    public Message send(@Payload Message locationMessage) throws Exception {
+        return locationMessage;
     }
 
     // Mapped as /app/private
     @MessageMapping("/private")
-    public void sendToSpecificUser(@Payload Message message) {
-        simpMessagingTemplate.convertAndSendToUser(message.getTo(), "/specific", message);
+    public void sendToSpecificUser(@Payload Message locationMessage) {
+        simpMessagingTemplate.convertAndSendToUser(locationMessage.getTo(), "/specific", locationMessage);
     }
 }
