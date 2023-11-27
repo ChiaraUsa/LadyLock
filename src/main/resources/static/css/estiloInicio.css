@@ -3,6 +3,8 @@ body {
     margin: 0;
     padding: 0;
 }
+
+
 .menu {
     background-color: rgb(140, 82, 255);
     color: #fff;
@@ -97,4 +99,6 @@ button:active {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+
 }
+

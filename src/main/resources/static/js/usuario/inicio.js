@@ -16,64 +16,81 @@ function cargarLista(){
   		     var contenedor = document.getElementById('contenedorRectangulos');
 
                 for (var lugar of rta) {
+                    var tarjeta3 = document.createElement('div');
+                      tarjeta3.style.display = 'block';
+                      tarjeta3.style.top = '0px';
+                      tarjeta3.style.position = 'relative';
+                      tarjeta3.style.maxWidth = '1000px';
+                      tarjeta3.style.backgroundColor = '#f2f8f9';
+                      tarjeta3.style.borderRadius = '4px';
+                      tarjeta3.style.padding = '32px 24px';
+                      tarjeta3.style.margin = '12px';
+                      tarjeta3.style.textDecoration = 'none';
+                      tarjeta3.style.overflow = 'hidden';
+                      tarjeta3.style.border = '1px solid #f2f8f9';
 
-                     var nuevoRectangulo = document.createElement('div');
-                     nuevoRectangulo.style.width = '100%';
-                     nuevoRectangulo.style.height = '100px';
-                     nuevoRectangulo.style.backgroundColor = 'white';
-                     nuevoRectangulo.style.border = '2px solid #ccc';
-                     nuevoRectangulo.style.position = 'relative';
-                     nuevoRectangulo.style.marginBottom = '10px'; // Espacios entre rectangulos
+                      // Agrega el efecto de brillo al hover
+                      tarjeta3.addEventListener('mouseover', function () {
+                        tarjeta3.style.border = '1px solid #00838d';
+                        tarjeta3.style.zIndex = '500';
+                      });
 
-                     // Crea la imagen
-                     var imagen = document.createElement('img');
-                     imagen.src = lugar.imagine;
-                     imagen.alt = 'Imagen';
-                     imagen.style.position = 'absolute';
-                     imagen.style.left = '10px';
-                     imagen.style.top = '10px';
-                     imagen.style.maxWidth = '130px';
-                     imagen.style.maxHeight = '130px';
+                      tarjeta3.addEventListener('mouseout', function () {
+                        tarjeta3.style.border = '1px solid #f2f8f9';
+                        tarjeta3.style.zIndex = '0';
+                      });
 
-                     // Crea la descripción
-                     var descripcion = document.createElement('span');
-                     descripcion.textContent = lugar.description;
-                     descripcion.style.position = 'absolute';
-                     descripcion.style.left = '150px';
-                     descripcion.style.top = '40px';
-                     descripcion.style.fontSize = '14px';
+                      // Crea la imagen
+                      var imagen = document.createElement('img');
+                      imagen.src = lugar.imagine;
+                      imagen.alt = 'Imagen';
+                      imagen.style.position = 'absolute';
+                      imagen.style.left = '10px';
+                      imagen.style.top = '10px';
+                      imagen.style.maxWidth = '130px';
+                      imagen.style.maxHeight = '130px';
 
-                     // Crea el título
-                     var titulo = document.createElement('span');
-                     titulo.textContent = lugar.name;
-                     titulo.style.position = 'absolute';
-                     titulo.style.left = '150px';
-                     titulo.style.top = '10px';
-                     titulo.style.fontWeight = 'bold';
+                      // Crea la descripción
+                      var descripcion = document.createElement('span');
+                      descripcion.textContent = lugar.description;
+                      descripcion.style.position = 'absolute';
+                      descripcion.style.left = '150px';
+                      descripcion.style.top = '40px';
+                      descripcion.style.fontSize = '14px';
 
-                     // Crea el botón
-                     var boton = document.createElement('button');
-                     boton.textContent = 'Ir al sitio web 🌐';
-                     boton.style.position = 'absolute';
-                     boton.style.bottom = '20px';
-                     boton.style.right = '10px';
+                      // Crea el título
+                      var titulo = document.createElement('span');
+                      titulo.textContent = lugar.name;
+                      titulo.style.position = 'absolute';
+                      titulo.style.left = '150px';
+                      titulo.style.top = '10px';
+                      titulo.style.fontWeight = 'bold';
+                      titulo.style.color = '#ffffff'; // Cambia el color del título al hacer hover
 
-                     var enlace = document.createElement('a');
-                     enlace.href = lugar.link;
-                     enlace.target = '_blank';
+                      // Crea el botón
+                      var boton = document.createElement('button');
+                      boton.textContent = 'Ir al sitio web 🌐';
+                      boton.style.position = 'absolute';
+                      boton.style.bottom = '20px';
+                      boton.style.right = '10px';
 
-                     // Agregar el boton al enlace
-                     enlace.appendChild(boton);
+                      // Crea el enlace
+                      var enlace = document.createElement('a');
+                      enlace.href = lugar.link;
+                      enlace.target = '_blank';
 
-                     // Agrega los elementos al rectángulo
-                     nuevoRectangulo.appendChild(imagen);
-                     nuevoRectangulo.appendChild(descripcion);
-                     nuevoRectangulo.appendChild(titulo);
-                     nuevoRectangulo.appendChild(enlace);
+                      // Agrega el botón al enlace
+                      enlace.appendChild(boton);
 
-                     // Agrega el rectángulo al contenedor
-                     contenedor.appendChild(nuevoRectangulo);
-                }
+                      // Agrega los elementos a la tarjeta
+                      tarjeta3.appendChild(imagen);
+                      tarjeta3.appendChild(descripcion);
+                      tarjeta3.appendChild(titulo);
+                      tarjeta3.appendChild(enlace);
+
+                      // Agrega la tarjeta al contenedor
+                      contenedor.appendChild(tarjeta3);
+                    }
   		 },
   		 error: function(xhr, status) {
   			 alert('Error al traer lugares');
