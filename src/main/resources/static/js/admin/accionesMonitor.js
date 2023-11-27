@@ -15,20 +15,26 @@ stompClient.connect(headers, function (frame) {
     });
 });
 
+var mapContainer = document.getElementById('map');
+var map = L.map(mapContainer).setView([0, 0], 2);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+var userMarker = null;
+
 function show(message) {
     var locationInfo = message.text;
     var latLng = parseLocationInfo(locationInfo); // Parsea la ubicación
 
     if (latLng) {
-        // Mostrar en el mapa
         if (userMarker) {
             map.removeLayer(userMarker); // Elimina el marcador anterior
         }
-
+    
         userMarker = L.marker(latLng).addTo(map);
         userMarker.bindPopup(locationInfo).openPopup();
         map.setView(latLng, 15);
-
+    
         // Mostrar en formato de texto
         var response = document.getElementById('notificaciones');
         var p = document.createElement('p');
