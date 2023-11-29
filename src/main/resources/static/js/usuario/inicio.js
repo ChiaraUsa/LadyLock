@@ -22,24 +22,13 @@ function cargarLista(){
                       tarjeta3.style.position = 'relative';
                       tarjeta3.style.maxWidth = '1000px';
                       tarjeta3.style.maxHeight = '150px';
-                      tarjeta3.style.backgroundColor = '#7071E8';
+                      tarjeta3.style.backgroundColor = '#8c52ff';
                       tarjeta3.style.borderRadius = '4px';
                       tarjeta3.style.padding = '32px 24px';
                       tarjeta3.style.margin = '12px';
                       tarjeta3.style.textDecoration = 'none';
                       tarjeta3.style.overflow = 'hidden';
                       tarjeta3.style.border = '1px solid #f2f8f9';
-
-                      // Agrega el efecto de brillo al hover
-                      tarjeta3.addEventListener('mouseover', function (event) {
-                          event.target.style.border = '1px solid #00838d';
-                          event.target.style.zIndex = '500';
-                      });
-
-                      tarjeta3.addEventListener('mouseout', function (event) {
-                          event.target.style.border = '1px solid #f2f8f9';
-                          event.target.style.zIndex = '0';
-                      });
 
                       // Crea la imagen
                       var imagen = document.createElement('img');
@@ -58,6 +47,7 @@ function cargarLista(){
                       descripcion.style.left = '150px';
                       descripcion.style.top = '40px';
                       descripcion.style.fontSize = '14px';
+                      descripcion.style.color = '#ffffff'; // Cambia el color del título al hacer hover
 
                       // Crea el título
                       var titulo = document.createElement('span');
@@ -74,6 +64,7 @@ function cargarLista(){
                       boton.style.position = 'absolute';
                       boton.style.bottom = '20px';
                       boton.style.right = '10px';
+                      boton.classList.add('button-opt');
 
                       // Crea el enlace
                       var enlace = document.createElement('a');
