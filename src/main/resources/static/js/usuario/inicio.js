@@ -21,7 +21,8 @@ function cargarLista(){
                       tarjeta3.style.top = '0px';
                       tarjeta3.style.position = 'relative';
                       tarjeta3.style.maxWidth = '1000px';
-                      tarjeta3.style.backgroundColor = '#f2f8f9';
+                      tarjeta3.style.maxHeight = '150px';
+                      tarjeta3.style.backgroundColor = '#7071E8';
                       tarjeta3.style.borderRadius = '4px';
                       tarjeta3.style.padding = '32px 24px';
                       tarjeta3.style.margin = '12px';
@@ -30,14 +31,14 @@ function cargarLista(){
                       tarjeta3.style.border = '1px solid #f2f8f9';
 
                       // Agrega el efecto de brillo al hover
-                      tarjeta3.addEventListener('mouseover', function () {
-                        tarjeta3.style.border = '1px solid #00838d';
-                        tarjeta3.style.zIndex = '500';
+                      tarjeta3.addEventListener('mouseover', function (event) {
+                          event.target.style.border = '1px solid #00838d';
+                          event.target.style.zIndex = '500';
                       });
 
-                      tarjeta3.addEventListener('mouseout', function () {
-                        tarjeta3.style.border = '1px solid #f2f8f9';
-                        tarjeta3.style.zIndex = '0';
+                      tarjeta3.addEventListener('mouseout', function (event) {
+                          event.target.style.border = '1px solid #f2f8f9';
+                          event.target.style.zIndex = '0';
                       });
 
                       // Crea la imagen
