@@ -18,7 +18,7 @@ stompClient.connect(headers, function (frame) {
 function show(message) {
     var locationInfo = message.text;
     var latLng = parseLocationInfo(locationInfo); // Parsea la ubicación
-    var map = L.map('map').setView([0, 0], 2);
+    var mapContainer = L.map('map').setView([0, 0], 2);
     
     if (latLng) {
 
@@ -29,7 +29,7 @@ function show(message) {
 
         userMarker = L.marker(latLng).addTo(map);
         userMarker.bindPopup(locationInfo).openPopup();
-        map.setView(latLng, 15);
+        mapContainer.setView(latLng, 15);
 
         // Mostrar en formato de texto
         var response = document.getElementById('notificaciones');
