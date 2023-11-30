@@ -8,7 +8,7 @@ stompClient.connect(headers, function (frame) {
     console.log(frame);
     stompClient.subscribe('/all/messages', function (result) {
         try {
-                //show(JSON.parse(result.body));
+                show(JSON.parse(result.body));
             } catch (error) {
                 console.error("Error al procesar el mensaje:", error);
             }
