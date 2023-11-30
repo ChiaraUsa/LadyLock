@@ -15,8 +15,8 @@ stompClient.connect(headers, function (frame) {
     });
 });
 
-var mapContainer = document.getElementById('map');
-var map = L.map(mapContainer).setView([0, 0], 2);
+// Crea un mapa en el div con id "map"
+var map = L.map('map').setView([0, 0], 2); // Centrado en latitud 0, longitud 0, y zoom 2
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
