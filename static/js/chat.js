@@ -1,5 +1,10 @@
 'use strict';
 
+$(document).ready(function () {
+    establecerNombre();
+    newChatID();
+});
+
 var usernamePage = document.querySelector('#username-page');
 var chatPage = document.querySelector('#chat-page');
 var usernameForm = document.querySelector('#usernameForm');
@@ -7,57 +12,93 @@ var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
-var formulario = document.querySelector('#cont-formulario')
+var username;
 
 var stompClient = null;
-var username = null;
 
 var colors = [
     '#2196F3', '#32c787', '#00BCD4', '#ff5652',
     '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
 ];
 
-function connect(event) {
-    username = document.querySelector('#name').value.trim();
+var chatID = 0;
 
-    if(username) {
-        usernamePage.classList.add('hidden');
-        formulario.classList.remove('hidden');
+async function establecerNombre() {
+    $.ajax({
+        url: "/api/user/getInfo",
+        type: 'GET',
+        dataType: 'json',
+        headers: {
+            "Authorization": "Bearer " + Cookies.get('token')
+        },
+        success: function (rta) {
+            username = rta.firstname;
+            connect(username);
+        },
+        error: function (xhr, status) {
+            alert('ha sucedido un problema al establecer nombre');
+        },
+        complete: function (xhr, status) {
+            //  alert('Petición realizada');
+        }
+    });
+}
 
+function connect(username) {
+    if (username) {
 
         var socket = new SockJS('/ws');
         stompClient = Stomp.over(socket);
 
-        stompClient.connect({}, onConnected, onError);
+        stompClient.connect({}, function (frame) {
+            onConnected(frame);
+            loadChatHistory();
+        }, onError);
     }
-    event.preventDefault();
 }
 
+function newChatID(){
+    $.ajax({
+        url: "/api/chat/newChatID?userEmail="+localStorage.email,
+        type: 'GET',
+        headers: {
+            "Authorization": "Bearer " + Cookies.get('token')
+        },
+        success: function (rta) {
+            chatID = rta
+        },
+        error: function (xhr, status) {
+            alert('ha sucedido un problema con el id del chat');
+        },
+        complete: function (xhr, status) {
+            //  alert('Petición realizada');
+        }
+    });
+}
 
-function onConnected() {
+function onConnected(frame) {
     // Subscribe to the Public Topic
     stompClient.subscribe('/topic/public', onMessageReceived);
 
     // Tell your username to the server
-    stompClient.send("/app/chat.addUser",
+    stompClient.send("/app/chat.addUser?userEmail="+localStorage.email,
         {},
-        JSON.stringify({sender: username, type: 'JOIN'})
+        JSON.stringify({ sender: username, type: 'JOIN' })
     )
 
     connectingElement.classList.add('hidden');
 }
-
 
 function onError(error) {
     connectingElement.textContent = 'Could not connect to WebSocket server. Please refresh this page to try again!';
     connectingElement.style.color = 'red';
 }
 
-
 function sendMessage(event) {
     var messageContent = messageInput.value.trim();
-    if(messageContent && stompClient) {
+    if (messageContent && stompClient) {
         var chatMessage = {
+            chatId:  chatID,
             sender: username,
             content: messageInput.value,
             type: 'CHAT'
@@ -68,13 +109,15 @@ function sendMessage(event) {
     event.preventDefault();
 }
 
-
 function onMessageReceived(payload) {
     var message = JSON.parse(payload.body);
+    displayMessage(message);
+}
 
+function displayMessage(message) {
     var messageElement = document.createElement('li');
 
-    if(message.type === 'JOIN') {
+    if (message.type === 'JOIN') {
         messageElement.classList.add('event-message');
         message.content = message.sender + ' joined!';
     } else if (message.type === 'LEAVE') {
@@ -106,6 +149,21 @@ function onMessageReceived(payload) {
     messageArea.scrollTop = messageArea.scrollHeight;
 }
 
+function loadChatHistory() {
+    $.ajax({
+        type: 'GET',
+        url: '/api/chat/history?userName='+username, // Debes ajustar la ruta de la API según tu configuración del servidor
+        success: function (response) {
+            // Procesar los mensajes históricos y mostrarlos en la interfaz de usuario
+            response.forEach(function (message) {
+                displayMessage(message);
+            });
+        },
+        error: function (error) {
+            console.error('Error al cargar el historial del chat:', error);
+        }
+    });
+}
 
 function getAvatarColor(messageSender) {
     var hash = 0;
@@ -116,5 +174,4 @@ function getAvatarColor(messageSender) {
     return colors[index];
 }
 
-usernameForm.addEventListener('submit', connect, true)
-messageForm.addEventListener('submit', sendMessage, true)
+messageForm.addEventListener('submit', sendMessage, true);

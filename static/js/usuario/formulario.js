@@ -1,24 +1,13 @@
-var chatPage = document.querySelector('#chat-page');
-var formulario = document.querySelector('#cont-formulario')
+$(document).ready(function() {
+  enviarSolicitud();
+});
 
 function enviarSolicitud() {
-    chatPage.classList.remove('hidden');
-    formulario.classList.add('hidden');
-
-    let emergencia = {};
-    emergencia.userName = document.querySelector('#name').value
-    emergencia.userEmail = localStorage.email
-    emergencia.conductorName = document.querySelector("#nombre").value;
-    emergencia.marcaAuto = document.querySelector("#marca").value;
-    emergencia.modeloAuto = document.querySelector("#modelo").value;
-    emergencia.colorAuto = document.querySelector("#color").value;
-    emergencia.descripcion = document.querySelector("#descripcion").value;
 
     $.ajax({
-         url:"/api/admin/newEmergencia",
+         url:"/api/admin/newEmergencia?userEmail="+localStorage.email,
          type:"POST",
          contentType:"application/json",
-         data:JSON.stringify(emergencia),
          headers:{
             "Authorization": "Bearer "+ Cookies.get('token')
          },
@@ -36,3 +25,44 @@ function enviarSolicitud() {
     });
 
 }
+
+//por si cierra la ventana
+window.addEventListener('beforeunload', function (e) {
+    $.ajax({
+         url:"/api/admin/cierraUsuario?idAdmin="+localStorage.idAdmin,
+         type:"POST",
+         contentType:"application/json",
+         success: function(rta) {
+             localStorage.idAdmin = -1;
+             window.location.replace("CentroAyuda.html");
+         },
+         error: function(xhr, status) {
+             alert('Admin no existente');
+         },
+         complete: function(xhr, status) {
+             //alert('Petición realizada');
+         }
+    });
+});
+
+//por si cambia la ventana
+window.addEventListener('popstate', function(event) {
+
+  alert("Se cerrara el chat");
+
+  $.ajax({
+       url:"/api/admin/cierraUsuario?idAdmin="+localStorage.idAdmin,
+       type:"POST",
+       contentType:"application/json",
+       success: function(rta) {
+           localStorage.idAdmin = -1;
+           window.location.replace("CentroAyuda.html");
+       },
+       error: function(xhr, status) {
+           alert('Admin no existente');
+       },
+       complete: function(xhr, status) {
+           //alert('Petición realizada');
+       }
+    });
+});
