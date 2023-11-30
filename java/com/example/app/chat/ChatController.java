@@ -30,13 +30,13 @@ public class ChatController {
     private final SimpMessagingTemplate messagingTemplate;
 
     @GetMapping("/api/chat/newChatID")
-    public ResponseEntity<Integer> newChatID(){
-        return ResponseEntity.ok(chatService.newChat());
+    public ResponseEntity<Integer> newChatID(@RequestParam("userEmail") String userEmail){
+        return ResponseEntity.ok(chatService.newChat(userEmail));
     }
 
     @GetMapping("/api/chat/setChatID")
-    public ResponseEntity<Integer> setChatID(){
-        return ResponseEntity.ok(chatService.setChat());
+    public ResponseEntity<Integer> setChatID(@RequestParam("adminEmail") String adminEmail){
+        return ResponseEntity.ok(chatService.setChat(adminEmail));
     }
 
     @GetMapping("/api/chat/getHistorialChats")
@@ -57,10 +57,10 @@ public class ChatController {
     public ChatMessage addUser(
             @Payload ChatMessage chatMessage,
             SimpMessageHeaderAccessor headerAccessor,
-            @RequestParam("userName") String userName
+            @RequestParam("userEmail") String userEmail
     ) {
         // Cargar mensajes pasados y enviar al nuevo usuario
-        List<ChatMessage> pastMessages = chatService.getChatMessages(userName);
+        List<ChatMessage> pastMessages = chatService.getChatMessages(userEmail);
         pastMessages.forEach(message -> {
             messagingTemplate.convertAndSendToUser(chatMessage.getSender(), "/topic/public", message);
         });
