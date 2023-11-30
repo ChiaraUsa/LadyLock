@@ -22,13 +22,6 @@ function show(message) {
     
     if (latLng) {
 
-        if (!map) {
-            map = L.map('map').setView(latLng, 15);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
-        }
-
         // Mostrar en el mapa
         if (userMarker) {
             map.removeLayer(userMarker); // Elimina el marcador anterior
