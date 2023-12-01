@@ -53,7 +53,7 @@ function mostrarMapa() {
             var lng = position.coords.longitude;
 
             // Utiliza el servicio de geocodificación de Nominatim para obtener detalles del lugar
-            var apiUrl = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`;
+            var apiUrl = 'https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}';
 
             fetch(apiUrl)
                 .then(response => response.json())
