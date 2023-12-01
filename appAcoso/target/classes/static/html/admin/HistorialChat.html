@@ -7,6 +7,51 @@
     <link rel="stylesheet" href="../../css/estiloatenciones.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #divInvisible {
+            height: 0;
+            visibility: hidden;
+            margin-bottom: 10px; /* Espacio entre los dos divs */
+        }
+
+        /* Estilos CSS para el rectángulo */
+        .rectangulo {
+            display: grid;
+            grid-template-rows: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px; /* Espacio entre los cuadros */
+            height: 60px;
+            width: 500px;
+            background-color: #fff;
+            border: 2px solid #000;
+            padding: 10px;
+            position: relative;
+            margin-bottom: 15px; /* Espacio entre los cuadros */
+        }
+
+        /* Estilos CSS para las etiquetas */
+        .etiqueta {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .etiqueta:nth-child(-n+3) {
+            font-weight: bold;
+        }
+
+        .etiqueta:last-child {
+            grid-column: span 2; /* Ocupar dos columnas */
+            overflow: hidden; /* Evitar que el contenido invada el espacio del botón */
+        }
+
+        .boton {
+            grid-row: span 2; /* Ocupar dos filas */
+            position: absolute;
+            bottom: 50%;
+            right: 0;
+            transform: translateY(50%);
+        }
+    </style>
 </head>
 <body>
 <div class="barra-superior" style="display: flex; justify-content: flex-end; align-items: center; padding-right: 10px;">
@@ -47,9 +92,16 @@
 
             <button onclick="filtrar()">Filtrar</button>
         </div>
+        <div id="divInvisible"></div>
 
         <div id="Chats"></div>
+        </div>
+
+    <div style="display: inline-block; vertical-align: top; width: 30%; margin-top: 20px; padding: 20px; background-color: #fff; text-align: center;">
+        <h3>Click en "ver chat" para ver la conversacion</h3>
+        <div id="mensajes"></div>
     </div>
+
 </div>
 <script src="../../js/admin/HistorialChat.js"></script>
 <script src="../../js/admin/menuDesplegableAdmin.js"></script>
