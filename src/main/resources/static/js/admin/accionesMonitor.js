@@ -1,5 +1,7 @@
+var map = L.map('map').setView([0, 0], 2); // Crear el mapa fuera de la función show
+
 var headers = {
-    Authorization: "Bearer "+ Cookies.get('token') // Reemplaza 'tuTokenJWT' con tu token real
+    Authorization: "Bearer " + Cookies.get('token') // Reemplaza 'tuTokenJWT' con tu token real
 };
 var stompClient = null;
 var socket = new SockJS('/ws');
@@ -8,20 +10,18 @@ stompClient.connect(headers, function (frame) {
     console.log(frame);
     stompClient.subscribe('/all/messages', function (result) {
         try {
-                show(JSON.parse(result.body));
-            } catch (error) {
-                console.error("Error al procesar el mensaje:", error);
-            }
+            show(JSON.parse(result.body));
+        } catch (error) {
+            console.error("Error al procesar el mensaje:", error);
+        }
     });
 });
 
 function show(message) {
     var locationInfo = message.text;
     var latLng = parseLocationInfo(locationInfo); // Parsea la ubicación
-    var mapContainer = L.map('map').setView([0, 0], 2);
     
     if (latLng) {
-
         // Mostrar en el mapa
         if (userMarker) {
             map.removeLayer(userMarker); // Elimina el marcador anterior
@@ -29,7 +29,7 @@ function show(message) {
 
         userMarker = L.marker(latLng).addTo(map);
         userMarker.bindPopup(locationInfo).openPopup();
-        mapContainer.setView(latLng, 15);
+        map.setView(latLng, 15);
 
         // Mostrar en formato de texto
         var response = document.getElementById('notificaciones');
