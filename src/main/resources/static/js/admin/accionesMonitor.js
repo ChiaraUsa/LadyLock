@@ -1,5 +1,3 @@
-var map = L.map('map').setView([0, 0], 2); // Crear el mapa fuera de la función show
-
 var headers = {
     Authorization: "Bearer " + Cookies.get('token') // Reemplaza 'tuTokenJWT' con tu token real
 };
@@ -20,16 +18,19 @@ stompClient.connect(headers, function (frame) {
 function show(message) {
     var locationInfo = message.text;
     var latLng = parseLocationInfo(locationInfo); // Parsea la ubicación
-    
-    if (latLng) {
-        // Mostrar en el mapa
-        if (userMarker) {
-            map.removeLayer(userMarker); // Elimina el marcador anterior
-        }
 
-        userMarker = L.marker(latLng).addTo(map);
+    if (latLng) {
+        // Crear el mapa y establecer la vista
+        var map = L.map('map').setView(latLng, 15);
+
+        // Agregar capa de mapa base
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Agregar marcador y centrar el mapa en la ubicación
+        var userMarker = L.marker(latLng).addTo(map);
         userMarker.bindPopup(locationInfo).openPopup();
-        map.setView(latLng, 15);
 
         // Mostrar en formato de texto
         var response = document.getElementById('notificaciones');
