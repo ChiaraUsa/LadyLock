@@ -39,6 +39,11 @@ public class ChatController {
         return ResponseEntity.ok(chatService.setChat());
     }
 
+    @GetMapping("/api/chat/getHistorialChats")
+    public ResponseEntity<List<List<ChatMessage>>> getHistorialChats(@RequestParam("userEmail") String userEmail, @RequestParam("tiempo") String tiempo){
+        return ResponseEntity.ok().body(chatService.getHistorialChats(userEmail,tiempo));
+    }
+
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
     public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
@@ -51,10 +56,11 @@ public class ChatController {
     @SendTo("/topic/public")
     public ChatMessage addUser(
             @Payload ChatMessage chatMessage,
-            SimpMessageHeaderAccessor headerAccessor
+            SimpMessageHeaderAccessor headerAccessor,
+            @RequestParam("userName") String userName
     ) {
         // Cargar mensajes pasados y enviar al nuevo usuario
-        List<ChatMessage> pastMessages = chatService.getChatMessages();
+        List<ChatMessage> pastMessages = chatService.getChatMessages(userName);
         pastMessages.forEach(message -> {
             messagingTemplate.convertAndSendToUser(chatMessage.getSender(), "/topic/public", message);
         });
@@ -67,7 +73,7 @@ public class ChatController {
 
     @GetMapping("/api/chat/history")
     @ResponseBody
-    public List<ChatMessage> getChatHistory() {
-        return chatService.getChatMessages();
+    public List<ChatMessage> getChatHistory(@RequestParam("userName") String userName) {
+        return chatService.getChatMessages(userName);
     }
 }
