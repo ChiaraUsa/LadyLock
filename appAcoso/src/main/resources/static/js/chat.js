@@ -15,7 +15,6 @@ var connectingElement = document.querySelector('.connecting');
 var username;
 
 var stompClient = null;
-var username = null;
 
 var colors = [
     '#2196F3', '#32c787', '#00BCD4', '#ff5652',
@@ -82,7 +81,7 @@ function onConnected(frame) {
     stompClient.subscribe('/topic/public', onMessageReceived);
 
     // Tell your username to the server
-    stompClient.send("/app/chat.addUser",
+    stompClient.send("/app/chat.addUser?userName="+username,
         {},
         JSON.stringify({ sender: username, type: 'JOIN' })
     )
@@ -153,7 +152,7 @@ function displayMessage(message) {
 function loadChatHistory() {
     $.ajax({
         type: 'GET',
-        url: '/api/chat/history', // Debes ajustar la ruta de la API según tu configuración del servidor
+        url: '/api/chat/history?userName='+username, // Debes ajustar la ruta de la API según tu configuración del servidor
         success: function (response) {
             // Procesar los mensajes históricos y mostrarlos en la interfaz de usuario
             response.forEach(function (message) {

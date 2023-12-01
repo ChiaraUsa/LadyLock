@@ -67,7 +67,6 @@ function mostrarMapa() {
                 .then(response => response.json())
                 .then(data => {
                     var locationInfo = data.display_name; // Obtiene la información del lugar
-                    stompClient.send('/app/application', headers, JSON.stringify({'text': locationInfo }))
                     var userMarker = L.marker([lat, lng]).addTo(map);
                     userMarker.bindPopup(locationInfo).openPopup();
                 }).catch(error => {
@@ -100,7 +99,7 @@ function sendLocation() {
                 .then(response => response.json())
                 .then(data => {
                     var locationInfo = data.display_name; // Obtiene la información del lugar
-                    stompClient.send('/app/application', headers, JSON.stringify({'text': locationInfo }))
+                    stompClient.send('/app/application', headers, JSON.stringify({'text': locationInfo, "latitude": lat, "longitude": lng }))
                 }).catch(error => {
                     console.error('Error en la geocodificación:', error);
                 });
